@@ -6,8 +6,10 @@ import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { BrowserRouter } from 'react-router-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import {Provider} from 'react-redux';
+import configureStore from "./redux/store/configureStore";
 
-
+const store = configureStore();
 injectTapEventPlugin();
 
 const WithRouter = () => (
@@ -16,8 +18,15 @@ const WithRouter = () => (
             <App/>
         </MuiThemeProvider>
     </BrowserRouter>
-)
+);
+
+const ReduxProvider = () => (
+    <Provider store={store}>
+        <WithRouter/>
+    </Provider>
+);
 
 
-ReactDOM.render(<WithRouter />, document.getElementById('root'));
+
+ReactDOM.render(<ReduxProvider/>, document.getElementById('root'));
 registerServiceWorker();
