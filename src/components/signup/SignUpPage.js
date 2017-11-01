@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import LoginContainer from './LoginContainer';
+import SignUpContainer from './SignUpContainer';
 
 function mapStateToProps() {
     return {
@@ -14,6 +14,6 @@ function mapDispatchToProps() {
     }
 }
 
-const LoginPage = connect(mapStateToProps,mapDispatchToProps)(LoginContainer);
+const SignUpPage = connect(mapStateToProps,mapDispatchToProps)(SignUpContainer);
 
-export default LoginPage;
+export default SignUpPage;
