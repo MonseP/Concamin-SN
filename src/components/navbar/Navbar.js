@@ -14,7 +14,7 @@ class Navbar extends Component {
                 <Toolbar>
                    <ToolbarGroup>
                        <Link to="/" className="link-nav">
-                           <ToolbarTitle text="Scientific-NW" />
+                           <ToolbarTitle text="Concamin" />
                        </Link>
                    </ToolbarGroup>
                     {user ?
@@ -30,7 +30,7 @@ class Navbar extends Component {
                         </ToolbarGroup>
                         :
                         <ToolbarGroup>
-                            <Link to="/news" className="link-nav">
+                            <Link to="/" className="link-nav">
                                 <RaisedButton label="Descubre" primary={true} />
                             </Link>
                             <span className="separador-nav">|</span>
