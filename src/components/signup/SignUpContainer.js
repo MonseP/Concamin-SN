@@ -8,7 +8,6 @@ class SignUpContainer extends Component {
         super(props);
         this.state = {
             newUser: {
-                fullName: '',
                 email: '',
                 password: '',
                 confirmPassword: ''
@@ -59,16 +58,14 @@ class SignUpContainer extends Component {
         const {newUser} = this.state;
         return (
             <div className="signup">
-                <div className='signup-box'>
-                    <SignUpComponent
-                        newUser={newUser}
-                        onChange={this.handleChangeNewUser}
-                        onSubmit={this.handleSubmit}
-                        matching={this.state.isMatching}
-                        checked={this.state.checked}
-                        updateCheck={this.updateCheck}
-                    />
-                </div>
+                <SignUpComponent
+                    newUser={newUser}
+                    onChange={this.handleChangeNewUser}
+                    onSubmit={this.handleSubmit}
+                    matching={this.state.isMatching}
+                    checked={this.state.checked}
+                    updateCheck={this.updateCheck}
+                />
             </div>
         )
     }

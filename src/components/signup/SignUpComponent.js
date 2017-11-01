@@ -3,7 +3,7 @@ import {TextField, RaisedButton, Checkbox} from 'material-ui';
 import {NavLink} from "react-router-dom";
 
 const formStyle = {
-    width: '30vw',
+    width: '100%',
     textAlign: 'center'
 };
 
@@ -42,18 +42,10 @@ const SignUpComponent = (props) => {
     return (
         <form
             onSubmit={props.onSubmit}
-            style={formStyle}>
-            <TextField
-                name="fullName"
-                required
-                floatingLabelText="Nombre Completo"
-                value={props.newUser.fullName}
-                onChange={props.onChange}
-                style={textFieldStyle}
-                fullWidth={true}
-            />
+            className="signup-box">
             <TextField
                 name="email"
+                hintText="os@fixter.org"
                 required
                 floatingLabelText="Email"
                 value={props.newUser.email}
@@ -65,6 +57,7 @@ const SignUpComponent = (props) => {
             <TextField
                 style={textFieldStyle}
                 name="password"
+                hintText="******"
                 required
                 floatingLabelText="Contraseña"
                 value={props.newUser.password}
@@ -100,7 +93,7 @@ const SignUpComponent = (props) => {
             />
             <p style={pStyle}>¿Ya tienes cuenta? </p>
             {' '}
-            <NavLink style={navStyle} to='/login'>Ingresa</NavLink>
+            <NavLink style={navStyle} to='/logIn'>Ingresa</NavLink>
         </form>
     );
 };

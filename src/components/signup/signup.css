@@ -12,10 +12,13 @@
 }
 
 .signup-box{
+    margin-top: 60px;
+    color: black;
     width: 30%;
     border-radius: 5px;
    /* border: solid 1px #e8e8e6;*/
-    box-shadow:  0 1px 1px 1px rgba(0,0,0,.3);
+    background: rgba(0,0,0,0.1);
+    box-shadow:  0 1px 1px 1px rgba(0,0,0,.2);
     text-align: center;
-    padding: 5%;
+    padding: 1% 5%;
 }
