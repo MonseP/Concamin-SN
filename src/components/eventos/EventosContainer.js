@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import EventsList from './EventsList';
 import './EventosStyles.css'
 
 class EventosContainer extends Component {
@@ -18,7 +19,7 @@ class EventosContainer extends Component {
             <div>
                 { fetched ?
                     <div className="root-eventos">
-
+                        <EventsList eventos={eventos}/>
                     </div>
                     :
                     <div className="root-eventos">
