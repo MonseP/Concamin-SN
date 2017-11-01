@@ -1,6 +1,6 @@
 .newsfeed{
 
-    padding: 64px 10%;
+    padding: 64px 5%;
 
 }
 .news-sections{
@@ -21,4 +21,26 @@
 }
 .new-post{
     margin-bottom: 2%;
+}
+
+/*groups-list*/
+.groups-list{
+    height: 50vh;
+    overflow-y: scroll;
+}
+.groups-list::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+.groups-list2{
+    height: 40vh;
+    overflow-y: scroll;
+}
+.newsfeed-link{
+    text-decoration: none;
+    color: black;
+}
+.newsfeed-link:hover{
+    text-decoration: none;
+    color: black;
 }
