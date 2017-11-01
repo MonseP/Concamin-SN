@@ -9,6 +9,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import {Provider} from 'react-redux';
 import configureStore from "./redux/store/configureStore";
 import {comprobarUsuario} from "./redux/actions/usuarioActions";
+import 'react-notifications/lib/notifications.css';
 
 const store = configureStore();
 store.dispatch(comprobarUsuario());
