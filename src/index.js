@@ -10,9 +10,11 @@ import {Provider} from 'react-redux';
 import configureStore from "./redux/store/configureStore";
 import {comprobarUsuario} from "./redux/actions/usuarioActions";
 import 'react-notifications/lib/notifications.css';
+import {loadEventos} from "./redux/actions/eventosActions";
 
 const store = configureStore();
 store.dispatch(comprobarUsuario());
+store.dispatch(loadEventos());
 injectTapEventPlugin();
 
 const WithRouter = () => (
