@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d60dc267-7fc8-49d8-911f-5eac8bdf9aa9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/eventos/FiltrarEventos.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/eventos/NuevoEvento.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Routes.js" afterPath="$PROJECT_DIR$/src/Routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/eventos/EventosContainer.js" afterPath="$PROJECT_DIR$/src/components/eventos/EventosContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/eventos/EventosPage.js" afterPath="$PROJECT_DIR$/src/components/eventos/EventosPage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/eventos/EventosStyles.css" afterPath="$PROJECT_DIR$/src/components/eventos/EventosStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/eventos/EventsList.js" afterPath="$PROJECT_DIR$/src/components/eventos/EventsList.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,13 +41,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventosContainer.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EventosContainer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/eventos/EventosContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="27" column="42" lean-forward="true" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+            <state relative-caret-position="17">
+              <caret line="45" column="16" lean-forward="true" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NuevoEvento.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/eventos/NuevoEvento.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -66,7 +75,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FiltrarEventos.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FiltrarEventos.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/eventos/FiltrarEventos.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="277">
@@ -86,16 +95,6 @@
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="eventosActions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/redux/actions/eventosActions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -127,8 +126,8 @@
       <file leaf-file-name="EventosStyles.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/eventos/EventosStyles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+            <state relative-caret-position="277">
+              <caret line="40" column="1" lean-forward="true" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -206,11 +205,12 @@
         <option value="$PROJECT_DIR$/src/redux/actions/eventosActions.js" />
         <option value="$PROJECT_DIR$/src/components/eventos/EventCard.js" />
         <option value="$PROJECT_DIR$/src/components/eventos/EventsList.js" />
-        <option value="$PROJECT_DIR$/src/components/eventos/EventosStyles.css" />
         <option value="$PROJECT_DIR$/src/components/eventos/EventosPage.js" />
         <option value="$PROJECT_DIR$/src/Routes.js" />
-        <option value="$PROJECT_DIR$/src/components/eventos/EventosContainer.js" />
         <option value="$PROJECT_DIR$/src/components/eventos/FiltrarEventos.js" />
+        <option value="$PROJECT_DIR$/src/components/eventos/EventosContainer.js" />
+        <option value="$PROJECT_DIR$/src/components/eventos/EventosStyles.css" />
+        <option value="$PROJECT_DIR$/src/components/eventos/NuevoEvento.js" />
       </list>
     </option>
   </component>
@@ -382,12 +382,12 @@
       <option name="presentableId" value="Default" />
       <updated>1508266425461</updated>
       <workItem from="1508266428277" duration="32666000" />
-      <workItem from="1509564471144" duration="15168000" />
+      <workItem from="1509564471144" duration="17640000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47834000" />
+    <option name="totallyTimeSpent" value="50306000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-4" width="1368" height="773" extended-state="6" />
@@ -444,13 +444,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/footer/Footer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/footer/footer.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -813,14 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/eventos/EventosStyles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/eventos/EventCard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -849,6 +834,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/eventos/FiltrarEventos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="27" column="81" lean-forward="true" selection-start-line="27" selection-start-column="81" selection-end-line="27" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/eventos/EventosPage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -859,22 +854,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/eventos/EventosContainer.js">
+    <entry file="file://$PROJECT_DIR$/src/components/eventos/NuevoEvento.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="27" column="42" lean-forward="true" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+        <state relative-caret-position="255">
+          <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/eventos/FiltrarEventos.js">
+    <entry file="file://$PROJECT_DIR$/src/components/eventos/EventosStyles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
-          <caret line="27" column="81" lean-forward="true" selection-start-line="27" selection-start-column="81" selection-end-line="27" selection-end-column="81" />
+          <caret line="40" column="1" lean-forward="true" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/eventos/EventosContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="45" column="16" lean-forward="true" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>

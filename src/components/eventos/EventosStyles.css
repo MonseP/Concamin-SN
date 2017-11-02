@@ -19,3 +19,23 @@
 .divider{
     padding: 0px 10px;
 }
+
+.fab-button {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+}
+
+.textfield-event{
+    /*margin: 10px;*/
+}
+
+.root-nuevo-evento{
+    display: flex;
+    justify-content: space-around;
+}
+
+.nuevo-evento-row{
+    display: block;
+    width: 100%;
+}
