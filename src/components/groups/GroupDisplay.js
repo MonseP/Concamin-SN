@@ -4,13 +4,16 @@ import {GridList, GridTile, Paper} from 'material-ui';
 import GroupBasics from "./GroupBasics";
 import GroupFeed from "./GroupFeed";
 import GroupChat from "./GroupChat";
+import ReactDOM from 'react-dom';
 
 
 
 class GroupDisplay extends Component {
+
+
     render() {
         return (
-            <div className="group-page" >
+            <div className="group-page">
                <GridList cols={4} cellHeight="auto" className="group-gridlist">
 
                   <GridTile cols={1} className="basics-section">
@@ -24,7 +27,7 @@ class GroupDisplay extends Component {
                    </GridTile>
 
                    <GridTile cols={1} className="group-chat">
-                       <GroupChat/>
+                       <GroupChat />
                    </GridTile>
                </GridList>
             </div>

@@ -15,32 +15,50 @@ class UserProfilePage extends Component {
             <div className="userprofile">
 
                 <GridList cellHeight={'auto'} cols={3}>
+
                     <GridTile cols={2} className="left-side">
                         <Paper zDepth={2} className='main-profile'>
-                            <Avatar icon={<Person/>} size={100} className="main-avatar"/>
-                            <div className="main-portada"></div>
+                            <div>
+                                <Avatar icon={<Person/>} size={150} className="main-avatar"/>
+                            </div>
+
                             <div className="main-texto">
-                                <h2>Nombre del Usuario</h2>
-                                <h3>Cargo Actual</h3>
-                                <h4>Profesión</h4>
-                                <br/>
-                                <p> Ad, cupiditate dolore dolorum ea eos et exercitationem, iure minus mollitia nihil possimus quae reprehenderit sequi soluta temporibus, voluptatem voluptates. Eveniet, facilis?</p>
+                                <GridList cols={3}>
+                                    <GridTile cols={2}>
+                                        <h2>Nombre del Usuario</h2>
+                                        <h3>Cargo Actual</h3>
+                                        <h4>Profesión</h4>
+                                        <br/>
+                                        <p> Ad, cupiditate dolore dolorum ea eos et exercitationem, iure minus mollitia nihil possimus quae reprehenderit sequi soluta temporibus, voluptatem voluptates. Eveniet, facilis?</p>
+                                    </GridTile>
+                                    <GridTile cols={1}>
+                                        <List>
+                                            <ListItem primaryText="Siguiendo" leftIcon={<ContentInbox />}/>
+                                            <ListItem primaryText="Seguidores" leftIcon={<ActionGrade />}/>
+                                            <ListItem primaryText="Grupos" leftIcon={<ContentSend />}/>
+
+
+                                        </List>
+                                    </GridTile>
+                                </GridList>
+
                             </div>
                         </Paper>
-                    </GridTile>
-                    <GridTile cols={1} className="right-side">
-                        <Paper zdepth={2} >
+                        <Paper zdepth={2} className="extra-info-paper">
                             <Subheader>Explora</Subheader>
                             <List>
-                                <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} rightIcon={<ActionInfo />}/>
-                                <ListItem primaryText="Seguidores" leftIcon={<ActionGrade />} rightIcon={<ActionInfo />}/>
-                                <ListItem primaryText="Siguiendo" leftIcon={<ContentSend />} rightIcon={<ActionInfo />}/>
+                                <ListItem primaryText="Conversaciones" leftIcon={<ContentInbox />} rightIcon={<ActionInfo />}/>
+                                <ListItem primaryText="Grupos" leftIcon={<ActionGrade />} rightIcon={<ActionInfo />}/>
+                                <ListItem primaryText="Amigos" leftIcon={<ContentSend />} rightIcon={<ActionInfo />}/>
                                 <ListItem primaryText="Posts" leftIcon={<ContentDrafts />} rightIcon={<ActionInfo />}/>
 
                             </List>
                         </Paper>
-                        <Subheader>Último Post</Subheader>
+                    </GridTile>
+                    <GridTile cols={1} className="right-side">
                         <div className="last-post">
+                            <PostCard image={'https://static.pexels.com/photos/256381/pexels-photo-256381.jpeg'}/>
+                            <PostCard image={'https://static.pexels.com/photos/256381/pexels-photo-256381.jpeg'}/>
                             <PostCard image={'https://static.pexels.com/photos/256381/pexels-photo-256381.jpeg'}/>
                         </div>
 

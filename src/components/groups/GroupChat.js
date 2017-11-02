@@ -5,12 +5,14 @@ import File from 'material-ui/svg-icons/editor/attach-file';
 import Photo from 'material-ui/svg-icons/editor/insert-photo';
 import Gif from 'material-ui/svg-icons/action/gif';
 import Heart from 'material-ui/svg-icons/action/favorite-border';
+import ReactDOM from 'react-dom';
 
-const GroupChat = ({props}) => {
+
+const GroupChat = ({}) => {
     return (
 
         <Paper className="group-chat-paper">
-            <div className="chat-box">
+            <div className="chat-box" >
 
                 <div className="chat left-chat">
                     <Avatar icon={<Emoji size={10}/>}/>
