@@ -22,14 +22,12 @@ export function iniciarSesion(user) {
             .signInWithEmailAndPassword(user.email, user.password)
             .then((u) => {
                 //console.log(user)
-                ////toastr.success("Bienvenido");
                 console.log('Ya estoy adentro');
                 console.log('USUARIO ID' + u.uid);
                 dispatch(iniciarSesionAction(u));
-                //dispatch(loadListaMedidas(u.uid,moment().format('YYYY'),moment().format('MM')));
             })
             .catch((error) => {
-                var errorCode = error.code;
+                const errorCode = error.code;
                 let errorMessage = '';
                 if (errorCode === 'auth/user-not-found') {
                     errorMessage = 'Usuario no encontrado';

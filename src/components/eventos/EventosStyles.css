@@ -1,0 +1,41 @@
+.root-eventos{
+    padding: 64px 5% 0px 5% ;
+}
+.evento-card{
+    margin:0 2% 2% 2%;
+    border-radius: 3px;
+}
+
+.lista-eventos{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2%;
+}
+
+.right-side, .left-side{
+    padding: 2%;
+}
+
+.divider{
+    padding: 0px 10px;
+}
+
+.fab-button {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+}
+
+.textfield-event{
+    /*margin: 10px;*/
+}
+
+.root-nuevo-evento{
+    display: flex;
+    justify-content: space-around;
+}
+
+.nuevo-evento-row{
+    display: block;
+    width: 100%;
+}

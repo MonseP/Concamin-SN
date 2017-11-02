@@ -1,16 +1,17 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import SignUpContainer from './SignUpContainer';
+import * as usuarioActions from '../../redux/actions/usuarioActions';
 
-function mapStateToProps() {
+function mapStateToProps(state, ownProps) {
     return {
 
     }
 }
 
-function mapDispatchToProps() {
+function mapDispatchToProps(dispatch) {
     return {
-
+        usuarioActions: bindActionCreators(usuarioActions, dispatch)
     }
 }
 

@@ -1,26 +1,45 @@
 import React, {Component} from 'react';
-import { RaisedButton, TextField } from 'material-ui';
+import LoginComponent from './LoginComponent';
 import './login.css';
 
 class LoginContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            usuario:{
+                email: '',
+                password: '',
+            }
+        };
+    }
+
+    loginWithPassword = (e) => {
+        e.preventDefault();
+        const user = Object.assign({},this.state.usuario);
+        console.log(user.email + user.password);
+        this.props.usuarioActions.iniciarSesion(user)
+            .then( () => {
+                this.props.history.push('/');
+            });
+
+    };
+
+    handleChange = (e) => {
+        let usuario = this.state.usuario;
+        usuario[e.target.name] = e.target.value;
+        this.setState({usuario});
+    };
+
 
     render() {
         console.log(this.props.match);
         return (
             <div className="login">
-                <div className='login-box'>
-                    <h2>Inicia Sesión</h2>
-                    <TextField
-                       hintText="os@fixter.org"
-                       floatingLabelText="Correo"
-                   /><br />
-                   <TextField
-                       type="password"
-                       hintText="*******"
-                       floatingLabelText="Contraseña"
-                   /><br />
-                   <RaisedButton label="Inicia"  fullWidth={true}/>
-                </div>
+                <LoginComponent
+                    onChange={this.handleChange}
+                    onSubmit={this.loginWithPassword}
+                    usuario={this.state.usuario}
+                />
             </div>
         )
     }
