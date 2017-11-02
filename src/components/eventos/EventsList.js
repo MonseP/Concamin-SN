@@ -20,7 +20,7 @@ const EventsList = ({eventos}) => {
     return (
         <div className="lista-productos">
 
-            <GridList cellHeight={'auto'} cols={4} className="grid-list">
+            <GridList cellHeight={'auto'} cols={3} className="grid-list">
                 {listaEventos}
             </GridList>
 

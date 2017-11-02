@@ -11,6 +11,7 @@ import GroupDisplay from "./components/groups/GroupDisplay";
 
 import SignUpPage from "./components/signup/SignUpPage";
 import EventosPage from "./components/eventos/EventosPage";
+import EventosContainer from "./components/eventos/EventosContainer";
 
 //import Register from "./components/login/Register";
 
@@ -25,7 +26,7 @@ export const Routes = () => (
         <Route exact path="/new" component={NewPostPage}/>
         <Route path='/chat' component={ChatPage}/>
         <Route path='/groups/:groupId'component={GroupDisplay}/>
-        <Route path='/eventos' component={EventosPage}/>
+        <Route path='/eventos' component={EventosContainer}/>
 
 
     </Switch>

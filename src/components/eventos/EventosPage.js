@@ -15,5 +15,6 @@ function mapDispatchToProps() {
     }
 }
 
+
 const EventosPage = connect(mapStateToProps, mapDispatchToProps)(EventosContainer);
 export default EventosPage;

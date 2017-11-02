@@ -11,3 +11,11 @@
     box-sizing: border-box;
     padding: 2%;
 }
+
+.right-side, .left-side{
+    padding: 2%;
+}
+
+.divider{
+    padding: 0px 10px;
+}
