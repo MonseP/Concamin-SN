@@ -1,5 +1,6 @@
 import React from 'react';
-import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardHeader, CardTitle, CardText, CardMedia} from 'material-ui/Card';
+import {TextField} from 'material-ui';
 import {RaisedButton, IconButton} from 'material-ui';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import Photo from 'material-ui/svg-icons/image/photo-camera';
@@ -7,7 +8,7 @@ import Video from 'material-ui/svg-icons/av/videocam';
 import File from 'material-ui/svg-icons/editor/attach-file';
 import './newsfeed.css';
 
-const NewPost = ({props}) => {
+const NewPost = ({handleText, text, image, uploadPhoto, addPost}) => {
     return (
         <div className='new-post'>
             <Card>
@@ -16,11 +17,23 @@ const NewPost = ({props}) => {
                     subtitle='Comparte una foto, artículo o lo que quieras!'
                     avatar="https://static.pexels.com/photos/355956/pexels-photo-355956.jpeg"
                 />
+                <CardMedia>
+                    <img src={image} alt="" />
+                </CardMedia>
 
                 <CardText>
+                    <TextField
+                        value={text}
+                        name='text'
+                        onChange={handleText}
+                        fullWidth={true}
+                        multiLine={true}
+                    /><br />
+
                     <div className='post-actions'>
-                        <IconButton>
+                        <IconButton >
                             <Photo/>
+                            <input type="file" className="inputimage" onChange={uploadPhoto}/>
                         </IconButton>
                         <IconButton>
                             <Video/>
@@ -32,8 +45,14 @@ const NewPost = ({props}) => {
                             <ActionHome/>
                         </IconButton>
                     </div>
-                    <RaisedButton fullWidth={true}>Publicar</RaisedButton>
+
                 </CardText>
+                <RaisedButton
+                    fullWidth={true}
+                    onClick={addPost}
+                >
+                    Publicar
+                </RaisedButton>
 
             </Card>
         </div>

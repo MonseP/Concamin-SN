@@ -11,10 +11,12 @@ import configureStore from "./redux/store/configureStore";
 import {comprobarUsuario} from "./redux/actions/usuarioActions";
 import 'react-notifications/lib/notifications.css';
 import {loadEventos} from "./redux/actions/eventosActions";
+import {getAllPosts} from "./redux/actions/postsActions";
 
 const store = configureStore();
 store.dispatch(comprobarUsuario());
 store.dispatch(loadEventos());
+store.dispatch(getAllPosts());
 injectTapEventPlugin();
 
 const WithRouter = () => (

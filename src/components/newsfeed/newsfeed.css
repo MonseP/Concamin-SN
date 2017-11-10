@@ -44,3 +44,10 @@
     text-decoration: none;
     color: black;
 }
+
+.inputimage{
+    position: absolute;
+    top:30%;
+    left:0;
+
+}
