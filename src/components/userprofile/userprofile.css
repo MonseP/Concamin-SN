@@ -56,3 +56,17 @@
     right: 20px;
     top: 10px;
 }
+
+.row-add-new-experiencia{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+
+}
+
+.text-field, .date-picker, .label {
+    margin: 10px 20px;
+    display: inline;
+}
+
+
