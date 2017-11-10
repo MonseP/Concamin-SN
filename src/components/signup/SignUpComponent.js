@@ -38,7 +38,6 @@ const styles = {
 
 
 const SignUpComponent = (props) => {
-    console.log(props.newUser);
     return (
         <form
             onSubmit={props.onSubmit}

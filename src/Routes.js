@@ -12,6 +12,7 @@ import GroupDisplay from "./components/groups/GroupDisplay";
 import SignUpPage from "./components/signup/SignUpPage";
 import EventosPage from "./components/eventos/EventosPage";
 import EventosContainer from "./components/eventos/EventosContainer";
+import PrivateRoute from "./PrivateRoute";
 
 //import Register from "./components/login/Register";
 
