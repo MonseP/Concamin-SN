@@ -17,7 +17,7 @@ class UserProfilePage extends Component {
                 <GridList cellHeight={'auto'} cols={3}>
 
                     <GridTile cols={2} className="left-side">
-                        <Paper zDepth={2} className='main-profile'>
+                        <Paper zDepth={1} className='main-profile'>
                             <div>
                                 <Avatar icon={<Person/>} size={150} className="main-avatar"/>
                             </div>
