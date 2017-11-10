@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d60dc267-7fc8-49d8-911f-5eac8bdf9aa9" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/userprofile/UserProfilePage.js" afterPath="$PROJECT_DIR$/src/components/userprofile/UserProfilePage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/userprofile/userprofile.css" afterPath="$PROJECT_DIR$/src/components/userprofile/userprofile.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,23 +27,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserProfilePage.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserProfilePage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/userprofile/UserProfilePage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="19" column="83" lean-forward="false" selection-start-line="19" selection-start-column="83" selection-end-line="19" selection-end-column="83" />
+            <state relative-caret-position="14">
+              <caret line="1" column="71" lean-forward="false" selection-start-line="1" selection-start-column="71" selection-end-line="1" selection-end-column="71" />
               <folding>
-                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#221#265#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fakeProfile.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PerfilSummary.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/userprofile/PerfilSummary.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="56">
+              <caret line="4" column="61" lean-forward="false" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExperienciaPanel.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/userprofile/ExperienciaPanel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="14">
+              <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fakeProfile.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/userprofile/fakeProfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="3" column="53" lean-forward="true" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
+            <state relative-caret-position="98">
+              <caret line="7" column="2" lean-forward="true" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -78,8 +100,8 @@
         <option value="React Const" />
         <option value="React Container" />
         <option value="CSS File" />
-        <option value="React Component" />
         <option value="JavaScript File" />
+        <option value="React Component" />
       </list>
     </option>
   </component>
@@ -97,8 +119,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/home/Section2.js" />
-        <option value="$PROJECT_DIR$/src/components/navbar/navbar.css" />
         <option value="$PROJECT_DIR$/src/components/footer/Footer.js" />
         <option value="$PROJECT_DIR$/src/components/footer/footer.css" />
         <option value="$PROJECT_DIR$/src/components/login/Register.js" />
@@ -146,8 +166,10 @@
         <option value="$PROJECT_DIR$/src/Routes.js" />
         <option value="$PROJECT_DIR$/src/redux/actions/postsActions.js" />
         <option value="$PROJECT_DIR$/src/components/userprofile/userprofile.css" />
-        <option value="$PROJECT_DIR$/src/components/userprofile/UserProfilePage.js" />
         <option value="$PROJECT_DIR$/src/components/userprofile/fakeProfile.js" />
+        <option value="$PROJECT_DIR$/src/components/userprofile/PerfilSummary.js" />
+        <option value="$PROJECT_DIR$/src/components/userprofile/ExperienciaPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/userprofile/UserProfilePage.js" />
       </list>
     </option>
   </component>
@@ -225,6 +247,7 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/miglez/ReactProjects/Concamin-SN/src/components/userprofile/ExperienciaPanel.js" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -264,18 +287,18 @@
       <workItem from="1509564471144" duration="17640000" />
       <workItem from="1509655092741" duration="6779000" />
       <workItem from="1510334355868" duration="2550000" />
-      <workItem from="1510339853601" duration="6026000" />
+      <workItem from="1510339853601" duration="7949000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65661000" />
+    <option name="totallyTimeSpent" value="67584000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.093305215" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.093305215" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -326,20 +349,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/newsfeed/post_card.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/newsfeed/NewsfeedPage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -545,6 +554,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="45" column="16" lean-forward="false" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -681,21 +693,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/userprofile/UserProfilePage.js">
+    <entry file="file://$PROJECT_DIR$/src/components/userprofile/fakeProfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="19" column="83" lean-forward="false" selection-start-line="19" selection-start-column="83" selection-end-line="19" selection-end-column="83" />
+        <state relative-caret-position="98">
+          <caret line="7" column="2" lean-forward="true" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/userprofile/PerfilSummary.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="4" column="61" lean-forward="false" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/userprofile/fakeProfile.js">
+    <entry file="file://$PROJECT_DIR$/src/components/userprofile/ExperienciaPanel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="3" column="53" lean-forward="true" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
+        <state relative-caret-position="14">
+          <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/userprofile/UserProfilePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="1" column="71" lean-forward="false" selection-start-line="1" selection-start-column="71" selection-end-line="1" selection-end-column="71" />
+          <folding>
+            <element signature="e#221#265#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
