@@ -37,7 +37,7 @@ const EducacionPanel = ({titulos}) => {
             <IconButton style={{position:'absolute'}} className="add-new-experience" tooltip="Agregar" >
                 <AddIcon />
             </IconButton>
-            <List>
+            <List className="scroll-overflow">
                 {listaTitulos}
             </List>
         </Paper>

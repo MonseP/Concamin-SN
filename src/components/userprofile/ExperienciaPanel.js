@@ -37,9 +37,10 @@ const ExperienciaPanel = ({experiencias, showAddExperiencia}) => {
             <IconButton onClick={showAddExperiencia} style={{position:'absolute'}} className="add-new-experience" tooltip="Agregar" >
                 <AddIcon />
             </IconButton>
-            <List>
+            <List className="scroll-overflow">
                 {listaExperiencias}
             </List>
+
         </Paper>
     );
 };

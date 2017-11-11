@@ -44,11 +44,16 @@
 }
 .extra-info-paper{
     height: 30vh;
-    overflow-y: scroll;
     box-sizing: border-box;
     margin-bottom: 2%;
     padding: 1% 2%;
     position: relative;
+}
+
+.scroll-overflow{
+    box-sizing: border-box;
+    height: 20vh;
+    overflow-y: scroll;
 }
 
 .edit-information {
