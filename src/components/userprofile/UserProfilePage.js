@@ -165,7 +165,7 @@ class UserProfilePage extends Component {
                         </Dialog>
                         <Paper zdepth={2} className="extra-info-paper">
                             <Subheader>Explora</Subheader>
-                            <List>
+                            <List className="scroll-overflow">
                                 <ListItem primaryText="Conversaciones" leftIcon={<ContentInbox />} rightIcon={<ActionInfo />}/>
                                 <ListItem primaryText="Grupos" leftIcon={<ActionGrade />} rightIcon={<ActionInfo />}/>
                                 <ListItem primaryText="Amigos" leftIcon={<ContentSend />} rightIcon={<ActionInfo />}/>
