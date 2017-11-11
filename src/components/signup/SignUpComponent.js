@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextField, RaisedButton, Checkbox} from 'material-ui';
+import {TextField, RaisedButton, Checkbox, CircularProgress} from 'material-ui';
 import {NavLink} from "react-router-dom";
 
 const formStyle = {
@@ -37,7 +37,7 @@ const styles = {
 };
 
 
-const SignUpComponent = (props) => {
+const SignUpComponent = (props, {loading}) => {
     return (
         <form
             onSubmit={props.onSubmit}
@@ -84,7 +84,7 @@ const SignUpComponent = (props) => {
                 />
             </div>
             <RaisedButton
-                label="Registrarse"
+                label={loading ? <CircularProgress color="white" size={30} />:"Registrarse"}
                 primary={true}
                 style={styleButton}
                 type="submit"

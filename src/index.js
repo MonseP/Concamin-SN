@@ -14,7 +14,9 @@ import {loadEventos} from "./redux/actions/eventosActions";
 import {getAllPosts} from "./redux/actions/postsActions";
 import {getAllGroups} from "./redux/actions/groupActions";
 
-const store = configureStore();
+import 'toastr/build/toastr.css';
+
+export const store = configureStore();
 store.dispatch(comprobarUsuario());
 store.dispatch(loadEventos());
 store.dispatch(getAllPosts());

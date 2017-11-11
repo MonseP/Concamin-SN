@@ -30,7 +30,7 @@
     position: absolute;
     width: 100%;
     height: 50%;
-    background-color: #039be5;
+    background-color: #E7E7E7;
     top: 0;
     z-index: 1;
 }
@@ -44,15 +44,41 @@
 }
 .extra-info-paper{
     height: 30vh;
-    overflow-y: scroll;
     box-sizing: border-box;
     margin-bottom: 2%;
     padding: 1% 2%;
     position: relative;
 }
 
+.scroll-overflow{
+    box-sizing: border-box;
+    height: 20vh;
+    overflow-y: scroll;
+}
+
+.edit-information {
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+}
+
+
 .add-new-experience {
     position: absolute;
     right: 20px;
     top: 10px;
 }
+
+.row-add-new-experiencia{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+
+}
+
+.text-field, .date-picker, .label {
+    margin: 10px 20px;
+    display: inline;
+}
+
+

@@ -1,3 +1,13 @@
+/*components imports*/
+@import './components/profile/profile.css';
+
+
+.margin-for-nav{
+    padding-top: 56px;
+}
+
+/*defaults*/
+
 .App {
   text-align: center;
 }

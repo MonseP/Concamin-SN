@@ -1,19 +1,21 @@
 import React from 'react';
-import {GridTile, GridList, Avatar, Paper, List, ListItem} from 'material-ui';
+import {GridTile, GridList, Avatar, Paper, List, ListItem, IconButton} from 'material-ui';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentSend from 'material-ui/svg-icons/content/send';
+import EditIcon from 'material-ui/svg-icons/image/edit';
+import { lightBlack } from 'material-ui/styles/colors';
 
-const PerfilSummary = ({user}) => {
+const PerfilSummary = ({user,showEditSummary}) => {
     return (
         <Paper zDepth={1} className='main-profile'>
+            <IconButton onClick={showEditSummary} style={{position:'absolute'}} className="edit-information" tooltip="Editar" >
+                <EditIcon />
+            </IconButton>
             <div>
                 <Avatar src={user.img} size={150} className="main-avatar"/>
             </div>
-            {/*<div className="background-profile">*/}
-
-            {/*</div>*/}
-
+            <div className="background-profile"/>
             <div className="main-texto">
                 <GridList  cols={3} cellHeight='auto'>
                     <GridTile cols={2} >
