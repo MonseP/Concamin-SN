@@ -12,16 +12,54 @@ import {fakeProfile} from './fakeProfile';
 import PerfilSummary from "./PerfilSummary";
 import ExperienciaPanel from "./ExperienciaPanel";
 import AddNewExperienciaForm from "./AddNewExperienciaForm";
+import EditSummary from "./EditSummary";
 
 class UserProfilePage extends Component {
     constructor(props){
         super(props);
         this.state = {
             addExperienciaShowed : false,
+            editSummaryShowed: false,
             profile: fakeProfile,
-            nuevaExperiencia: {cargo: '', empresa: '', fechaInicio: {}, fechaFinal:{}, ubicacion:'', descripcion: '', publico: true}
+            nuevaExperiencia: {cargo: '', empresa: '', fechaInicio: {}, fechaFinal:{}, ubicacion:'', descripcion: '', publico: true},
+            nuevoResumen: {nombre: fakeProfile.nombre, cargoActual: fakeProfile.cargoActual, titulo:fakeProfile.titulo, breveDescripcion:fakeProfile.breveDescripcion }
         }
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////
+
+    showEditSummary = () => {
+        const{profile,nuevoResumen} = this.state;
+         nuevoResumen.nombre= profile.nombre ;
+         nuevoResumen.cargoActual= profile.cargoActual ;
+         nuevoResumen.titulo= profile.titulo ;
+         nuevoResumen.breveDescripcion= profile.breveDescripcion ;
+        this.setState({editSummaryShowed: true, nuevoResumen});
+    };
+
+    closeEditSummary = () => {
+        this.setState({editSummaryShowed: false});
+    };
+
+    handleEditSummaryChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        let {nuevoResumen} = this.state;
+        nuevoResumen[name] = value;
+        this.setState({nuevoResumen});
+    };
+
+    editSummary = () => {
+        const{profile,nuevoResumen} = this.state;
+        profile.nombre = nuevoResumen.nombre;
+        profile.cargoActual = nuevoResumen.cargoActual;
+        profile.titulo = nuevoResumen.titulo;
+        profile.breveDescripcion = nuevoResumen.breveDescripcion;
+        this.setState({profile});
+        this.closeEditSummary();
+    };
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
     showAddExperiencia = () => {
         this.setState({addExperienciaShowed: true});
@@ -59,8 +97,9 @@ class UserProfilePage extends Component {
         this.closeAddExperiencia();
     };
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////77
     render() {
-        const {addExperienciaShowed, profile, nuevaExperiencia} = this.state;
+        const {addExperienciaShowed, profile, nuevaExperiencia, nuevoResumen, editSummaryShowed} = this.state;
         const {experiencias} = profile;
 
         const actionsAddExperiencia  = [
@@ -76,13 +115,27 @@ class UserProfilePage extends Component {
                 onClick={this.addExperiencia}
             />,
         ];
+
+        const actionsEditSummary  = [
+            <FlatButton
+                label="Cancelar"
+                primary={true}
+                onClick={this.closeEditSummary}
+            />,
+            <FlatButton
+                label="Agregar"
+                primary={true}
+                keyboardFocused={true}
+                onClick={this.editSummary}
+            />,
+        ];
         return (
             <div className="userprofile">
 
                 <GridList cellHeight={'auto'} cols={3}>
 
                     <GridTile cols={2} className="left-side">
-                        <PerfilSummary user={fakeProfile}/>
+                        <PerfilSummary showEditSummary={this.showEditSummary} user={fakeProfile}/>
                         <ExperienciaPanel showAddExperiencia={this.showAddExperiencia} experiencias={experiencias}/>
                         <Dialog
                             open={addExperienciaShowed}
@@ -95,6 +148,17 @@ class UserProfilePage extends Component {
                                 onChange={this.handleAddExperienciaChange}
                                 onFechaInicioChange={this.handleFechaInicioChange}
                                 onFechaFinalChange={this.handleFechaFinalChange}
+                            />
+                        </Dialog>
+                        <Dialog
+                            open={editSummaryShowed}
+                            onRequestClose={this.closeEditSummary}
+                            modal={false}
+                            actions={actionsEditSummary}
+                        >
+                            <EditSummary
+                                profile={nuevoResumen}
+                                onChange={this.handleEditSummaryChange}
                             />
                         </Dialog>
                         <Paper zdepth={2} className="extra-info-paper">

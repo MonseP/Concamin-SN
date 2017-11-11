@@ -2,7 +2,7 @@ import React from 'react';
 import {Avatar, Paper, Subheader, List, ListItem, Divider, IconButton} from 'material-ui';
 import { darkBlack} from 'material-ui/styles/colors';
 import ActionInfo from 'material-ui/svg-icons/action/info';
-import AddIcon from 'material-ui/svg-icons/content/add-circle';
+import AddIcon from 'material-ui/svg-icons/content/add';
 
 const ExperienciaPanel = ({experiencias, showAddExperiencia}) => {
     let listaExperiencias = [];
