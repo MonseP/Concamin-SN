@@ -12,7 +12,9 @@ import {comprobarUsuario} from "./redux/actions/usuarioActions";
 import 'react-notifications/lib/notifications.css';
 import {loadEventos} from "./redux/actions/eventosActions";
 
-const store = configureStore();
+import 'toastr/build/toastr.css';
+
+export const store = configureStore();
 store.dispatch(comprobarUsuario());
 store.dispatch(loadEventos());
 injectTapEventPlugin();

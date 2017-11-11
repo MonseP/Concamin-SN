@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { RaisedButton} from 'material-ui';
 import './signup.css';
 import SignUpComponent from "./SignUpComponent";
+import toastr from 'toastr';
 
 class SignUpContainer extends Component {
     constructor(props) {
@@ -13,7 +14,8 @@ class SignUpContainer extends Component {
                 confirmPassword: ''
             },
             isMatching: true,
-            checked: false
+            checked: false,
+            loading:false
         };
     }
 
@@ -31,10 +33,19 @@ class SignUpContainer extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        this.setState({loading:true});
         const user = Object.assign({},this.state.newUser);
         this.props.usuarioActions.registrarEIniciarSesion(user)
             .then( r => {
+                toastr.success("Bienvenido");
+                this.setState({loading:false});
                 this.props.history.push('/');
+
+
+            })
+            .catch(e=>{
+                toastr.error(e);
+                this.setState({loading:false});
             });
     };
 
@@ -54,7 +65,7 @@ class SignUpContainer extends Component {
 
 
     render() {
-        console.log(this.props.match);
+        //console.log(this.props.match);
         const {newUser} = this.state;
         return (
             <div className="signup">
@@ -65,6 +76,7 @@ class SignUpContainer extends Component {
                     matching={this.state.isMatching}
                     checked={this.state.checked}
                     updateCheck={this.updateCheck}
+                    loading={this.state.loading}
                 />
             </div>
         )

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Routes} from './Routes';
 import Nav from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
-import './index.css'
+import './App.css'
 
 
 class App extends Component {
@@ -10,7 +10,10 @@ class App extends Component {
     return (
       <div>
           <Nav/>
-          <Routes/>
+          <div className="margin-for-nav">
+              <Routes/>
+          </div>
+
           <Footer/>
       </div>
     );

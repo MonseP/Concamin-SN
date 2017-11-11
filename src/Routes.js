@@ -1,6 +1,6 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import UserProfilePage from "./components/userprofile/UserProfilePage";
+import ProfilePage from "./components/profile/ProfilePage";
 import HomePage from "./components/home/HomePage";
 import LoginPage from "./components/login/LoginPage";
 import NewsfeedPage from "./components/newsfeed/NewsfeedPage";
@@ -20,7 +20,7 @@ import PrivateRoute from "./PrivateRoute";
 export const Routes = () => (
     <Switch>
         <Route exact path='/' component={NewsfeedPage}/>
-        <Route path='/userprofile' component={UserProfilePage}/>
+        <Route path='/profile' component={ProfilePage}/>
         <Route path='/logIn' component={LoginPage}/>
         <Route path='/signUp' component={SignUpPage}/>
         <Route path='/register' component={LoginPage}/>
