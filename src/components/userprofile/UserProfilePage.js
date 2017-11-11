@@ -13,6 +13,7 @@ import PerfilSummary from "./PerfilSummary";
 import ExperienciaPanel from "./ExperienciaPanel";
 import AddNewExperienciaForm from "./AddNewExperienciaForm";
 import EditSummary from "./EditSummary";
+import EducacionPanel from "./EducacionPanel";
 
 class UserProfilePage extends Component {
     constructor(props){
@@ -100,7 +101,7 @@ class UserProfilePage extends Component {
     //////////////////////////////////////////////////////////////////////////////////////////////////////77
     render() {
         const {addExperienciaShowed, profile, nuevaExperiencia, nuevoResumen, editSummaryShowed} = this.state;
-        const {experiencias} = profile;
+        const {experiencias,titulos} = profile;
 
         const actionsAddExperiencia  = [
             <FlatButton
@@ -137,6 +138,7 @@ class UserProfilePage extends Component {
                     <GridTile cols={2} className="left-side">
                         <PerfilSummary showEditSummary={this.showEditSummary} user={fakeProfile}/>
                         <ExperienciaPanel showAddExperiencia={this.showAddExperiencia} experiencias={experiencias}/>
+                        <EducacionPanel titulos={titulos}/>
                         <Dialog
                             open={addExperienciaShowed}
                             onRequestClose={this.closeAddExperiencia}
