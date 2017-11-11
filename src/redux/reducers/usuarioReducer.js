@@ -7,6 +7,12 @@ export default function usuarioReducer ( state = {} , action ){
         case "INICIAR_SESION":
             return action.user;
 
+            if (action.usuario) {
+                return action.usuario;
+            }else{
+                return null;
+            }
+
         case UPDATE_USER_SUCCESS:
             return action.user;
 
