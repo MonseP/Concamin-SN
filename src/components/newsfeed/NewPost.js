@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card, CardHeader, CardTitle, CardText, CardMedia} from 'material-ui/Card';
-import {TextField} from 'material-ui';
+import {TextField, CircularProgress} from 'material-ui';
 import {RaisedButton, IconButton} from 'material-ui';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import Photo from 'material-ui/svg-icons/image/photo-camera';
@@ -8,7 +8,7 @@ import Video from 'material-ui/svg-icons/av/videocam';
 import File from 'material-ui/svg-icons/editor/attach-file';
 import './newsfeed.css';
 
-const NewPost = ({handleText, text, image, uploadPhoto, addPost}) => {
+const NewPost = ({handleText, text, image, uploadPhoto, addPost, loader}) => {
     return (
         <div className='new-post'>
             <Card>
@@ -18,6 +18,10 @@ const NewPost = ({handleText, text, image, uploadPhoto, addPost}) => {
                     avatar="https://static.pexels.com/photos/355956/pexels-photo-355956.jpeg"
                 />
                 <CardMedia>
+                    <div className={loader?'loaderOn':'loaderOff'}>
+                        <CircularProgress
+                            size={80} thickness={5}/>
+                    </div>
                     <img src={image} alt="" />
                 </CardMedia>
 
@@ -31,10 +35,13 @@ const NewPost = ({handleText, text, image, uploadPhoto, addPost}) => {
                     /><br />
 
                     <div className='post-actions'>
-                        <IconButton >
-                            <Photo/>
-                            <input type="file" className="inputimage" onChange={uploadPhoto}/>
-                        </IconButton>
+
+                            <IconButton>
+                                <Photo/>
+                                <input id="fotobutton" type="file" className="inputimage" onChange={uploadPhoto}/>
+                            </IconButton>
+
+
                         <IconButton>
                             <Video/>
                         </IconButton>

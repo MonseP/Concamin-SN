@@ -8,7 +8,7 @@
 }
 
 .posts-section{
-    padding: 2%;
+    padding: 2% 5%;
 }
 .menu-left-section{
 
@@ -27,6 +27,15 @@
 .groups-list{
     height: 50vh;
     overflow-y: scroll;
+}
+.lista-grupos{
+    position: relative;
+}
+.button-add-group{
+    position:absolute;
+    top:40%;
+    right:10px;
+    z-index:1000;
 }
 .groups-list::-webkit-scrollbar {
     width: 0px;  /* remove scrollbar space */
@@ -49,5 +58,16 @@
     position: absolute;
     top:30%;
     left:0;
+    opacity: 0;
 
+}
+
+/*loader class*/
+.loaderOn{
+    display: flex;
+    justify-content: center;
+}
+.loaderOff{
+
+    display: none;
 }
