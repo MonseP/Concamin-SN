@@ -1,18 +1,22 @@
 import React from 'react';
 import EventCard from "./EventCard";
 import {GridList, GridTile} from 'material-ui';
-
+import moment from 'moment';
+import 'moment/locale/es';
 
 const EventsList = ({eventos}) => {
-    let listaEventos = eventos.map( evento => {
+    let listaEventos = eventos.map( (evento,key) => {
+        moment.locale('es');
+        let fecha = moment(evento.fecha).format('DD MMMM YYYY');
         return (
-            <GridTile cols={1}>
+            <GridTile key={key} cols={1}>
                 <EventCard
                     titulo={evento.titulo}
                     usuario={evento.usuario}
-                    fecha={evento.fecha}
+                    fecha={fecha}
                     hora={evento.hora}
                     lugar={evento.lugar}
+                    photoUrl={evento.photoUrl}
                 />
             </GridTile>
         );
@@ -20,7 +24,7 @@ const EventsList = ({eventos}) => {
     return (
         <div className="lista-productos">
 
-            <GridList cellHeight={'auto'} cols={3} className="grid-list">
+            <GridList cellHeight={'auto'} cols={2} className="grid-list">
                 {listaEventos}
             </GridList>
 
