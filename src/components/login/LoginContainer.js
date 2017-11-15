@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import LoginComponent from './LoginComponent';
 import './login.css';
 import toastr from 'toastr';
+import {listenUserChanges} from "../../redux/actions/usuarioActions";
 
 class LoginContainer extends Component {
     constructor(props) {
@@ -21,11 +22,11 @@ class LoginContainer extends Component {
         this.props.usuarioActions.iniciarSesion(user)
 
             .then( () => {
+                listenUserChanges();
                 this.props.history.push('/profile');
+
             })
             .catch(e=>toastr.error(e));
-
-
     };
 
     handleChange = (e) => {

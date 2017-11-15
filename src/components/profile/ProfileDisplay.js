@@ -3,24 +3,36 @@
  */
 import React from 'react';
 import {CircularProgress} from 'material-ui';
+import {Dialog} from 'material-ui';
 
 const defaultImg = "https://fthmb.tqn.com/cD0PNhMM0BxevlBvAgD1ntpQLac=/3558x2363/filters:fill(auto,1)/Cat-rolling-GettyImages-165893132-58ac5ef05f9b58a3c90a144f.jpg";
 const defaultPortada = "https://wallpaperclicker.com/storage/wallpaper/hd-wallpaper-beautiful-art-full-hd-89223888.jpg";
 
+let theInput;
+let secondInput;
 
-export const ProfileDisplay = ({onChange, fetched, changePic, changeCover, onSubmit, photoURL, title, displayName, fullName, email, age, sex, facebook, twitter, github, linkedIn, bio}) => {
-    if(!fetched) return <CircularProgress />
+export const ProfileDisplay = ({loading, onChange, fetched, changePic, changeCover, onSubmit, photoURL, title, displayName, fullName, email, age, sex, facebook, twitter, github, linkedIn, bio, portada}) => {
+    if(!portada) portada = defaultPortada;
+    if(!fetched) return <CircularProgress />;
+    function clickCover(){
+        theInput.click();
+    }
+    function clickPic(){
+        secondInput.click();
+    }
     return (
         <div>
 
-            <div className="profile-portada" style={{backgroundImage:`url('${defaultPortada}')`}}>
-                <button onClick={changeCover} >Cambiar Portada</button>
+            <div className="profile-portada" style={{backgroundImage:`url('${portada}')`}}>
+                <button onClick={clickCover} >{loading ? <CircularProgress/> : "Cambiar Portada"}</button>
                 <figure>
-                    <div onClick={changePic}>
+                    <div onClick={clickPic}>
                         <span>Cambiar Foto</span>
                     </div>
                     <img src={photoURL ? photoURL:defaultImg} alt="user"/>
+                    <input accept="image/*" ref={input=>secondInput=input} onChange={changePic} hidden type="file"/>
                 </figure>
+                <input accept="image/*" ref={input=>theInput=input} onChange={changeCover} hidden type="file"/>
             </div>
 
             <form onSubmit={onSubmit} className="profile-form">
@@ -56,6 +68,7 @@ export const ProfileDisplay = ({onChange, fetched, changePic, changeCover, onSub
                 <label>
                     <h5>Tu Correo Electrónico</h5>
                     <input
+                        disabled
                         name="email"
                         onChange={onChange}
                         value={email}
@@ -125,7 +138,6 @@ export const ProfileDisplay = ({onChange, fetched, changePic, changeCover, onSub
 
 
             </form>
-
         </div>
     );
 };
