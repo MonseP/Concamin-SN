@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, CardText, CardTitle, CardMedia, TextField, IconButton} from 'material-ui';
 //import ContentAdd from 'material-ui/svg-icons/content/add-circle';
 
-const ProductCard = ({titulo, usuario, hora, lugar, fecha}) => {
+const ProductCard = ({titulo, usuario, hora, lugar, fecha, photoUrl}) => {
     return (
         <div className="evento-card">
             <Card>
@@ -10,7 +10,7 @@ const ProductCard = ({titulo, usuario, hora, lugar, fecha}) => {
                     mediaStyle={{maxHeight:'200px', overflow:'hidden'}}
                     //overlay={<CardTitle title={titulo} subtitle={usuario} />}
                 >
-                    <img src="http://www.autotransporte.mx/wp-content/uploads/2015/03/Concamin.jpg" alt="" />
+                    <img src={photoUrl} alt="" />
                 </CardMedia>
                 <CardTitle title={titulo} subtitle={usuario} />
                 <CardText>
