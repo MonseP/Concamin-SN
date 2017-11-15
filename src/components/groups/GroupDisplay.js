@@ -7,7 +7,7 @@ import GroupChat from "./GroupChat";
 import {connect} from "react-redux";
 import {getAllGroupPosts} from "../../redux/actions/postGroupActions";
 import firebase from '../../firebase';
-import * as postGroupActions from '../../redux/actions/postGroupActions';
+import * as postsActions from '../../redux/actions/postsActions';
 import {bindActionCreators} from "redux";
 
 
@@ -17,7 +17,7 @@ class GroupDisplay extends Component {
 
     state={
         newPost:{},
-        loaader:false
+        loader:false
     };
 
     //newPost Functions
@@ -29,8 +29,10 @@ class GroupDisplay extends Component {
         console.log(newPost)
     };
     addPost=()=>{
-        this.props.postActions.newPostGroup(this.state.newPost);
         let newPost = this.state.newPost;
+        newPost['group'] = this.props.match.params.groupId;
+        this.props.postActions.savePost(newPost);
+
         newPost['text']='';
         newPost['image']='';
         this.setState({newPost})
@@ -70,7 +72,8 @@ class GroupDisplay extends Component {
                            posts={this.props.posts}
                             handleText={this.handleText}
                             addPost={this.addPost}
-                            uploadPhoto={this.uploadPhoto}/>
+                            uploadPhoto={this.uploadPhoto}
+                            newPost={this.state.newPost}/>
                    </GridTile>
 
                    <GridTile cols={1} className="group-chat">
@@ -98,7 +101,7 @@ function mapStateToProps(state, oP){
 }
 function mapDispatchToProps(dispatch, oP){
     return{
-        postActions:bindActionCreators(postGroupActions, dispatch)
+        postActions:bindActionCreators(postsActions, dispatch)
     }
 }
 
