@@ -8,7 +8,7 @@ const Recommendations = ({props}) => {
     return (
         <div>
             <Subheader>Deberías Seguir a...</Subheader>
-            <List className="groups-list groups-list2">
+            <List className="groups-list">
                 <ListItem
                     primaryText="Oswaldo" rightIcon={<Add />}
                     leftAvatar={<Avatar
@@ -28,7 +28,7 @@ const Recommendations = ({props}) => {
             </List>
             <Divider/>
             <Subheader>Organizaciones Destacadas</Subheader>
-            <List className="groups-list groups-list2">
+            <List className="groups-list">
                 <ListItem
                     primaryText="Fixter" rightIcon={<Add />}
                     leftAvatar={<Avatar icon={<Work/>}/>}/>

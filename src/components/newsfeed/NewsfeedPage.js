@@ -7,16 +7,23 @@ import MenuGroups from "./MenuGroups";
 import Recommendations from "./Recommendations";
 import {connect} from "react-redux";
 import * as postActions from '../../redux/actions/postsActions';
+import * as groupActions from '../../redux/actions/groupActions';
 import {bindActionCreators} from "redux";
 import firebase from '../../firebase';
 
 class NewsfeedPage extends Component {
     state={
+        loader:false,
         newPost:{
             text:'',
             image:''
         },
+        newGroup:{
+            name:''
+        },
+        newGroupModal:false,
     };
+    //newPost Functions
     handleText=(e)=>{
       let newPost = this.state.newPost;
       let field = e.target.name;
@@ -38,15 +45,33 @@ class NewsfeedPage extends Component {
             console.log(r);
             let newPost = this.state.newPost;
             newPost['image']=r.downloadURL;
-            this.setState({newPost})
+            this.setState({newPost, loader:false})
         });
-        uploadTask.on('state_changed', function(snapshot){
-            // Observe state change events such as progress, pause, and resume
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        uploadTask.on('state_changed', snapshot=>{
+            this.setState({loader:true});
+            let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log('Upload is ' + progress + '% done');
         });
 
+    };
+    //newGroupFunctions
+    addGroup=()=>{
+        this.props.groupActions.newGroup(this.state.newGroup);
+        this.setState({newGroupModal: false});
+    };
+    handleNewGroup=(e)=>{
+        let newGroup = this.state.newGroup;
+        let field = e.target.name;
+        newGroup[field] = e.target.value;
+        this.setState({newGroup});
+        console.log(newGroup)
+    };
+    handleOpen = () => {
+        this.setState({newGroupModal: true});
+    };
+
+    handleClose = () => {
+        this.setState({newGroupModal: false});
     };
     render() {
         return (
@@ -54,7 +79,13 @@ class NewsfeedPage extends Component {
                <GridList cellHeight={'auto'} cols={4} className='news-sections'>
                    <div className='menu-left-section'>
                        <GridTile cols={1} >
-                           <MenuGroups/>
+                           <MenuGroups
+                               handleNewGroup={this.handleNewGroup}
+                               modal={this.state.newGroupModal}
+                               addGroup={this.addGroup}
+                               groups={this.props.groups}
+                               handleOpen={this.handleOpen}
+                               handleClose={this.handleClose}/>
                        </GridTile>
                    </div>
                    <GridTile cols={2} className='posts-section'>
@@ -63,7 +94,8 @@ class NewsfeedPage extends Component {
                            handleText={this.handleText}
                             text={this.state.newPost.text}
                             image={this.state.newPost.image}
-                            addPost={this.addPost}/>
+                            addPost={this.addPost}
+                            loader={this.state.loader}/>
 
                        {this.props.posts.map((post, key)=>{
                            return(
@@ -92,11 +124,13 @@ function mapStateToProps(state){
     console.log(state);
     return{
         posts:state.posts,
+        groups:state.groups,
     }
 }
 function mapDispatchToProps(dispatch){
     return{
-        postActions:bindActionCreators(postActions, dispatch)
+        postActions:bindActionCreators(postActions, dispatch),
+        groupActions:bindActionCreators(groupActions, dispatch),
     }
 }
 NewsfeedPage=connect(mapStateToProps, mapDispatchToProps)(NewsfeedPage);

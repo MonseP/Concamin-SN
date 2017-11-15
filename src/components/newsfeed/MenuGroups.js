@@ -1,6 +1,6 @@
 import React from 'react';
-import {List, ListItem, Divider, Subheader, Avatar} from 'material-ui';
-
+import {List, ListItem, Divider, Subheader, Avatar, FloatingActionButton, RaisedButton, Dialog, TextField} from 'material-ui';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import {Link} from 'react-router-dom';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
@@ -10,9 +10,25 @@ import Calendar from 'material-ui/svg-icons/action/today';
 import './newsfeed.css';
 
 
-const MenuGroups = ({props}) => {
+const MenuGroups = ({groups, addGroup, modal, handleClose, handleOpen, handleNewGroup}) => {
     return (
-        <div>
+        <div className="lista-grupos">
+            <Dialog
+                title="Agrega un nuevo Grupo"
+                modal={false}
+                open={modal}
+                onRequestClose={handleClose}>
+                <TextField
+                name="name"
+                    onChange={handleNewGroup}
+                fullWidth={true}/>
+                <RaisedButton
+                fullWidth={true}
+                    onClick={addGroup}>guardar</RaisedButton>
+            </Dialog>
+            <FloatingActionButton mini={true} className="button-add-group">
+                <ContentAdd onClick={handleOpen}/>
+            </FloatingActionButton>
             <Subheader>Explora</Subheader>
             <List>
                 <Link className="newsfeed-link" to="/eventos">
@@ -25,39 +41,20 @@ const MenuGroups = ({props}) => {
             </List>
             <Divider/>
             <Subheader>Grupos</Subheader>
-            <List className="groups-list">
-                <Link className="newsfeed-link" to="/groups/1">
-                    <ListItem
-                        primaryText="FixterTeam"
-                        leftAvatar={<Avatar icon={<Work />}/>}/>
-                </Link>
-                <ListItem
-                    primaryText="LOL Adicts"
-                    leftAvatar={<Avatar icon={<Work />}/>}/>
-                <ListItem
-                    primaryText="Packs"
-                    leftAvatar={<Avatar icon={<Work />}/>}/>
-                <ListItem
-                    primaryText="FixterTeam"
-                    leftAvatar={<Avatar icon={<Work />}/>}/>
-                <ListItem
-                    primaryText="LOL Adicts"
-                    leftAvatar={<Avatar icon={<Work />}/>}/>
-                <ListItem
-                    primaryText="Packs"
-                    leftAvatar={<Avatar icon={<Work />}/>}/>
-                <ListItem
-                    primaryText="FixterTeam"
-                    leftAvatar={<Avatar icon={<Work />}/>}/>
-                <ListItem
-                    primaryText="LOL Adicts"
-                    leftAvatar={<Avatar icon={<Work />}/>}/>
-                <ListItem
-                    primaryText="Packs"
-                    leftAvatar={<Avatar icon={<Work />}/>}/>
+            <List className="groups-list2">
+                {groups.map((group, key)=>{
+                    return(
+                    <Link className="newsfeed-link" to={"/groups/"+group.key} key={key}>
+                        <ListItem
 
+                            primaryText={group.name}
+                            leftAvatar={<Avatar icon={<Work />}/>}/>
+                    </Link>
+                    )
+                })}
 
             </List>
+
 
         </div>
     )
