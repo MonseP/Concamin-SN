@@ -13,6 +13,7 @@ import SignUpPage from "./components/signup/SignUpPage";
 import EventosPage from "./components/eventos/EventosPage";
 import EventosContainer from "./components/eventos/EventosContainer";
 import PrivateRoute from "./PrivateRoute";
+import ProfilePublic from "./components/profile/ProfilePublic";
 
 //import Register from "./components/login/Register";
 
@@ -28,7 +29,7 @@ export const Routes = () => (
         <Route path='/chat' component={ChatPage}/>
         <Route path='/groups/:groupId'component={GroupDisplay}/>
         <Route path='/eventos' component={EventosContainer}/>
-
+        <Route path="/users/:userId" component={ProfilePublic} />
 
     </Switch>
 );

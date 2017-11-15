@@ -20,11 +20,10 @@ class LoginContainer extends Component {
         const user = Object.assign({},this.state.usuario);
         console.log(user.email + user.password);
         this.props.usuarioActions.iniciarSesion(user)
-
             .then( () => {
-                listenUserChanges();
+                this.props.usuarioActions.listenUserChanges();
+                toastr.success("Bienvenido");
                 this.props.history.push('/profile');
-
             })
             .catch(e=>toastr.error(e));
     };
