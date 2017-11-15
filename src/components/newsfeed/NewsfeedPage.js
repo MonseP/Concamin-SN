@@ -49,7 +49,7 @@ class NewsfeedPage extends Component {
         });
         uploadTask.on('state_changed', snapshot=>{
             this.setState({loader:true});
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log('Upload is ' + progress + '% done');
         });
 
