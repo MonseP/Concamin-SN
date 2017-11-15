@@ -27,7 +27,6 @@ class LoginContainer extends Component {
 
             })
             .catch(e=>toastr.error(e));
-
     };
 
     handleChange = (e) => {

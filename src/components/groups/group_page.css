@@ -1,6 +1,6 @@
 .group-page{
     box-sizing: border-box;
-    padding: 64px 5%;
+    padding: 0 5%;
 }
 
 .basics-section{
@@ -52,7 +52,7 @@
 }
 /*groups feed*/
 .group-feed{
-    padding: 1% 2%;
+    padding: 1% 5%;
 }
 /*chat section*/
 .chat-section{

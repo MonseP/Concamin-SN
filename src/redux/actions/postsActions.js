@@ -1,5 +1,9 @@
 import firebase from '../../firebase';
 
+
+
+const db = firebase.database().ref();
+
 export const NEW_POST_SUCCESS = 'NEW_POST_SUCCESS';
 
 export function newPostSuccess(post){
@@ -8,28 +12,51 @@ export function newPostSuccess(post){
     }
 }
 
-export function newPost(post){
+export function savePost(post){
     return function(dispatch, getState){
-        post['user']=getState().usuario.uid;
-        return firebase.database().ref('posts').push(post)
-            .then(r=>{
-                post['key']=r.key;
-                dispatch(newPostSuccess(post))
+        let updates = {};
+        let key;
+        if(post.id) key = post.id;
+        else key = db.push().key;
+
+        let uid = getState().usuario.uid;
+        post['id'] = key;
+        updates[`dev/posts/${key}`] = post;
+        updates[`dev/users/${uid}/posts/${post.id}`] = true;
+        if(post.group) updates[`dev/groups/${post.group}/posts/${post.id}`] = true;
+        if(post.event) updates[`dev/events/${post.event}/posts/${post.id}`] = true;
+        console.log(updates);
+        return db.update(updates)
+            .then(snap=>{
+                return Promise.resolve(snap)
+            }).catch(error=>{
+                console.log(error);
+                return Promise.reject(error.message)
             })
     }
 }
+export const deletePost=(post)=>(dispatch, getState)=>{
+    const uid = getState().usuario.uid;
+    let updates = {};
+    updates[`/posts/${post.id}`] = null;
+    updates[`/users/${uid}/posts/${post.id}`] = null;
+    if(post.group) updates[`/groups/${post.group}/posts/${post.id}`] = null;
+    if(post.event) updates[`/events/${post.event}/posts/${post.id}`] = null;
 
-export const GET_ALL_POSTS = 'GET_ALL_POSTS';
-export function getAllPostsSuccess(posts){
-    return{
-        type:GET_ALL_POSTS, posts
-    }
-}
-
-export function getAllPosts(){
-    return function(dispatch, getState){
-        return firebase.database().ref('posts').on('child_added', snap=>{
-            dispatch(getAllPostsSuccess(snap.val()))
+    return db.update(updates)
+        .then(snap=>{
+            return Promise.resolve(snap)
+        }).catch(error=>{
+            console.log(error);
+            return Promise.reject(error.message)
         })
-    }
-}
+
+};
+
+
+export const newPost=()=>(dispatch, getState)=>{
+    db.child('dev/posts/').on('child_added', snap=>{
+        dispatch(newPostSuccess(snap.val()))
+    })
+};
+
