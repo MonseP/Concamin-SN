@@ -62,9 +62,9 @@ class Navbar extends Component {
                                 <MenuItem
                                     containerElement={<Link to="/profile" className="link-nav"/>}
                                     primaryText="Perfil" />
-                                <Link to="/chat" className="link-nav">
-                                    <MenuItem primaryText="Chat" />
-                                </Link>
+
+                                <MenuItem containerElement={<Link to="/chat" className="link-nav"/>} primaryText="Chat" />
+
                                 <MenuItem onClick={this.signOut} primaryText="Cerrar Sesión" />
                             </IconMenu>
                         </ToolbarGroup>}

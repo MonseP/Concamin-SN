@@ -35,7 +35,7 @@ export function iniciarSesion(user) {
         return firebase.auth()
             .signInWithEmailAndPassword(user.email, user.password)
             .then((u) => {
-                usersRef.child(u.uid).once("value")
+                return usersRef.child(u.uid).once("value")
                     .then(s=>{
                         u["profile"] = s.val();
                         dispatch(iniciarSesionAction(u));
@@ -146,6 +146,33 @@ function formatUser(u){
     }
 }
 
+
+//profile actions
+export const toggleFollow = (followId) => (dispatch, getState) => {
+    console.log(followId);
+    const user = getState().usuario;
+    console.log(user);
+    let updates = {};
+    if(user.following === undefined || user.following[followId]===undefined){
+        updates[`dev/users/${user.uid}/following/${followId}`]=true;
+        updates[`dev/users/${followId}/followers/${user.uid}`]=true;
+    }else{
+        updates[`dev/users/${user.uid}/following/${followId}`]=null;
+        updates[`dev/users/${followId}/followers/${user.uid}`]=null;
+    }
+    return db.update(updates)
+        .then(()=>{
+            return Promise.resolve();
+        })
+        .catch(e=>{
+            console.log(e);
+            return Promise.reject(e.message);
+        });
+
+
+};
+
+
 //listeners
 firebase.auth().onAuthStateChanged(user=>{
    if(user) {
@@ -161,9 +188,11 @@ firebase.auth().onAuthStateChanged(user=>{
 });
 
 //update user programmatically
+//listen the logged user changes
 export const listenUserChanges = () =>(dispatch, getState)=>{
-    const uid = getState().user.uid;
+    //console.log("corriendo y stalkeando");
+    const uid = getState().usuario.uid;
     usersRef.child(uid).on("value", snap=>{
-        console.log(snap.val());
+        //console.log(snap.val());
     }) ;
 };
