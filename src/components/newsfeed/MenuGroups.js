@@ -41,7 +41,7 @@ const MenuGroups = ({groups, addGroup, modal, handleClose, handleOpen, handleNew
             </List>
             <Divider/>
             <Subheader>Grupos</Subheader>
-            <List className="groups-list">
+            <List className="groups-list2">
                 {groups.map((group, key)=>{
                     return(
                     <Link className="newsfeed-link" to={"/groups/"+group.key} key={key}>

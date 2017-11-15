@@ -33,6 +33,7 @@ export function newGroupSuccess(group){
 export function newGroup(group){
     return function(dispatch, getState){
         return firebase.database().ref('groups').push(group).then(r=>{
+            group['key']=r.key;
             dispatch(newGroupSuccess(group));
         })
     }

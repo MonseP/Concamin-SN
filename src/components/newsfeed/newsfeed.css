@@ -1,6 +1,6 @@
 .newsfeed{
 
-    padding: 64px 5%;
+    padding: 0px 1%;
 
 }
 .news-sections{
@@ -16,8 +16,8 @@
 }
 
 .menu-right-section{
-
     position: fixed;
+
 }
 .new-post{
     margin-bottom: 2%;
@@ -25,11 +25,16 @@
 
 /*groups-list*/
 .groups-list{
-    height: 50vh;
+    height: 40vh;
+    overflow-y: scroll;
+}
+.groups-list2{
+    height: 60vh;
     overflow-y: scroll;
 }
 .lista-grupos{
     position: relative;
+
 }
 .button-add-group{
     position:absolute;
@@ -41,10 +46,11 @@
     width: 0px;  /* remove scrollbar space */
     background: transparent;  /* optional: just make scrollbar invisible */
 }
-.groups-list2{
-    height: 40vh;
-    overflow-y: scroll;
+.groups-list2::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
 }
+
 .newsfeed-link{
     text-decoration: none;
     color: black;
