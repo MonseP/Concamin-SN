@@ -4,14 +4,27 @@ import {Toolbar, ToolbarGroup,  MenuItem, IconMenu, RaisedButton, ToolbarTitle, 
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
 import './navbar.css';
 import Person from 'material-ui/svg-icons/social/person';
+import {cerrarSesion} from "../../redux/actions/usuarioActions";
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 
 class Navbar extends Component {
+
+    signOut = () => {
+        this.props.cerrarSesion();
+        this.props.history.push("/");
+
+    };
+
     render() {
         let user = false;
+        const {fetched, usuario} = this.props;
         return (
             <div className="navbar">
-                <Toolbar>
+                <Toolbar
+                    style={{backgroundColor:"#777"}}
+                >
                    <ToolbarGroup>
                        <Link to="/" className="link-nav">
                            <ToolbarTitle text="Concamin" />
@@ -34,10 +47,10 @@ class Navbar extends Component {
                                 <RaisedButton label="Descubre" primary={true} />
                             </Link>
                             <span className="separador-nav">|</span>
-                            <Avatar
-                                icon={<Person />}
+                            {fetched && <Avatar
+                                src={usuario.photoURL}
                                 size={50}
-                            />
+                            /> }
                             <IconMenu
                             iconButtonElement={
                                 <IconButton touch={true}>
@@ -45,13 +58,14 @@ class Navbar extends Component {
                                 </IconButton>
                             }
                                 >
-                                <Link to="/userprofile" className="link-nav">
-                                    <MenuItem primaryText="Perfil" />
-                                </Link>
+
+                                <MenuItem
+                                    containerElement={<Link to="/profile" className="link-nav"/>}
+                                    primaryText="Perfil" />
                                 <Link to="/chat" className="link-nav">
                                     <MenuItem primaryText="Chat" />
                                 </Link>
-                                <MenuItem primaryText="Cerrar Sesión" />
+                                <MenuItem onClick={this.signOut} primaryText="Cerrar Sesión" />
                             </IconMenu>
                         </ToolbarGroup>}
                 </Toolbar>
@@ -60,4 +74,12 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+function mapStateToProps(state){
+    console.log(state);
+    return{
+        usuario: state.usuario,
+        fetched: Object.keys(state.usuario).length > 0
+    }
+}
+
+export default withRouter(connect(mapStateToProps, {cerrarSesion})(Navbar));

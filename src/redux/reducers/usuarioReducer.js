@@ -10,7 +10,7 @@ export default function usuarioReducer ( state = {} , action ){
             if (action.usuario) {
                 return action.usuario;
             }else{
-                return null;
+                return {};
             }
 
         case UPDATE_USER_SUCCESS:
