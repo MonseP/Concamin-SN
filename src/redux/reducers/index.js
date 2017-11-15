@@ -13,6 +13,7 @@ const rootReducer = combineReducers({
     eventos: eventosReducer,
     posts:postsReducer,
     groups:groupReducers,
+    postGroups:postsGroupReducer
 
 });
 

@@ -8,10 +8,10 @@ export function newPostGroupSuccess(post){
     }
 }
 
-export function newPostGroup(post, group){
+export function newPostGroup(post){
     return function(dispatch, getState){
         post['user']=getState().usuario.uid;
-        return firebase.database().ref('groups/'+group+'/posts').push(post)
+        return firebase.database().ref('group-posts').push(post)
             .then(r=>{
                 post['key']=r.key;
                 dispatch(newPostGroupSuccess(post))
@@ -19,16 +19,16 @@ export function newPostGroup(post, group){
     }
 }
 
-export const GET_ALL_GROUP_POSTS = 'GET_ALL_POSTS';
+export const GET_ALL_GROUP_POSTS = 'GET_ALL_GROUP_POSTS';
 export function getAllGroupPostsSuccess(posts){
     return{
         type:GET_ALL_GROUP_POSTS, posts
     }
 }
 
-export function getAllGroupPosts(group){
+export function getAllGroupPosts(){
     return function(dispatch, getState){
-        return firebase.database().ref('groups/'+group+'/posts').on('child_added', snap=>{
+        return firebase.database().ref('groups-posts').on('child_added', snap=>{
             dispatch(getAllGroupPostsSuccess(snap.val()))
         })
     }

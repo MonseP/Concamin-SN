@@ -32,7 +32,7 @@ class NewsfeedPage extends Component {
       console.log(newPost)
     };
     addPost=()=>{
-        this.props.postActions.newPost(this.state.newPost);
+        this.props.postActions.savePost(this.state.newPost);
         let newPost = this.state.newPost;
         newPost['text']='';
         newPost['image']='';
