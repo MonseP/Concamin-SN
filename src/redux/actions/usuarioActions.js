@@ -2,7 +2,9 @@ import firebase from '../../firebase';
 import {usuarioVerificado} from "./usuarioVerificadoActions";
 import {store} from '../../index';
 
-const db = firebase.database().ref("normalized");
+//const db = firebase.database().ref("normalized");
+const db = firebase.database().ref();
+const usersRef = db.child("dev").child("users");
 
 //const userId = firebase.auth().currentUser.uid;
 ////import toastr from 'toastr';
@@ -13,8 +15,8 @@ export function iniciarSesionAction(user) {
     return {type:"INICIAR_SESION" , user};
 }
 
-export function cerrarSesionAction(usuario) {
-    return { type:"CERRAR_SESION" , usuario };
+export function cerrarSesionAction() {
+    return { type:"CERRAR_SESION" };
 }
 
 export function comprobarUsuarioAction(usuario) {
@@ -30,15 +32,13 @@ function updateUserSuccess(user){
 
 export function iniciarSesion(user) {
     return function(dispatch, getState) {
-        // console.log(user)
         return firebase.auth()
             .signInWithEmailAndPassword(user.email, user.password)
             .then((u) => {
-
-                db.child('users/' + u.uid ).once("value")
+                usersRef.child(u.uid).once("value")
                     .then(s=>{
-
-                        dispatch(iniciarSesionAction(s.val()));
+                        u["profile"] = s.val();
+                        dispatch(iniciarSesionAction(u));
                         localStorage.setItem("user", JSON.stringify(u));
                         return Promise.resolve(s.val());
                     });
@@ -68,7 +68,7 @@ export function registrarEIniciarSesion(user) {
             const user = formatUser(u);
             //touched by bliss Hand
                 let updates = {
-                    [`users/${user.uid}`]:user,
+                    [`dev/users/${user.uid}`]:user,
                 };
                 db.update(updates);
                 return Promise.resolve(u);
@@ -103,10 +103,8 @@ export const updateProfile = (user) =>  (dispatch) => {
 export function cerrarSesion() {
     return function (dispatch,getState) {
         return firebase.auth().signOut()
-            .then( (r) => {
-                console.log('Ya sali ', r);
-                ////toastr.success('Ha cerrado sesión');
-                dispatch(cerrarSesionAction(null));
+            .then( () => {
+                dispatch(cerrarSesionAction());
                 localStorage.removeItem("user");
             }).catch( (error) => {
                 console.error('No pude salir');
@@ -151,13 +149,21 @@ function formatUser(u){
 //listeners
 firebase.auth().onAuthStateChanged(user=>{
    if(user) {
-
        //touched by bliss Hand
-       db.child('users/' + user.uid ).once("value")
+       return db.child('users/' + user.uid ).once("value")
            .then(s=>{
+               if(!s.val()) return;
                store.dispatch(iniciarSesionAction(s.val()));
                localStorage.setItem("user", JSON.stringify(user));
 
            });
    }
 });
+
+//update user programmatically
+export const listenUserChanges = () =>(dispatch, getState)=>{
+    const uid = getState().user.uid;
+    usersRef.child(uid).on("value", snap=>{
+        console.log(snap.val());
+    }) ;
+};
