@@ -17,9 +17,12 @@ import {getAllGroups} from "./redux/actions/groupActions";
 import 'toastr/build/toastr.css';
 
 export const store = configureStore();
-store.dispatch(comprobarUsuario());
 store.dispatch(loadEventos());
 store.dispatch(getAllGroups());
+
+setTimeout( r => {
+    console.log(store.getState())
+},2000);
 injectTapEventPlugin();
 
 const WithRouter = () => (
