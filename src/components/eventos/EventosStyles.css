@@ -33,6 +33,7 @@
 .root-nuevo-evento{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .nuevo-evento-row{
@@ -46,4 +47,15 @@
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
+}
+
+.upload-image {
+    width:  85%;
+    height: 200px;
+    margin: 20px auto;
+    cursor: pointer;
+}
+
+.parent-new-event{
+
 }

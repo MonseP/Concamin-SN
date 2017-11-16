@@ -8,21 +8,96 @@ import {connect} from 'react-redux';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import {FloatingActionButton, CircularProgress} from 'material-ui';
 import NuevoEvento from "./NuevoEvento";
+import * as eventsActions from '../../redux/actions/eventosActions';
 
 class EventosContainer extends Component {
     constructor(props) {
         super(props);
+        const today = new Date();
         this.state = {
-            open: false
+            open: false,
+            newEvent: {
+                name:       '',
+                owner:      '',
+                image:      '',
+                place:      '',
+                time:       today,
+                date:       today,
+                isPrivated: false
+            },
+            imagePreview: {
+                src: '',
+                file: ''
+            },
         };
     }
 
+    ///////////////////////////////////////////////////
+
+    handleNewEventChange = (e) => {
+        let {newEvent} = this.state;
+        const name = e.target.name;
+        newEvent[name] = e.target.value;
+        this.setState({newEvent})
+    };
+
+    handleNewEventDate = (e, date) => {
+        let {newEvent} = this.state;
+        newEvent.date = date;
+        this.setState({newEvent})
+    };
+
+    handleNewEventTime = (event, date) => {
+        let {newEvent} = this.state;
+        newEvent.time = date;
+        this.setState({newEvent})
+    };
+
+    handleNewEventPrivate = (event, isInputChecked) =>{
+        let {newEvent} = this.state;
+        newEvent.isPrivated = isInputChecked;
+        this.setState({newEvent})
+    };
+
+
+
+    ///////////////////////////////////////////////////
+
     handleOpen = () => {
-        this.setState({open: true});
+        const {usuario} = this.props;
+        const {newEvent} = this.state;
+        newEvent.owner = usuario.id;
+        this.setState({open: true, newEvent});
     };
 
     handleClose = () => {
         this.setState({open: false});
+    };
+
+    selectNewImage = () => {
+
+    };
+
+    uploadPhoto=(e)=>{
+        let {imagePreview} = this.state;
+        let file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload =  (e) => {
+            imagePreview.src = e.target.result;
+            this.setState({imagePreview});
+        };
+
+        reader.readAsDataURL(file);
+        // this.props.eventsActions.uploadPhoto(newEvent.name, file)
+        //     .then( r => {
+        //         console.log('Image upload successfully');
+        //         newEvent.image = r.downloadURL;
+        //         this.setState({newEvent})
+        //     }).catch( e => {
+        //         console.log(e.message);
+        // });
+
     };
 
     render() {
@@ -40,9 +115,11 @@ class EventosContainer extends Component {
             />,
         ];
         const {fetched, eventos, usuario, logged} = this.props;
+        const {newEvent, imagePreview} = this.state;
         if(fetched){
             console.log(eventos);
         }
+        console.log(newEvent);
         return (
             <div>
                 { !fetched ? <CircularProgress className="loading-progress" size={80} thickness={7}/> :
@@ -61,8 +138,17 @@ class EventosContainer extends Component {
                             modal={false}
                             open={this.state.open}
                             onRequestClose={this.handleClose}
+                            autoScrollBodyContent={true}
                         >
-                            <NuevoEvento/>
+                            <NuevoEvento
+                                onChange={this.handleNewEventChange}
+                                onChangeDate={this.handleNewEventDate}
+                                onChangeTime={this.handleNewEventTime}
+                                onChangePrivate={this.handleNewEventPrivate}
+                                imagePreview={imagePreview}
+                                uploadPhoto={this.uploadPhoto}
+                                newEvent={newEvent}
+                            />
                         </Dialog>
                         {
                             logged &&
@@ -89,9 +175,9 @@ function mapStateToProps(state, ownProps) {
     }
 }
 
-function mapDispatchToProps() {
+function mapDispatchToProps(dispatch) {
     return {
-
+        eventsActions: bindActionCreators(eventsActions, dispatch)
     }
 }
 
