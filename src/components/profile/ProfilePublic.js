@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {ProfileDisplay} from "./ProfileDisplay";
 import {CircularProgress, RaisedButton} from 'material-ui';
+import toastr from 'toastr';
 //redux
 import {connect} from 'react-redux';
 import {getUser} from "../../redux/actions/usuariosActions";
@@ -32,7 +33,8 @@ class ProfilePublic extends Component{
 
     follow = () => {
         const userId = this.props.match.params.userId;
-        this.props.toggleFollow(userId);
+        this.props.toggleFollow(userId)
+            .then(()=>toastr.success("Cambió"));
     };
 
     render(){
@@ -56,9 +58,17 @@ class ProfilePublic extends Component{
 
 function mapStateToProps(state, ownProps){
     const userId = ownProps.match.params.userId;
+    //let following = state.usuario.following[userId];
+    let following = false;
+    if (state.usuario.following !== undefined){
+        following = state.usuario.following[userId];
+    }
+    //if(following===undefined) following = false;
+    //else following = true;
+    console.log(following);
     return{
         user: state.users.object[userId],
-        //following:state.user.following[userId],
+        following,
         fetched:state.users.object[userId] !== undefined,
     }
 }

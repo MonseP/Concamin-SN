@@ -2,7 +2,7 @@ export default function eventosReducer (state = [], action){
     switch (action.type){
 
         case "LOAD_EVENTOS_SUCCESS":
-            return action.eventos;
+            return [action.eventos, ...state];
 
         case "SAVE_NEW_EVENTO_SUCCESS":
             return [...state,action.eventos];

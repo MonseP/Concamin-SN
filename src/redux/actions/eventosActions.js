@@ -1,4 +1,5 @@
 import firebase from '../../firebase';
+const db = firebase.database().ref();
 
 export function createEvento(evento){
     return {type: "CREATE_EVENTO", evento}
@@ -48,18 +49,10 @@ export function updateEvento(evento){
 
 export function loadEventos(){
     return function (dispatch) {
-        return firebase.database().ref('eventos')
-            .once('value')
-            .then(s => {
-                let array = [];
-                for (let k in s.val()){
-                    let c = s.val()[k];
-                    c['key'] = k;
-                    array.push(c);
-                }
-                dispatch(loadEventosSuccess(array));
-            }).catch(error =>{
-                throw(error);
+        return db.child('dev/events')
+            .on('child_added', snap => {
+                let evento = snap.val();
+                dispatch(loadEventosSuccess(evento));
             });
     };
 }
@@ -69,13 +62,13 @@ export function saveEvento(evento){
     return function (dispatch, getState){
         if(evento.key){
             let updates = {};
-            updates['/eventos/' + evento.key] = evento;
+            updates['dev/events/' + evento.key] = evento;
             return firebase.database().ref().update(updates)
                 .then(()=>{
                     return dispatch(updateEventoSuccess(evento));
                 });
         }else{
-            return firebase.database().ref('eventos/')
+            return firebase.database().ref('dev/events/')
                 .push(evento)
                 .then(s =>{
 

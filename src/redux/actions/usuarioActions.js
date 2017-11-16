@@ -10,17 +10,18 @@ const usersRef = db.child("dev").child("users");
 ////import toastr from 'toastr';
 
 export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
+export const INICIAR_SESION_SUCCESS = "INICIAR_SESION_SUCCESS";
 
-export function iniciarSesionAction(user) {
-    return {type:"INICIAR_SESION" , user};
+export function iniciarSesionSuccess(user) {
+    return {type:INICIAR_SESION_SUCCESS , user};
 }
 
-export function cerrarSesionAction() {
+export function cerrarSesionSuccess() {
     return { type:"CERRAR_SESION" };
 }
 
-export function comprobarUsuarioAction(usuario) {
-    return { type:"COMPROBAR_USUARIO", usuario};
+export function comprobarUsuarioAction(user) {
+    //return { type: COMPROBAR_USUARIO_SUCCESS, user};
 }
 
 function updateUserSuccess(user){
@@ -35,22 +36,23 @@ export function iniciarSesion(user) {
         return firebase.auth()
             .signInWithEmailAndPassword(user.email, user.password)
             .then((u) => {
-                return usersRef.child(u.uid).once("value")
-                    .then(s=>{
-                        u["profile"] = s.val();
-                        dispatch(iniciarSesionAction(u));
-                        localStorage.setItem("user", JSON.stringify(u));
-                        return Promise.resolve(s.val());
-                    });
+            console.log(u);
+                usersRef.child(u.uid).on('value', snap => {
+                    console.log(snap.val());
+                    localStorage.setItem('user', JSON.stringify(u));
+                    dispatch(iniciarSesionSuccess(snap.val()));
+                });
+                return Promise.resolve(u.uid);
             })
             .catch((error) => {
+            console.log(error);
                 const errorCode = error.code;
-                let errorMessage = '';
-                if (errorCode === 'auth/user-not-found') {
-                    errorMessage = 'Usuario no encontrado';
-                } else if (errorCode === 'auth/wrong-password') {
-                    errorMessage = 'La contraseña es inválida';
-                }
+                // let errorMessage = '';
+                // if (errorCode === 'auth/user-not-found') {
+                //     errorMessage = 'Usuario no encontrado';
+                // } else if (errorCode === 'auth/wrong-password') {
+                //     errorMessage = 'La contraseña es inválida';
+                // }
 
                 console.log('Algo estuvo mal ',error );
                 return Promise.reject(error.message);
@@ -104,7 +106,7 @@ export function cerrarSesion() {
     return function (dispatch,getState) {
         return firebase.auth().signOut()
             .then( () => {
-                dispatch(cerrarSesionAction());
+                dispatch(cerrarSesionSuccess());
                 localStorage.removeItem("user");
             }).catch( (error) => {
                 console.error('No pude salir');
@@ -115,18 +117,13 @@ export function cerrarSesion() {
 
 export function comprobarUsuario(){
     return function (dispatch, getState) {
-        return firebase.auth().onAuthStateChanged((u) => {
-            console.log(u)
-            if(u){
-                console.log(u);
-                dispatch(comprobarUsuarioAction(u));
-
-            }else{
-
-
-            }
-
-        });
+        let user = localStorage.getItem('user');
+        if(user){
+            user = JSON.parse(user);
+            usersRef.child(user.uid).on('value', snap => {
+                dispatch(iniciarSesionSuccess(snap.val()));
+            });
+        }
     }
 }
 
@@ -136,7 +133,7 @@ export function comprobarUsuario(){
 
 function formatUser(u){
     return {
-        uid:u.uid,
+        id:u.uid,
         displayName:"",
         email:u.email,
         age:'',
@@ -153,12 +150,16 @@ export const toggleFollow = (followId) => (dispatch, getState) => {
     const user = getState().usuario;
     console.log(user);
     let updates = {};
-    if(user.following === undefined || user.following[followId]===undefined){
-        updates[`dev/users/${user.uid}/following/${followId}`]=true;
-        updates[`dev/users/${followId}/followers/${user.uid}`]=true;
+    let followingExists = false;
+    if (user.following) followingExists = true;
+    if(followingExists && user.following[followId]){
+        console.log("entré putito");
+        updates[`dev/users/${user.id}/following/${followId}`]=null;
+        updates[`dev/users/${followId}/followers/${user.id}`]=null;
     }else{
-        updates[`dev/users/${user.uid}/following/${followId}`]=null;
-        updates[`dev/users/${followId}/followers/${user.uid}`]=null;
+        console.log("yo no entré putito");
+        updates[`dev/users/${user.id}/following/${followId}`]=true;
+        updates[`dev/users/${followId}/followers/${user.id}`]=true;
     }
     return db.update(updates)
         .then(()=>{
@@ -180,7 +181,7 @@ firebase.auth().onAuthStateChanged(user=>{
        return db.child('users/' + user.uid ).once("value")
            .then(s=>{
                if(!s.val()) return;
-               store.dispatch(iniciarSesionAction(s.val()));
+               store.dispatch(iniciarSesionSuccess(s.val()));
                localStorage.setItem("user", JSON.stringify(user));
 
            });
@@ -189,9 +190,9 @@ firebase.auth().onAuthStateChanged(user=>{
 
 //update user programmatically
 //listen the logged user changes
-export const listenUserChanges = () =>(dispatch, getState)=>{
+export const listenUserChanges = (uid) =>(dispatch, getState)=>{
     //console.log("corriendo y stalkeando");
-    const uid = getState().usuario.uid;
+    console.log(uid);
     usersRef.child(uid).on("value", snap=>{
         //console.log(snap.val());
     }) ;
