@@ -34,10 +34,10 @@ export function iniciarSesion(user) {
         return firebase.auth()
             .signInWithEmailAndPassword(user.email, user.password)
             .then((u) => {
-            console.log(u);
+                localStorage.setItem('user', JSON.stringify(u));
+                console.log(u);
                 usersRef.child(u.uid).on('value', snap => {
                     console.log(snap.val());
-                    localStorage.setItem('user', JSON.stringify(u));
                     dispatch(iniciarSesionSuccess(snap.val()));
                 });
                 return Promise.resolve(u.uid);
