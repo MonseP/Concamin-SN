@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {ProfileDisplay} from "./ProfileDisplay";
 import {CircularProgress, RaisedButton} from 'material-ui';
 import toastr from 'toastr';
+import {MainLoader} from '../loader/MainLoader';
 //redux
 import {connect} from 'react-redux';
 import {getUser} from "../../redux/actions/usuariosActions";
@@ -13,17 +14,24 @@ const defaultImg = "https://fthmb.tqn.com/cD0PNhMM0BxevlBvAgD1ntpQLac=/3558x2363
 const Dportada = "https://wallpaperclicker.com/storage/wallpaper/hd-wallpaper-beautiful-art-full-hd-89223888.jpg";
 
 
-const ProfilePublicDisplay = ({loading, onChange, fetched, changePic, changeCover, onSubmit, photoURL, title, displayName, fullName, email, age, sex, facebook, twitter, github, linkedIn, bio, portada}) => (
-    <div>
+const ProfilePublicDisplay = ({loading, onChange, fetched, posts, followers, following, photoURL, title, displayName, fullName, email, age, sex, facebook, twitter, github, linkedIn, bio, portada}) => {
+    if(!portada) portada = Dportada;
+    return(<div>
 
-        <div className="profile-portada" style={{backgroundImage:`url('${Dportada}')`}}>
+        <div className="profile-portada-publica" style={{backgroundImage:`url('${portada}')`}}>
             <figure>
                 <img src={photoURL ? photoURL:defaultImg} alt="user"/>
+                <h3 style={{position:"absolute", bottom:-25, left:10}}>{fullName}</h3>
             </figure>
+            <div className="profile-follow-data">
+                <span>Seguidores <br/> {followers ? Object.keys(followers).length:0} {}</span>
+                <span>Siguiendo <br/> {following ? Object.keys(following).length:0} </span>
+                <span>Post{posts ? Object.keys(posts).length>1 ? "s":null:"s"} <br/> {posts ? Object.keys(posts).length:0} </span>
+            </div>
         </div>
 
-    </div>
-);
+    </div>);
+};
 
 class ProfilePublic extends Component{
 
@@ -34,22 +42,26 @@ class ProfilePublic extends Component{
     follow = () => {
         const userId = this.props.match.params.userId;
         this.props.toggleFollow(userId)
-            .then(()=>toastr.success("Cambió"));
+            .then(mensaje=>toastr.info(mensaje));
     };
 
     render(){
         const {loading} = this.state;
-        const {fetched, profile, following} = this.props;
+        const {fetched, profile, following, isSelf} = this.props;
+        if(!fetched) return <MainLoader/>
         return(
-            <div>
+            <div style={{backgroundColor:"lightgrey", height:"calc(100vh - 64px)"}}>
                 <ProfilePublicDisplay
                     loading={loading}
                     fetched={fetched}
                     {...profile}/>
                 <RaisedButton
+                    disabled={isSelf}
+                    style={{position:"fixed", top:370, right:20, zIndex:2}}
                     onClick={this.follow}
-                    backgroundColor="orange"
-                    label={following ? "Dejar de seguir":"Seguir"}
+                     primary={!following ? true:false}
+                    secondary={following ? true : false}
+                    label={following ? "Siguiendo":"Seguir"}
                 />
             </div>
         );
@@ -67,7 +79,8 @@ function mapStateToProps(state, ownProps){
     //else following = true;
     console.log(following);
     return{
-        user: state.users.object[userId],
+        isSelf:userId === state.usuario.id,
+        profile: state.users.object[userId],
         following,
         fetched:state.users.object[userId] !== undefined,
     }

@@ -2,13 +2,25 @@ import React from 'react';
 import {List, ListItem, Divider, Subheader, Avatar} from 'material-ui';
 import Add from 'material-ui/svg-icons/content/add-circle';
 import Work from 'material-ui/svg-icons/action/work';
+import {Link} from 'react-router-dom';
 import './newsfeed.css';
 
-const Recommendations = ({props}) => {
+const Recommendations = ({users}) => {
     return (
         <div>
             <Subheader>Deberías Seguir a...</Subheader>
             <List className="groups-list">
+
+                {users.map(u=>{
+                    return(
+                        <ListItem
+                            containerElement={<Link to={`/users/${u.id}`}/>}
+                            key={u.id}
+                            primaryText={u.fullName} rightIcon={<Add />}
+                            leftAvatar={<Avatar src={u.photoURL} />}/>
+                    );
+                })}
+
                 <ListItem
                     primaryText="Oswaldo" rightIcon={<Add />}
                     leftAvatar={<Avatar
@@ -25,6 +37,7 @@ const Recommendations = ({props}) => {
                 <ListItem
                     primaryText="Saul" rightIcon={<Add />}
                     leftAvatar={<Avatar src="https://scontent.fmex5-1.fna.fbcdn.net/v/t1.0-9/16142841_740372726122044_8142325000326938887_n.jpg?oh=0dc0d24476b0385d65a8df29aab1b37e&oe=5A6D7BCD" />}/>
+
             </List>
             <Divider/>
             <Subheader>Organizaciones Destacadas</Subheader>

@@ -1,6 +1,6 @@
 import firebase from '../../firebase';
-import {usuarioVerificado} from "./usuarioVerificadoActions";
-import {store} from '../../index';
+//import {usuarioVerificado} from "./usuarioVerificadoActions";
+//import {store} from '../../index';
 
 //const db = firebase.database().ref("normalized");
 const db = firebase.database().ref();
@@ -11,18 +11,16 @@ const usersRef = db.child("dev").child("users");
 
 export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
 export const INICIAR_SESION_SUCCESS = "INICIAR_SESION_SUCCESS";
+export const CERRAR_SESION_SUCCESS = "CERRAR_SESION_SUCCESS";
 
 export function iniciarSesionSuccess(user) {
     return {type:INICIAR_SESION_SUCCESS , user};
 }
 
 export function cerrarSesionSuccess() {
-    return { type:"CERRAR_SESION" };
+    return { type: CERRAR_SESION_SUCCESS };
 }
 
-export function comprobarUsuarioAction(user) {
-    //return { type: COMPROBAR_USUARIO_SUCCESS, user};
-}
 
 function updateUserSuccess(user){
     return{
@@ -36,10 +34,10 @@ export function iniciarSesion(user) {
         return firebase.auth()
             .signInWithEmailAndPassword(user.email, user.password)
             .then((u) => {
-            console.log(u);
+                localStorage.setItem('user', JSON.stringify(u));
+                console.log(u);
                 usersRef.child(u.uid).on('value', snap => {
                     console.log(snap.val());
-                    localStorage.setItem('user', JSON.stringify(u));
                     dispatch(iniciarSesionSuccess(snap.val()));
                 });
                 return Promise.resolve(u.uid);
@@ -47,12 +45,12 @@ export function iniciarSesion(user) {
             .catch((error) => {
             console.log(error);
                 const errorCode = error.code;
-                // let errorMessage = '';
-                // if (errorCode === 'auth/user-not-found') {
-                //     errorMessage = 'Usuario no encontrado';
-                // } else if (errorCode === 'auth/wrong-password') {
-                //     errorMessage = 'La contraseña es inválida';
-                // }
+                let errorMessage = '';
+                if (errorCode === 'auth/user-not-found') {
+                    errorMessage = 'Usuario no encontrado';
+                } else if (errorCode === 'auth/wrong-password') {
+                    errorMessage = 'La contraseña es inválida';
+                }
 
                 console.log('Algo estuvo mal ',error );
                 return Promise.reject(error.message);
@@ -67,12 +65,14 @@ export function registrarEIniciarSesion(user) {
         return firebase.auth()
             .createUserWithEmailAndPassword(user.email, user.password)
             .then((u) => {
-            const user = formatUser(u);
-            //touched by bliss Hand
+                const user = formatUser(u);
+                //touched by bliss Hand
                 let updates = {
                     [`dev/users/${user.id}`]:user,
                 };
                 db.update(updates);
+                localStorage.setItem('user', JSON.stringify(u));
+                dispatch(iniciarSesionSuccess(user));
                 return Promise.resolve(u);
             })
             .catch(function(error) {
@@ -88,7 +88,7 @@ export function registrarEIniciarSesion(user) {
 export const updateProfile = (user) =>  (dispatch) => {
         //Touched by Bliss hand
         let updates = {
-          [`users/${user.uid}`]:user
+          [`dev/users/${user.id}`]:user
         };
         return db.update(updates)
             .then(()=>{
@@ -134,10 +134,8 @@ export function comprobarUsuario(){
 function formatUser(u){
     return {
         id:u.uid,
-        displayName:"",
         email:u.email,
         age:'',
-        canPublish:'',
         groups:{},
         chatsIn:{}
     }
@@ -146,27 +144,30 @@ function formatUser(u){
 
 //profile actions
 export const toggleFollow = (followId) => (dispatch, getState) => {
-    console.log(followId);
+    //console.log(followId);
     const user = getState().usuario;
-    console.log(user);
+    //console.log(user);
+    let mensaje;
     let updates = {};
     let followingExists = false;
     if (user.following) followingExists = true;
     if(followingExists && user.following[followId]){
-        console.log("entré putito");
+        mensaje = "Has dejado de seguir a este usuario";
+        //console.log("entré putito");
         updates[`dev/users/${user.id}/following/${followId}`]=null;
         updates[`dev/users/${followId}/followers/${user.id}`]=null;
     }else{
-        console.log("yo no entré putito");
+        mensaje = "Ahora estás siguiendo a este usuario";
+        //console.log("yo no entré putito");
         updates[`dev/users/${user.id}/following/${followId}`]=true;
         updates[`dev/users/${followId}/followers/${user.id}`]=true;
     }
     return db.update(updates)
         .then(()=>{
-            return Promise.resolve();
+            return Promise.resolve(mensaje);
         })
         .catch(e=>{
-            console.log(e);
+            //console.log(e);
             return Promise.reject(e.message);
         });
 

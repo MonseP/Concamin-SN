@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "functions-3452e"
+    "default": "functions-3452e",
+    "concamin": "concamin-c2a9c"
   }
 }

@@ -3,7 +3,8 @@
  */
 import React from 'react';
 import {CircularProgress} from 'material-ui';
-import {Dialog} from 'material-ui';
+//import {Dialog} from 'material-ui';
+import {MainLoader} from "../loader/MainLoader";
 
 const defaultImg = "https://fthmb.tqn.com/cD0PNhMM0BxevlBvAgD1ntpQLac=/3558x2363/filters:fill(auto,1)/Cat-rolling-GettyImages-165893132-58ac5ef05f9b58a3c90a144f.jpg";
 const defaultPortada = "https://wallpaperclicker.com/storage/wallpaper/hd-wallpaper-beautiful-art-full-hd-89223888.jpg";
@@ -13,7 +14,7 @@ let secondInput;
 
 export const ProfileDisplay = ({loading, onChange, fetched, changePic, changeCover, onSubmit, photoURL, title, displayName, fullName, email, age, sex, facebook, twitter, github, linkedIn, bio, portada}) => {
     if(!portada) portada = defaultPortada;
-    if(!fetched) return <CircularProgress />;
+    if(!fetched) return <MainLoader />;
     function clickCover(){
         theInput.click();
     }
@@ -131,9 +132,10 @@ export const ProfileDisplay = ({loading, onChange, fetched, changePic, changeCov
                 <label>
                     <h5>Mini Bio</h5>
                     <textarea
+                        value={bio}
                         name="bio"
                         onChange={onChange}
-                    >{bio}</textarea>
+                    ></textarea>
                 </label>
 
 

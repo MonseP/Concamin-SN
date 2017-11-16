@@ -15,7 +15,15 @@ export const getUser = (userId) => (dispatch, getState) => {
     const user = getState().users.object[userId];
     if(user !== undefined) return;
     db.child(userId).on("value", snap=>{
+        if(!snap.val()) return;
        //let user = snap.val();
         dispatch(getUserSuccess(snap.val()));
+    });
+};
+
+export const getAllUsers = () => (dispatch) => {
+    db.on("child_added", snap=>{
+       if(!snap.val()) return; //cambia para borrar
+       dispatch(getUserSuccess(snap.val()));
     });
 };

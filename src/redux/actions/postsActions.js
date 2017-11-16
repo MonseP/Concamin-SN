@@ -19,7 +19,7 @@ export function savePost(post){
         if(post.id) key = post.id;
         else key = db.push().key;
 
-        let uid = getState().usuario.uid;
+        let uid = getState().usuario.id;
         post['id'] = key;
         post['user'] = uid;
         updates[`dev/posts/${key}`] = post;
