@@ -44,7 +44,7 @@ const MenuGroups = ({groups, addGroup, modal, handleClose, handleOpen, handleNew
             <List className="groups-list2">
                 {groups.map((group, key)=>{
                     return(
-                    <Link className="newsfeed-link" to={"/groups/"+group.key} key={key}>
+                    <Link className="newsfeed-link" to={"/groups/"+group.id} key={key}>
                         <ListItem
 
                             primaryText={group.name}

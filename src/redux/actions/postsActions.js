@@ -21,11 +21,11 @@ export function savePost(post){
 
         let uid = getState().usuario.uid;
         post['id'] = key;
+        post['user'] = uid;
         updates[`dev/posts/${key}`] = post;
         updates[`dev/users/${uid}/posts/${post.id}`] = true;
         if(post.group) updates[`dev/groups/${post.group}/posts/${post.id}`] = true;
         if(post.event) updates[`dev/events/${post.event}/posts/${post.id}`] = true;
-        console.log(updates);
         return db.update(updates)
             .then(snap=>{
                 return Promise.resolve(snap)
@@ -38,10 +38,10 @@ export function savePost(post){
 export const deletePost=(post)=>(dispatch, getState)=>{
     const uid = getState().usuario.uid;
     let updates = {};
-    updates[`/posts/${post.id}`] = null;
-    updates[`/users/${uid}/posts/${post.id}`] = null;
-    if(post.group) updates[`/groups/${post.group}/posts/${post.id}`] = null;
-    if(post.event) updates[`/events/${post.event}/posts/${post.id}`] = null;
+    updates[`dev/posts/${post.id}`] = null;
+    updates[`dev/users/${uid}/posts/${post.id}`] = null;
+    if(post.group) updates[`dev/groups/${post.group}/posts/${post.id}`] = null;
+    if(post.event) updates[`dev/events/${post.event}/posts/${post.id}`] = null;
 
     return db.update(updates)
         .then(snap=>{

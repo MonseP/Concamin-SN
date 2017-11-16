@@ -5,9 +5,8 @@ import GroupBasics from "./GroupBasics";
 import GroupFeed from "./GroupFeed";
 import GroupChat from "./GroupChat";
 import {connect} from "react-redux";
-import {getAllGroupPosts} from "../../redux/actions/postGroupActions";
 import firebase from '../../firebase';
-import * as postGroupActions from '../../redux/actions/postGroupActions';
+import * as postsActions from '../../redux/actions/postsActions';
 import {bindActionCreators} from "redux";
 
 
@@ -17,7 +16,7 @@ class GroupDisplay extends Component {
 
     state={
         newPost:{},
-        loaader:false
+        loader:false
     };
 
     //newPost Functions
@@ -29,8 +28,10 @@ class GroupDisplay extends Component {
         console.log(newPost)
     };
     addPost=()=>{
-        this.props.postActions.newPostGroup(this.state.newPost);
         let newPost = this.state.newPost;
+        newPost['group'] = this.props.match.params.groupId;
+        this.props.postActions.savePost(newPost);
+
         newPost['text']='';
         newPost['image']='';
         this.setState({newPost})
@@ -70,7 +71,8 @@ class GroupDisplay extends Component {
                            posts={this.props.posts}
                             handleText={this.handleText}
                             addPost={this.addPost}
-                            uploadPhoto={this.uploadPhoto}/>
+                            uploadPhoto={this.uploadPhoto}
+                            newPost={this.state.newPost}/>
                    </GridTile>
 
                    <GridTile cols={1} className="group-chat">
@@ -84,21 +86,24 @@ class GroupDisplay extends Component {
 
 function mapStateToProps(state, oP){
     console.log(state);
+    let groupId = oP.match.params.groupId;
     let group = state.groups.filter(g=>{
-        return g.key===oP.match.params.groupId
+        return g.id=== groupId
     });
-    let posts = state.postGroups.filter(p=>{
-       return p.group===oP.match.params.groupId
+    let posts = state.posts.filter(p=>{
+        return p.group!==undefined && p.group===groupId
     });
+
     return{
         fetched:group[0]!==undefined,
         group:group[0],
         posts:posts,
+
     }
 }
 function mapDispatchToProps(dispatch, oP){
     return{
-        postActions:bindActionCreators(postGroupActions, dispatch)
+        postActions:bindActionCreators(postsActions, dispatch)
     }
 }
 
