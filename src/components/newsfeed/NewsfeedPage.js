@@ -8,6 +8,7 @@ import Recommendations from "./Recommendations";
 import {connect} from "react-redux";
 import * as postActions from '../../redux/actions/postsActions';
 import * as groupActions from '../../redux/actions/groupActions';
+import {getAllUsers} from '../../redux/actions/usuariosActions';
 import {bindActionCreators} from "redux";
 import firebase from '../../firebase';
 
@@ -117,7 +118,7 @@ class NewsfeedPage extends Component {
                    </GridTile>
                    <div className='menu-right-section'>
                        <GridTile cols={1} >
-                           <Recommendations/>
+                           <Recommendations users={this.props.users} />
                        </GridTile>
                    </div>
                </GridList>
@@ -132,9 +133,11 @@ function mapStateToProps(state){
     return{
         posts:state.posts,
         groups:state.groups,
+        users:state.users.list
     }
 }
 function mapDispatchToProps(dispatch){
+    dispatch(getAllUsers());
     return{
         postActions:bindActionCreators(postActions, dispatch),
         groupActions:bindActionCreators(groupActions, dispatch),

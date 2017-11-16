@@ -20,3 +20,10 @@ export const getUser = (userId) => (dispatch, getState) => {
         dispatch(getUserSuccess(snap.val()));
     });
 };
+
+export const getAllUsers = () => (dispatch) => {
+    db.on("child_added", snap=>{
+       if(!snap.val()) return; //cambia para borrar
+       dispatch(getUserSuccess(snap.val()));
+    });
+};
