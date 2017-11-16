@@ -161,6 +161,8 @@ export const toggleFollow = (followId) => (dispatch, getState) => {
         //console.log("yo no entré putito");
         updates[`dev/users/${user.id}/following/${followId}`]=true;
         updates[`dev/users/${followId}/followers/${user.id}`]=true;
+        //mail
+        updates[`dev/mail/${user.id}`] = {follower:user.id, following:followId};
     }
     return db.update(updates)
         .then(()=>{
