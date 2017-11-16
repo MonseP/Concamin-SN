@@ -1,6 +1,6 @@
 import firebase from '../../firebase';
-import {usuarioVerificado} from "./usuarioVerificadoActions";
-import {store} from '../../index';
+//import {usuarioVerificado} from "./usuarioVerificadoActions";
+//import {store} from '../../index';
 
 //const db = firebase.database().ref("normalized");
 const db = firebase.database().ref();
@@ -46,7 +46,7 @@ export function iniciarSesion(user) {
             })
             .catch((error) => {
             console.log(error);
-                const errorCode = error.code;
+                //const errorCode = error.code;
                 // let errorMessage = '';
                 // if (errorCode === 'auth/user-not-found') {
                 //     errorMessage = 'Usuario no encontrado';
@@ -88,7 +88,7 @@ export function registrarEIniciarSesion(user) {
 export const updateProfile = (user) =>  (dispatch) => {
         //Touched by Bliss hand
         let updates = {
-          [`users/${user.uid}`]:user
+          [`dev/users/${user.id}`]:user
         };
         return db.update(updates)
             .then(()=>{
