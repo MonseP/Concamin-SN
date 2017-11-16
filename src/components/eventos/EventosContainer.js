@@ -9,6 +9,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import {FloatingActionButton, CircularProgress} from 'material-ui';
 import NuevoEvento from "./NuevoEvento";
 import * as eventsActions from '../../redux/actions/eventosActions';
+import moment from 'moment';
 
 const today = new Date();
 
@@ -24,7 +25,7 @@ class EventosContainer extends Component {
                 place:      '',
                 time:       today,
                 date:       today,
-                isPrivated: false
+                isPrivate: false
             },
             imagePreview: {
                 src: '',
@@ -56,7 +57,7 @@ class EventosContainer extends Component {
 
     handleNewEventPrivate = (event, isInputChecked) =>{
         let {newEvent} = this.state;
-        newEvent.isPrivated = isInputChecked;
+        newEvent.isPrivate = isInputChecked;
         this.setState({newEvent})
     };
 
@@ -81,14 +82,10 @@ class EventosContainer extends Component {
             place: '',
             time: today,
             date: today,
-            isPrivated: false
+            isPrivate: false
         };
 
         this.setState({open: false, newEvent});
-
-    };
-
-    selectNewImage = () => {
 
     };
 
@@ -106,12 +103,26 @@ class EventosContainer extends Component {
         reader.readAsDataURL(file);
     };
 
+    formatDateAndTime = () => {
+        let momentTime = moment(this.state.newEvent.time);
+        let momentDate = moment(this.state.newEvent.date);
+        return  moment({
+            year: momentDate.year(),
+            month: momentDate.month(),
+            day: momentDate.date(),
+            hour: momentTime.hours(),
+            minute: momentTime.minutes()
+        }).format('x');
+
+    };
     saveNewEvent = ( e) => {
         const {newEvent, imagePreview} = this.state;
         this.props.eventsActions.uploadPhoto(newEvent.name, imagePreview.file)
             .then( r => {
                 console.log('Image upload successfully');
                 newEvent.image = r.downloadURL;
+                newEvent.date = this.formatDateAndTime();
+                newEvent.time = null;
                 this.setState({newEvent});
                 this.props.eventsActions.saveEvent(newEvent);
                 this.handleClose();
@@ -149,7 +160,7 @@ class EventosContainer extends Component {
                                 <FiltrarEventos/>
                             </GridTile>
                             <GridTile cols={2} className="right-side">
-                                <EventsList eventos={eventos}/>
+                                <EventsList events={eventos}/>
                             </GridTile>
                         </GridList>
                         <Dialog

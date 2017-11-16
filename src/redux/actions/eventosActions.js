@@ -7,6 +7,7 @@ export const TOOGLE_LOCK_SUCCESS = "TOOGLE_LOCK_SUCCESS";
 export const RESET_EVENTS_SUCCESS = "RESET_EVENTS_SUCCESS";
 export const UPDATE_EVENT_SUCCESS = "UPDATE_EVENT_SUCCESS";
 export const NEW_EVENT_SUCCESS = "NEW_EVENT_SUCCESS";
+export const REMOVE_EVENT_SUCCESS = "REMOVE_EVENT_SUCCESS";
 
 export function saveEventSuccess(evento){
     return {type: SAVE_EVENT_SUCCESS, evento}
@@ -27,6 +28,26 @@ export function newEventSuccess(event){
     return {type: NEW_EVENT_SUCCESS, event}
 }
 
+export function removeEventSuccess(event) {
+    return {type: REMOVE_EVENT_SUCCESS, event}
+}
+
+export function removeEvent(event){
+    return db.child('dev/events')
+        .on("child_removed", snap => {
+            const event = snap.val();
+            console.log(event);
+    });
+}
+
+export const  newEvent = () => (dispatch) => {
+    return db.child('dev/events')
+        .on('child_added', snap => {
+            let evento = snap.val();
+            dispatch(newEventSuccess(evento));
+        });
+};
+
 export const saveEvent = (event) => (dispatch, getState) => {
     let updates = {};
     let key;
@@ -37,6 +58,22 @@ export const saveEvent = (event) => (dispatch, getState) => {
     event['id'] = key;
     updates[`dev/events/${key}`] = event;
     updates[`dev/users/${uid}/eventsCreated/${event.id}`] = true;
+    return db.update(updates)
+        .then(snap=>{
+            return Promise.resolve(snap)
+        }).catch(error=>{
+            console.log(error);
+            return Promise.reject(error.message)
+        })
+
+};
+
+export const deleteEvent = (event) => (dispatch, getState) => {
+    const uid = getState().usuario.id;
+    let updates = {};
+    updates[`dev/events/${event.id}`] = null;
+    updates[`dev/users/${uid}/events/${event.id}`] = null;
+
     return db.update(updates)
         .then(snap=>{
             return Promise.resolve(snap)
@@ -67,16 +104,6 @@ export function updateEvento(evento){
         return Promise.resolve();
     }
 }
-
-
-export const  newEvent = () => (dispatch) => {
-        return db.child('dev/events')
-            .on('child_added', snap => {
-                let evento = snap.val();
-                dispatch(newEventSuccess(evento));
-            });
-};
-
 
 export const uploadPhoto = (fileName, file)  => (dispatch, getState) => {
     return uploadTask.child('dev/'+ fileName).put(file);

@@ -18,7 +18,7 @@ function onClick() {
 }
 
 const NuevoEvento = ({newEvent,onChange,onChangeDate, onChangeTime, onChangePrivate, uploadPhoto, imagePreview}) => {
-    const {name, place, date, time, isPrivated, image} = newEvent;
+    const {name, place, date, time, isPrivate, image} = newEvent;
     const {src} = imagePreview;
     return (
         <div className="parent-new-event">
@@ -65,7 +65,7 @@ const NuevoEvento = ({newEvent,onChange,onChangeDate, onChangeTime, onChangePriv
             </div>
             <div style={block}>
                 <Toggle
-                    value={isPrivated}
+                    value={isPrivate}
                     label="Evento Privado"
                     style={toggle}
                     onToggle={onChangePrivate}
