@@ -4,7 +4,6 @@ import usuarioReducer from "./usuarioReducer";
 import eventosReducer from "./eventosReducer";
 import postsReducer from "./postsReducer";
 import {groupReducers} from "./groupReducers";
-import postsGroupReducer from "./postsGroupReducer";
 import {usersReducer} from "./usersReducers";
 
 
@@ -14,7 +13,6 @@ const rootReducer = combineReducers({
     eventos: eventosReducer,
     posts:postsReducer,
     groups:groupReducers,
-    postGroups:postsGroupReducer,
     users:usersReducer
 
 });

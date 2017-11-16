@@ -5,7 +5,6 @@ import GroupBasics from "./GroupBasics";
 import GroupFeed from "./GroupFeed";
 import GroupChat from "./GroupChat";
 import {connect} from "react-redux";
-import {getAllGroupPosts} from "../../redux/actions/postGroupActions";
 import firebase from '../../firebase';
 import * as postsActions from '../../redux/actions/postsActions';
 import {bindActionCreators} from "redux";
@@ -87,16 +86,19 @@ class GroupDisplay extends Component {
 
 function mapStateToProps(state, oP){
     console.log(state);
+    let groupId = oP.match.params.groupId;
     let group = state.groups.filter(g=>{
-        return g.key===oP.match.params.groupId
+        return g.id=== groupId
     });
-    let posts = state.postGroups.filter(p=>{
-       return p.group===oP.match.params.groupId
+    let posts = state.posts.filter(p=>{
+        return p.group!==undefined && p.group===groupId
     });
+
     return{
         fetched:group[0]!==undefined,
         group:group[0],
         posts:posts,
+
     }
 }
 function mapDispatchToProps(dispatch, oP){

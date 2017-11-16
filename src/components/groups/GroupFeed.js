@@ -2,7 +2,7 @@ import React from 'react';
 import NewPost from "../newsfeed/NewPost";
 import PostCard from "../newsfeed/PostCard";
 
-const GroupFeed = ({handleText, addPost, uploadPhoto, newPost}) => {
+const GroupFeed = ({handleText, addPost, uploadPhoto, newPost, posts}) => {
     return (
         <div>
             <NewPost
@@ -12,6 +12,14 @@ const GroupFeed = ({handleText, addPost, uploadPhoto, newPost}) => {
                 text={newPost.text}
                 image={newPost.image}
             />
+            {posts.map((p, key)=>{
+                return(
+                    <PostCard
+                        text={p.text}
+                        image={p.image}
+                        user={p.user}/>
+                )
+            })}
 
         </div>
     )

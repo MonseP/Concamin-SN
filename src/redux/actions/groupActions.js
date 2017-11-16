@@ -1,5 +1,8 @@
 import firebase from '../../firebase';
 
+let db = firebase.database().ref();
+
+
 export const GET_ALL_GROUPS = 'GET_ALL_GROUPS';
 
 export function getAllGroupsSuccess(groups){
@@ -10,11 +13,10 @@ export function getAllGroupsSuccess(groups){
 
 export function getAllGroups(){
     return function(dispatch, getState){
-        return firebase.database().ref('groups').once('value', r=>{
+        return db.child('dev').child('groups').once('value', r=>{
             let groups = [];
             for(let i in r.val()){
                 let grupo = r.val()[i];
-                grupo['key']=i;
                 groups.push(grupo);
             }
             dispatch(getAllGroupsSuccess(groups))
@@ -32,8 +34,14 @@ export function newGroupSuccess(group){
 
 export function newGroup(group){
     return function(dispatch, getState){
-        return firebase.database().ref('groups').push(group).then(r=>{
-            group['key']=r.key;
+        let key;
+        if(group.id) key = group.id;
+        else key = db.push().key;
+        group['id'] = key;
+        let updates = {};
+        updates[`dev/groups/${group.id}`] = group;
+        return db.update(updates).then(r=>{
+
             dispatch(newGroupSuccess(group));
         })
     }
