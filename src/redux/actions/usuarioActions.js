@@ -70,7 +70,7 @@ export function registrarEIniciarSesion(user) {
             const user = formatUser(u);
             //touched by bliss Hand
                 let updates = {
-                    [`dev/users/${user.uid}`]:user,
+                    [`dev/users/${user.id}`]:user,
                 };
                 db.update(updates);
                 return Promise.resolve(u);
@@ -175,18 +175,18 @@ export const toggleFollow = (followId) => (dispatch, getState) => {
 
 
 //listeners
-firebase.auth().onAuthStateChanged(user=>{
-   if(user) {
-       //touched by bliss Hand
-       return db.child('users/' + user.uid ).once("value")
-           .then(s=>{
-               if(!s.val()) return;
-               store.dispatch(iniciarSesionSuccess(s.val()));
-               localStorage.setItem("user", JSON.stringify(user));
-
-           });
-   }
-});
+// firebase.auth().onAuthStateChanged(user=>{
+//    if(user) {
+//        //touched by bliss Hand
+//        return db.child('users/' + user.uid ).once("value")
+//            .then(s=>{
+//                if(!s.val()) return;
+//                store.dispatch(iniciarSesionSuccess(s.val()));
+//                localStorage.setItem("user", JSON.stringify(user));
+//
+//            });
+//    }
+// });
 
 //update user programmatically
 //listen the logged user changes
