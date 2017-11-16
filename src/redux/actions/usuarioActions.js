@@ -133,7 +133,7 @@ export function comprobarUsuario(){
 
 function formatUser(u){
     return {
-        uid:u.uid,
+        id:u.uid,
         displayName:"",
         email:u.email,
         age:'',
