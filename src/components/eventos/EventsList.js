@@ -4,7 +4,7 @@ import {GridList, GridTile} from 'material-ui';
 import moment from 'moment';
 import 'moment/locale/es';
 
-const EventsList = ({events}) => {
+const EventsList = ({events, history}) => {
     let listaEventos = events.map( (event,key) => {
         moment.locale('es');
         let fecha = moment(event.date, 'x').format('DD MMMM YYYY');
@@ -12,12 +12,14 @@ const EventsList = ({events}) => {
         return (
             <GridTile key={key} cols={1}>
                 <EventCard
+                    id={event.id}
                     titulo={event.name}
                     usuario={event.owner}
                     fecha={fecha}
                     hora={hora}
                     lugar={event.place}
                     photoUrl={event.image}
+                    history={history}
                 />
             </GridTile>
         );

@@ -59,3 +59,9 @@
 .parent-new-event{
 
 }
+
+.detail-button{
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+}

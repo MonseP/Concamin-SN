@@ -145,7 +145,7 @@ class EventosContainer extends Component {
                 onClick={this.saveNewEvent}
             />,
         ];
-        const {fetched, eventos, usuario, logged} = this.props;
+        const {fetched, eventos, usuario, logged, history} = this.props;
         const {newEvent, imagePreview} = this.state;
         if(fetched){
             console.log(eventos);
@@ -160,7 +160,7 @@ class EventosContainer extends Component {
                                 <FiltrarEventos/>
                             </GridTile>
                             <GridTile cols={2} className="right-side">
-                                <EventsList events={eventos}/>
+                                <EventsList history={history} events={eventos}/>
                             </GridTile>
                         </GridList>
                         <Dialog
