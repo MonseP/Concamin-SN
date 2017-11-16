@@ -37,12 +37,12 @@ export function iniciarSesion(user) {
             .signInWithEmailAndPassword(user.email, user.password)
             .then((u) => {
             console.log(u);
-                return usersRef.child(u.uid).on('value', snap => {
+                usersRef.child(u.uid).on('value', snap => {
                     console.log(snap.val());
                     localStorage.setItem('user', JSON.stringify(u));
                     dispatch(iniciarSesionSuccess(snap.val()));
-                    return Promise.resolve(snap.val().uid);
                 });
+                return Promise.resolve(u.uid);
             })
             .catch((error) => {
             console.log(error);
