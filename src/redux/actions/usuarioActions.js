@@ -152,12 +152,12 @@ export const toggleFollow = (followId) => (dispatch, getState) => {
     let followingExists = false;
     if (user.following) followingExists = true;
     if(followingExists && user.following[followId]){
-        mensaje = "Has dejado de seguir a ";
+        mensaje = "Has dejado de seguir a este usuario";
         //console.log("entré putito");
         updates[`dev/users/${user.id}/following/${followId}`]=null;
         updates[`dev/users/${followId}/followers/${user.id}`]=null;
     }else{
-        mensaje = "Ahora estás siguiendo a ";
+        mensaje = "Ahora estás siguiendo a este usuario";
         //console.log("yo no entré putito");
         updates[`dev/users/${user.id}/following/${followId}`]=true;
         updates[`dev/users/${followId}/followers/${user.id}`]=true;

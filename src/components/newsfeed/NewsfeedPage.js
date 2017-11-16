@@ -23,6 +23,13 @@ class NewsfeedPage extends Component {
         },
         newGroupModal:false,
     };
+
+    //check for user
+    componentWillMount(){
+     const user = localStorage.getItem("user");
+     if(!user) this.props.history.push("/login");
+    }
+
     //newPost Functions
     handleText=(e)=>{
       let newPost = this.state.newPost;

@@ -13,7 +13,7 @@ class Navbar extends Component {
 
     signOut = () => {
         this.props.cerrarSesion();
-        this.props.history.push("/");
+        this.props.history.push("/login");
 
     };
 

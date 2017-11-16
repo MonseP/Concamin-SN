@@ -14,7 +14,7 @@ const defaultImg = "https://fthmb.tqn.com/cD0PNhMM0BxevlBvAgD1ntpQLac=/3558x2363
 const Dportada = "https://wallpaperclicker.com/storage/wallpaper/hd-wallpaper-beautiful-art-full-hd-89223888.jpg";
 
 
-const ProfilePublicDisplay = ({loading, onChange, fetched, changePic, changeCover, onSubmit, photoURL, title, displayName, fullName, email, age, sex, facebook, twitter, github, linkedIn, bio, portada}) => {
+const ProfilePublicDisplay = ({loading, onChange, fetched, posts, followers, following, photoURL, title, displayName, fullName, email, age, sex, facebook, twitter, github, linkedIn, bio, portada}) => {
     if(!portada) portada = Dportada;
     return(<div>
 
@@ -24,9 +24,9 @@ const ProfilePublicDisplay = ({loading, onChange, fetched, changePic, changeCove
                 <h3 style={{position:"absolute", bottom:-25, left:10}}>{fullName}</h3>
             </figure>
             <div className="profile-follow-data">
-                <span>Seguidores <br/> 25 </span>  
-                <span>Siguiendo <br/> 30 </span>  
-                <span>Posts <br/> 25 </span>    
+                <span>Seguidores <br/> {followers ? Object.keys(followers).length:0} {}</span>
+                <span>Siguiendo <br/> {following ? Object.keys(following).length:0} </span>
+                <span>Post{posts ? Object.keys(posts).length>1 ? "s":null:"s"} <br/> {posts ? Object.keys(posts).length:0} </span>
             </div>
         </div>
 
@@ -42,7 +42,7 @@ class ProfilePublic extends Component{
     follow = () => {
         const userId = this.props.match.params.userId;
         this.props.toggleFollow(userId)
-            .then(mensaje=>toastr.info(mensaje + this.props.profile.fullName));
+            .then(mensaje=>toastr.info(mensaje));
     };
 
     render(){
