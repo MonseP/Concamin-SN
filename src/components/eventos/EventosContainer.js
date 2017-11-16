@@ -10,10 +10,11 @@ import {FloatingActionButton, CircularProgress} from 'material-ui';
 import NuevoEvento from "./NuevoEvento";
 import * as eventsActions from '../../redux/actions/eventosActions';
 
+const today = new Date();
+
 class EventosContainer extends Component {
     constructor(props) {
         super(props);
-        const today = new Date();
         this.state = {
             open: false,
             newEvent: {
@@ -71,7 +72,20 @@ class EventosContainer extends Component {
     };
 
     handleClose = () => {
-        this.setState({open: false});
+        let {newEvent} = this.state;
+
+        newEvent = {
+            name: '',
+            owner: '',
+            image: '',
+            place: '',
+            time: today,
+            date: today,
+            isPrivated: false
+        };
+
+        this.setState({open: false, newEvent});
+
     };
 
     selectNewImage = () => {
@@ -85,19 +99,25 @@ class EventosContainer extends Component {
 
         reader.onload =  (e) => {
             imagePreview.src = e.target.result;
+            imagePreview.file = file;
             this.setState({imagePreview});
         };
 
         reader.readAsDataURL(file);
-        // this.props.eventsActions.uploadPhoto(newEvent.name, file)
-        //     .then( r => {
-        //         console.log('Image upload successfully');
-        //         newEvent.image = r.downloadURL;
-        //         this.setState({newEvent})
-        //     }).catch( e => {
-        //         console.log(e.message);
-        // });
+    };
 
+    saveNewEvent = ( e) => {
+        const {newEvent, imagePreview} = this.state;
+        this.props.eventsActions.uploadPhoto(newEvent.name, imagePreview.file)
+            .then( r => {
+                console.log('Image upload successfully');
+                newEvent.image = r.downloadURL;
+                this.setState({newEvent});
+                this.props.eventsActions.saveEvent(newEvent);
+                this.handleClose();
+            }).catch( e => {
+                console.log(e.message);
+        });
     };
 
     render() {
@@ -111,7 +131,7 @@ class EventosContainer extends Component {
                 label="Agregar"
                 primary={true}
                 keyboardFocused={true}
-                onClick={this.handleClose}
+                onClick={this.saveNewEvent}
             />,
         ];
         const {fetched, eventos, usuario, logged} = this.props;
