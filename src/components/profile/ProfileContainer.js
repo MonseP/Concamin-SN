@@ -32,7 +32,7 @@ class ProfileContainer extends Component{
         if(file.size > 1500000) return toastr.warning("Tu imagen es muy pesada");
         this.setState({loading:true});
         let profile = this.state.profile;
-        firebase.storage().ref(this.props.usuario.uid).child("portada").put(file)
+        firebase.storage().ref(this.props.usuario.id).child("portada").put(file)
             .then(s=>{
                 profile["portada"] = s.downloadURL;
                 this.setState({profile, loading:false});
@@ -45,7 +45,7 @@ class ProfileContainer extends Component{
         if(file.size > 1500000) return toastr.warning("Tu imagen es muy pesada");
         this.setState({loading:true});
         let profile = this.state.profile;
-        firebase.storage().ref(this.props.usuario.uid).child("perfilPic").put(file)
+        firebase.storage().ref(this.props.usuario.id).child("perfilPic").put(file)
             .then(s=>{
                 profile["photoURL"] = s.downloadURL;
                 this.setState({profile, loading:false});
