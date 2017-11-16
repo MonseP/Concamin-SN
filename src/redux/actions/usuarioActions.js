@@ -150,12 +150,16 @@ export const toggleFollow = (followId) => (dispatch, getState) => {
     const user = getState().usuario;
     console.log(user);
     let updates = {};
-    if(user.following === undefined || user.following[followId]===undefined){
-        updates[`dev/users/${user.uid}/following/${followId}`]=true;
-        updates[`dev/users/${followId}/followers/${user.uid}`]=true;
+    let followingExists = false;
+    if (user.following) followingExists = true;
+    if(followingExists && user.following[followId]){
+        console.log("entré putito");
+        updates[`dev/users/${user.id}/following/${followId}`]=null;
+        updates[`dev/users/${followId}/followers/${user.id}`]=null;
     }else{
-        updates[`dev/users/${user.uid}/following/${followId}`]=null;
-        updates[`dev/users/${followId}/followers/${user.uid}`]=null;
+        console.log("yo no entré putito");
+        updates[`dev/users/${user.id}/following/${followId}`]=true;
+        updates[`dev/users/${followId}/followers/${user.id}`]=true;
     }
     return db.update(updates)
         .then(()=>{
