@@ -15,6 +15,7 @@ export const getUser = (userId) => (dispatch, getState) => {
     const user = getState().users.object[userId];
     if(user !== undefined) return;
     db.child(userId).on("value", snap=>{
+        if(!snap.val()) return;
        //let user = snap.val();
         dispatch(getUserSuccess(snap.val()));
     });

@@ -134,10 +134,8 @@ export function comprobarUsuario(){
 function formatUser(u){
     return {
         id:u.uid,
-        displayName:"",
         email:u.email,
         age:'',
-        canPublish:'',
         groups:{},
         chatsIn:{}
     }
@@ -146,27 +144,30 @@ function formatUser(u){
 
 //profile actions
 export const toggleFollow = (followId) => (dispatch, getState) => {
-    console.log(followId);
+    //console.log(followId);
     const user = getState().usuario;
-    console.log(user);
+    //console.log(user);
+    let mensaje;
     let updates = {};
     let followingExists = false;
     if (user.following) followingExists = true;
     if(followingExists && user.following[followId]){
-        console.log("entré putito");
+        mensaje = "Has dejado de seguir a ";
+        //console.log("entré putito");
         updates[`dev/users/${user.id}/following/${followId}`]=null;
         updates[`dev/users/${followId}/followers/${user.id}`]=null;
     }else{
-        console.log("yo no entré putito");
+        mensaje = "Ahora estás siguiendo a ";
+        //console.log("yo no entré putito");
         updates[`dev/users/${user.id}/following/${followId}`]=true;
         updates[`dev/users/${followId}/followers/${user.id}`]=true;
     }
     return db.update(updates)
         .then(()=>{
-            return Promise.resolve();
+            return Promise.resolve(mensaje);
         })
         .catch(e=>{
-            console.log(e);
+            //console.log(e);
             return Promise.reject(e.message);
         });
 
