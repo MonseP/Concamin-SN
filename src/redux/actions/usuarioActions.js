@@ -117,22 +117,13 @@ export function cerrarSesion() {
 
 export function comprobarUsuario(){
     return function (dispatch, getState) {
-        return firebase.auth().onAuthStateChanged((u) => {
-            console.log(u);
-            if(u){
-                console.log(u.uid);
-                return usersRef.child(u.uid).on("value",
-                    s=>{
-                        console.log(s);
-                        dispatch(comprobarUsuarioAction(s.val()));
-                        localStorage.setItem("user", JSON.stringify(u));
-                        return Promise.resolve(s.val());
-                    });
-            }else{
-
-
-            }
-        });
+        let user = localStorage.getItem('user');
+        if(user){
+            user = JSON.parse(user);
+            usersRef.child(user.uid).on('value', snap => {
+                dispatch(iniciarSesionSuccess(snap.val()));
+            });
+        }
     }
 }
 
