@@ -11,18 +11,16 @@ const usersRef = db.child("dev").child("users");
 
 export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
 export const INICIAR_SESION_SUCCESS = "INICIAR_SESION_SUCCESS";
+export const CERRAR_SESION_SUCCESS = "CERRAR_SESION_SUCCESS";
 
 export function iniciarSesionSuccess(user) {
     return {type:INICIAR_SESION_SUCCESS , user};
 }
 
 export function cerrarSesionSuccess() {
-    return { type:"CERRAR_SESION" };
+    return { type: CERRAR_SESION_SUCCESS };
 }
 
-export function comprobarUsuarioAction(user) {
-    //return { type: COMPROBAR_USUARIO_SUCCESS, user};
-}
 
 function updateUserSuccess(user){
     return{
@@ -46,13 +44,13 @@ export function iniciarSesion(user) {
             })
             .catch((error) => {
             console.log(error);
-                //const errorCode = error.code;
-                // let errorMessage = '';
-                // if (errorCode === 'auth/user-not-found') {
-                //     errorMessage = 'Usuario no encontrado';
-                // } else if (errorCode === 'auth/wrong-password') {
-                //     errorMessage = 'La contraseña es inválida';
-                // }
+                const errorCode = error.code;
+                let errorMessage = '';
+                if (errorCode === 'auth/user-not-found') {
+                    errorMessage = 'Usuario no encontrado';
+                } else if (errorCode === 'auth/wrong-password') {
+                    errorMessage = 'La contraseña es inválida';
+                }
 
                 console.log('Algo estuvo mal ',error );
                 return Promise.reject(error.message);
@@ -67,12 +65,14 @@ export function registrarEIniciarSesion(user) {
         return firebase.auth()
             .createUserWithEmailAndPassword(user.email, user.password)
             .then((u) => {
-            const user = formatUser(u);
-            //touched by bliss Hand
+                const user = formatUser(u);
+                //touched by bliss Hand
                 let updates = {
                     [`dev/users/${user.id}`]:user,
                 };
                 db.update(updates);
+                localStorage.setItem('user', JSON.stringify(u));
+                dispatch(iniciarSesionSuccess(user));
                 return Promise.resolve(u);
             })
             .catch(function(error) {
