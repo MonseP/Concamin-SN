@@ -59,8 +59,9 @@ class ProfilePublic extends Component{
                     disabled={isSelf}
                     style={{position:"fixed", top:370, right:20, zIndex:2}}
                     onClick={this.follow}
-                     primary={true}
-                    label={following ? "Dejar de seguir":"Seguir"}
+                     primary={!following ? true:false}
+                    secondary={following ? true : false}
+                    label={following ? "Siguiendo":"Seguir"}
                 />
             </div>
         );
