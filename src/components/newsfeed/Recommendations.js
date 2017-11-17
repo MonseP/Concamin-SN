@@ -5,6 +5,9 @@ import Work from 'material-ui/svg-icons/action/work';
 import {Link} from 'react-router-dom';
 import './newsfeed.css';
 
+const defaultImg = "https://fthmb.tqn.com/cD0PNhMM0BxevlBvAgD1ntpQLac=/3558x2363/filters:fill(auto,1)/Cat-rolling-GettyImages-165893132-58ac5ef05f9b58a3c90a144f.jpg";
+
+
 const Recommendations = ({users}) => {
     return (
         <div>
@@ -17,7 +20,7 @@ const Recommendations = ({users}) => {
                             containerElement={<Link to={`/users/${u.id}`}/>}
                             key={u.id}
                             primaryText={u.fullName} rightIcon={<Add />}
-                            leftAvatar={<Avatar src={u.photoURL} />}/>
+                            leftAvatar={<Avatar src={u.photoURL?u.photoURL:defaultImg} />}/>
                     );
                 })}
 
