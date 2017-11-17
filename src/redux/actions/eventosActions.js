@@ -74,7 +74,7 @@ export const deleteEvent = (event) => (dispatch, getState) => {
     const uid = getState().usuario.id;
     let updates = {};
     updates[`dev/events/${event.id}`] = null;
-    updates[`dev/users/${uid}/events/${event.id}`] = null;
+    updates[`dev/users/${uid}/eventsCreated/${event.id}`] = null;
 
     return db.update(updates)
         .then(snap=>{
