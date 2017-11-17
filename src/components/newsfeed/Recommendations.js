@@ -5,7 +5,7 @@ import Work from 'material-ui/svg-icons/action/work';
 import {Link} from 'react-router-dom';
 import './newsfeed.css';
 
-const Recommendations = ({users}) => {
+const Recommendations = ({users, organizations}) => {
     return (
         <div>
             <Subheader>Deberías Seguir a...</Subheader>
@@ -42,24 +42,14 @@ const Recommendations = ({users}) => {
             <Divider/>
             <Subheader>Organizaciones Destacadas</Subheader>
             <List className="groups-list">
-                <ListItem
-                    primaryText="Fixter" rightIcon={<Add />}
-                    leftAvatar={<Avatar icon={<Work/>}/>}/>
-                <ListItem
-                    primaryText="FitnGeek" rightIcon={<Add />}
-                    leftAvatar={<Avatar icon={<Work/>}/>}/>
-                <ListItem
-                    primaryText="Quiky" rightIcon={<Add />}
-                    leftAvatar={<Avatar icon={<Work/>}/>}/>
-                <ListItem
-                    primaryText="Fixter" rightIcon={<Add />}
-                    leftAvatar={<Avatar icon={<Work/>}/>}/>
-                <ListItem
-                    primaryText="FitnGeek" rightIcon={<Add />}
-                    leftAvatar={<Avatar icon={<Work/>}/>}/>
-                <ListItem
-                    primaryText="Quiky" rightIcon={<Add />}
-                    leftAvatar={<Avatar icon={<Work/>}/>}/>
+                {organizations.map((o, key)=>{
+                    return(
+                        <ListItem
+                            containerElement={<Link to={`/organizations/${o.id}`}/>}
+                            primaryText={o.name} rightIcon={<Add />}
+                            leftAvatar={<Avatar icon={<Work/>}/>}/>
+                    )
+                })}
 
 
             </List>

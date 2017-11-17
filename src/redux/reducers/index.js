@@ -5,6 +5,7 @@ import eventosReducer from "./eventosReducer";
 import postsReducer from "./postsReducer";
 import {groupReducers} from "./groupReducers";
 import {usersReducer} from "./usersReducers";
+import {organizationsReducer} from "./organizationsReducer";
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     eventos: eventosReducer,
     posts:postsReducer,
     groups:groupReducers,
-    users:usersReducer
+    users:usersReducer,
+    organizations: organizationsReducer
 
 });
 

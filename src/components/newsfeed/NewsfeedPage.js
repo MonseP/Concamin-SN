@@ -118,7 +118,8 @@ class NewsfeedPage extends Component {
                    </GridTile>
                    <div className='menu-right-section'>
                        <GridTile cols={1} >
-                           <Recommendations users={this.props.users} />
+                           <Recommendations users={this.props.users}
+                                organizations={this.props.organizations}/>
                        </GridTile>
                    </div>
                </GridList>
@@ -133,7 +134,8 @@ function mapStateToProps(state){
     return{
         posts:state.posts,
         groups:state.groups,
-        users:state.users.list
+        users:state.users.list,
+        organizations:state.organizations.list,
     }
 }
 function mapDispatchToProps(dispatch){

@@ -26,6 +26,7 @@ export function savePost(post){
         updates[`dev/users/${uid}/posts/${post.id}`] = true;
         if(post.group) updates[`dev/groups/${post.group}/posts/${post.id}`] = true;
         if(post.event) updates[`dev/events/${post.event}/posts/${post.id}`] = true;
+        if(post.organization) updates[`dev/organizations/${post.organization}/posts/${post.id}`] = true;
         return db.update(updates)
             .then(snap=>{
                 return Promise.resolve(snap)
@@ -42,6 +43,7 @@ export const deletePost=(post)=>(dispatch, getState)=>{
     updates[`dev/users/${uid}/posts/${post.id}`] = null;
     if(post.group) updates[`dev/groups/${post.group}/posts/${post.id}`] = null;
     if(post.event) updates[`dev/events/${post.event}/posts/${post.id}`] = null;
+    if(post.organization) updates[`dev/organizations/${post.organization}/posts/${post.id}`] = null;
 
     return db.update(updates)
         .then(snap=>{

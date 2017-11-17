@@ -6,6 +6,7 @@ import ContentSend from 'material-ui/svg-icons/content/send';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import Work from 'material-ui/svg-icons/action/group-work';
+import Org from 'material-ui/svg-icons/action/work';
 import Calendar from 'material-ui/svg-icons/action/today';
 import './newsfeed.css';
 
@@ -34,9 +35,13 @@ const MenuGroups = ({groups, addGroup, modal, handleClose, handleOpen, handleNew
                 <Link className="newsfeed-link" to="/eventos">
                     <ListItem primaryText="Eventos" leftIcon={<Calendar/>} rightIcon={<ActionInfo />}/>
                 </Link>
+                <Link className="newsfeed-link" to="/organizations">
+                    <ListItem primaryText="Organizaciones" leftIcon={<Org/>} rightIcon={<ActionInfo />}/>
+                </Link>
                 <Link className="newsfeed-link" to="/chat">
                     <ListItem primaryText="Conversaciones" leftIcon={<ContentSend />} rightIcon={<ActionInfo />}/>
                 </Link>
+                <ListItem primaryText="Grupos" leftIcon={<Work />} rightIcon={<ActionInfo />}/>
                 <ListItem primaryText="Amigos" leftIcon={<ContentDrafts />} rightIcon={<ActionInfo />}/>
             </List>
             <Divider/>

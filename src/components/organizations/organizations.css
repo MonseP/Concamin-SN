@@ -1,0 +1,42 @@
+.organizations-page{
+    padding: 0 10%;
+}
+.organizations-page a{
+    text-decoration: none;
+
+}
+
+.floating-button{
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    z-index: 200;
+}
+
+.organization-card{
+    padding: 2% 3%;
+}
+.organization-content{
+    padding: 2%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+/*details*/
+.organization-detail{
+    padding: 0 10%;
+}
+.organization-basics-container{
+    padding: 2%;
+}
+.organization-basics{
+    padding: 2% 5%;
+    position: relative;
+}
+.paper-datos{
+    padding: 2% 5%;
+    margin-bottom: 2%;
+}

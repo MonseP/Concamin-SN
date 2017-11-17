@@ -8,6 +8,14 @@ import Video from 'material-ui/svg-icons/av/videocam';
 import File from 'material-ui/svg-icons/editor/attach-file';
 import './newsfeed.css';
 
+
+
+let elInput;
+
+function clicki(){
+    elInput.click();
+}
+
 const NewPost = ({handleText, text, image, uploadPhoto, addPost, loader}) => {
     return (
         <div className='new-post'>
@@ -36,9 +44,9 @@ const NewPost = ({handleText, text, image, uploadPhoto, addPost, loader}) => {
 
                     <div className='post-actions'>
 
-                            <IconButton>
+                            <IconButton onClick={clicki}>
                                 <Photo/>
-                                <input id="fotobutton" type="file" className="inputimage" onChange={uploadPhoto}/>
+                                <input ref={input=>elInput=input} id="fotobutton" type="file" hidden className="inputimage" onChange={uploadPhoto}/>
                             </IconButton>
 
 
