@@ -1,8 +1,8 @@
 import React from 'react';
-import {Card, CardHeader, CardText, CardTitle} from 'material-ui';
+import {Card, CardHeader, CardText, CardTitle, FlatButton} from 'material-ui';
 import moment from 'moment';
 
-const DetailInfo = ({event}) => {
+const DetailInfo = ({event,isOwner,removeThisEvent}) => {
     const date = moment(event.date, 'x').format('DD MMMM YYYY');
     const time = moment(event.date, 'x').format('hh:mm a');
     return (
@@ -18,6 +18,10 @@ const DetailInfo = ({event}) => {
                 <p>a las {time}</p>
                 <br/>
                 <p>{ event.isPrivate ? 'Evento privado' : 'Evento público'}</p>
+                <br/>
+                { isOwner &&
+                    <FlatButton onClick={removeThisEvent} label={'Eliminar'} primary={true}/>
+                }
             </CardText>
 
         </Card>

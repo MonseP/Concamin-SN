@@ -1,13 +1,14 @@
 import React from 'react';
-import {CircularProgress, GridList, GridTile} from "material-ui";
+import {CircularProgress, FloatingActionButton, GridList, GridTile} from "material-ui";
 import MenuGroups from "../newsfeed/MenuGroups";
 import CoverPhoto from "./CoverPhoto";
 import DetailInfo from "./DetailInfo";
 import NewPost from "../newsfeed/NewPost";
+import RemoveIcon from 'material-ui/svg-icons/editor/mode-edit';
 
 
 
-const DetailEventComponent = ({event, loading=false}) => {
+const DetailEventComponent = ({event, loading=false, isOwner, removeThisEvent}) => {
     return (
         <div>
             <CoverPhoto
@@ -16,15 +17,8 @@ const DetailEventComponent = ({event, loading=false}) => {
             />
             <GridList cellHeight={'auto'} cols={5} className='event-detail-grid'>
                 <GridTile cols={2} className="event-detail-left-section" >
-                    <DetailInfo event={event}/>
-                        {/*<MenuGroups*/}
-                            {/*handleNewGroup={this.handleNewGroup}*/}
-                            {/*modal={this.state.newGroupModal}*/}
-                            {/*addGroup={this.addGroup}*/}
-                            {/*groups={this.props.groups}*/}
-                            {/*handleOpen={this.handleOpen}*/}
-                            {/*handleClose={this.handleClose}/>*/}
-                    </GridTile>
+                    <DetailInfo removeThisEvent={removeThisEvent} isOwner={isOwner} event={event}/>
+                </GridTile>
                 <GridTile cols={3} className='posts-section'>
                     <NewPost
                         // uploadPhoto={this.uploadPhoto}
@@ -52,6 +46,14 @@ const DetailEventComponent = ({event, loading=false}) => {
                     {/*</GridTile>*/}
                 {/*</div>*/}
             </GridList>
+            {
+                isOwner &&
+                <FloatingActionButton
+                    //onClick={}
+                    className="fab-button">
+                    <RemoveIcon/>
+                </FloatingActionButton>
+            }
 
         </div>
     );

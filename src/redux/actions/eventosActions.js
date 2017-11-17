@@ -32,20 +32,22 @@ export function removeEventSuccess(event) {
     return {type: REMOVE_EVENT_SUCCESS, event}
 }
 
-export function removeEvent(event){
+export const removeEvent = () => (dispatch) => {
     return db.child('dev/events')
         .on("child_removed", snap => {
             const event = snap.val();
-            console.log(event);
+            dispatch(removeEventSuccess(event))
     });
-}
+};
 
 export const  newEvent = () => (dispatch) => {
+    dispatch(removeEvent());
     return db.child('dev/events')
         .on('child_added', snap => {
             let evento = snap.val();
             dispatch(newEventSuccess(evento));
         });
+
 };
 
 export const saveEvent = (event) => (dispatch, getState) => {

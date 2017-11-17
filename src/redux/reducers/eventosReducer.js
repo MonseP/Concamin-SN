@@ -1,10 +1,14 @@
-import {NEW_EVENT_SUCCESS} from "../actions/eventosActions";
+import {NEW_EVENT_SUCCESS, REMOVE_EVENT_SUCCESS} from "../actions/eventosActions";
 
 export default function eventosReducer (state = [], action){
     switch (action.type){
 
         case NEW_EVENT_SUCCESS:
             return [action.event, ...state];
+        case REMOVE_EVENT_SUCCESS:
+            return [ ...state.filter( event => {
+                return event.id !== action.event.id
+            })];
 
         // case "SAVE_NEW_EVENTO_SUCCESS":
         //     return [...state,action.eventos];
