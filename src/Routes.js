@@ -14,8 +14,12 @@ import EventosPage from "./components/eventos/EventosPage";
 import EventosContainer from "./components/eventos/EventosContainer";
 import PrivateRoute from "./PrivateRoute";
 import ProfilePublic from "./components/profile/ProfilePublic";
+
 import OrganizationDetailPage from "./components/organizations/OrganizationDetailPage";
 import OrganizationsPage from "./components/organizations/OrganizationsPage";
+
+
+import DetailEventPage from "./components/eventos/DetailEventPage";
 
 
 //import Register from "./components/login/Register";
@@ -31,6 +35,7 @@ export const Routes = () => (
         <Route exact path="/new" component={NewPostPage}/>
         <Route path='/chat' component={ChatPage}/>
         <Route path='/groups/:groupId'component={GroupDisplay}/>
+        <Route path='/eventos/:id' component={DetailEventPage}/>
         <Route path='/eventos' component={EventosContainer}/>
         <Route path="/users/:userId" component={ProfilePublic} />
         <Route exact path="/organizations" component={OrganizationsPage}/>

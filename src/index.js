@@ -10,14 +10,14 @@ import {Provider} from 'react-redux';
 import configureStore from "./redux/store/configureStore";
 import {comprobarUsuario} from "./redux/actions/usuarioActions";
 import 'react-notifications/lib/notifications.css';
-import {loadEventos} from "./redux/actions/eventosActions";
+import {loadEventos, newEvent} from "./redux/actions/eventosActions";
 import {getAllPosts} from "./redux/actions/postsActions";
 import {getAllGroups} from "./redux/actions/groupActions";
 
 import 'toastr/build/toastr.css';
 
 export const store = configureStore();
-store.dispatch(loadEventos());
+store.dispatch(newEvent());
 store.dispatch(getAllGroups());
 
 setTimeout( r => {

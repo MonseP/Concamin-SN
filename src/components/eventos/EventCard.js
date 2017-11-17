@@ -1,8 +1,8 @@
 import React from 'react';
-import {Card, CardText, CardTitle, CardMedia, TextField, IconButton} from 'material-ui';
+import {Card, CardText, CardTitle, CardMedia, TextField, IconButton, FlatButton} from 'material-ui';
 //import ContentAdd from 'material-ui/svg-icons/content/add-circle';
 
-const ProductCard = ({titulo, usuario, hora, lugar, fecha, photoUrl}) => {
+const ProductCard = ({id, titulo, usuario, hora, lugar, fecha, photoUrl, history}) => {
     return (
         <div className="evento-card">
             <Card>
@@ -10,13 +10,14 @@ const ProductCard = ({titulo, usuario, hora, lugar, fecha, photoUrl}) => {
                     mediaStyle={{maxHeight:'200px', overflow:'hidden'}}
                     //overlay={<CardTitle title={titulo} subtitle={usuario} />}
                 >
-                    <img src={photoUrl} alt="" />
+                    <img onClick={()=>history.push(`/eventos/${id}`)} style={{maxHeight:'150px', cursor:'pointer'}} src={photoUrl} alt="" />
                 </CardMedia>
                 <CardTitle title={titulo} subtitle={usuario} />
-                <CardText>
+                <CardText style={{position:'relative'}}>
                     <p>Fecha {fecha}</p>
                     <p>Hora: {hora}</p>
                     <p>Lugar {lugar}</p>
+                    {/*<FlatButton style={{position:'absolute'}} className="detail-button" label='Detalle' onClick={()=>history.push(`/eventos/${id}`)}/>*/}
 
                     {/*<div className="add-item-in-card">*/}
                         {/*<TextField*/}

@@ -8,21 +8,134 @@ import {connect} from 'react-redux';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import {FloatingActionButton, CircularProgress} from 'material-ui';
 import NuevoEvento from "./NuevoEvento";
+import * as eventsActions from '../../redux/actions/eventosActions';
+import moment from 'moment';
+import toastr from 'toastr';
+
+const today = new Date();
 
 class EventosContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
+            newEvent: {
+                name:       '',
+                owner:      '',
+                image:      '',
+                place:      '',
+                time:       today,
+                date:       today,
+                isPrivate: false
+            },
+            imagePreview: {
+                src: '',
+                file: ''
+            },
         };
     }
 
+    ///////////////////////////////////////////////////
+
+    handleNewEventChange = (e) => {
+        let {newEvent} = this.state;
+        const name = e.target.name;
+        newEvent[name] = e.target.value;
+        this.setState({newEvent})
+    };
+
+    handleNewEventDate = (e, date) => {
+        let {newEvent} = this.state;
+        newEvent.date = date;
+        this.setState({newEvent})
+    };
+
+    handleNewEventTime = (event, date) => {
+        let {newEvent} = this.state;
+        newEvent.time = date;
+        this.setState({newEvent})
+    };
+
+    handleNewEventPrivate = (event, isInputChecked) =>{
+        let {newEvent} = this.state;
+        newEvent.isPrivate = isInputChecked;
+        this.setState({newEvent})
+    };
+
+
+
+    ///////////////////////////////////////////////////
+
     handleOpen = () => {
-        this.setState({open: true});
+        const {usuario} = this.props;
+        const {newEvent} = this.state;
+        newEvent.owner = usuario.id;
+        this.setState({open: true, newEvent});
     };
 
     handleClose = () => {
-        this.setState({open: false});
+        let {newEvent} = this.state;
+
+        newEvent = {
+            name: '',
+            owner: '',
+            image: '',
+            place: '',
+            time: today,
+            date: today,
+            isPrivate: false
+        };
+
+        this.setState({open: false, newEvent});
+
+    };
+
+    uploadPhoto=(e)=>{
+        let {imagePreview} = this.state;
+        let file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload =  (e) => {
+            imagePreview.src = e.target.result;
+            imagePreview.file = file;
+            this.setState({imagePreview});
+        };
+
+        reader.readAsDataURL(file);
+    };
+
+    formatDateAndTime = () => {
+        let momentTime = moment(this.state.newEvent.time);
+        let momentDate = moment(this.state.newEvent.date);
+        return  moment({
+            year: momentDate.year(),
+            month: momentDate.month(),
+            day: momentDate.date(),
+            hour: momentTime.hours(),
+            minute: momentTime.minutes()
+        }).format('x');
+
+    };
+    saveNewEvent = ( e) => {
+        const {newEvent, imagePreview} = this.state;
+        this.props.eventsActions.uploadPhoto(newEvent.name, imagePreview.file)
+            .then( r => {
+                console.log('Image upload successfully');
+                newEvent.image = r.downloadURL;
+                newEvent.date = this.formatDateAndTime();
+                newEvent.time = null;
+                this.setState({newEvent});
+                this.props.eventsActions.saveEvent(newEvent)
+                    .then( r => {
+                        toastr.success('Guardado')
+                    })
+                    .catch( e => {
+                        toastr.error(e)
+                    });
+                this.handleClose();
+            }).catch( e => {
+                console.log(e.message);
+        });
     };
 
     render() {
@@ -36,13 +149,15 @@ class EventosContainer extends Component {
                 label="Agregar"
                 primary={true}
                 keyboardFocused={true}
-                onClick={this.handleClose}
+                onClick={this.saveNewEvent}
             />,
         ];
-        const {fetched, eventos, usuario, logged} = this.props;
+        const {fetched, eventos, usuario, logged, history} = this.props;
+        const {newEvent, imagePreview} = this.state;
         if(fetched){
             console.log(eventos);
         }
+        console.log(newEvent);
         return (
             <div>
                 { !fetched ? <CircularProgress className="loading-progress" size={80} thickness={7}/> :
@@ -52,7 +167,7 @@ class EventosContainer extends Component {
                                 <FiltrarEventos/>
                             </GridTile>
                             <GridTile cols={2} className="right-side">
-                                <EventsList eventos={eventos}/>
+                                <EventsList history={history} events={eventos}/>
                             </GridTile>
                         </GridList>
                         <Dialog
@@ -61,8 +176,17 @@ class EventosContainer extends Component {
                             modal={false}
                             open={this.state.open}
                             onRequestClose={this.handleClose}
+                            autoScrollBodyContent={true}
                         >
-                            <NuevoEvento/>
+                            <NuevoEvento
+                                onChange={this.handleNewEventChange}
+                                onChangeDate={this.handleNewEventDate}
+                                onChangeTime={this.handleNewEventTime}
+                                onChangePrivate={this.handleNewEventPrivate}
+                                imagePreview={imagePreview}
+                                uploadPhoto={this.uploadPhoto}
+                                newEvent={newEvent}
+                            />
                         </Dialog>
                         {
                             logged &&
@@ -89,9 +213,9 @@ function mapStateToProps(state, ownProps) {
     }
 }
 
-function mapDispatchToProps() {
+function mapDispatchToProps(dispatch) {
     return {
-
+        eventsActions: bindActionCreators(eventsActions, dispatch)
     }
 }
 
