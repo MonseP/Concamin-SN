@@ -10,6 +10,7 @@ import {FloatingActionButton, CircularProgress} from 'material-ui';
 import NuevoEvento from "./NuevoEvento";
 import * as eventsActions from '../../redux/actions/eventosActions';
 import moment from 'moment';
+import toastr from 'toastr';
 
 const today = new Date();
 
@@ -124,7 +125,13 @@ class EventosContainer extends Component {
                 newEvent.date = this.formatDateAndTime();
                 newEvent.time = null;
                 this.setState({newEvent});
-                this.props.eventsActions.saveEvent(newEvent);
+                this.props.eventsActions.saveEvent(newEvent)
+                    .then( r => {
+                        toastr.success('Guardado')
+                    })
+                    .catch( e => {
+                        toastr.error(e)
+                    });
                 this.handleClose();
             }).catch( e => {
                 console.log(e.message);

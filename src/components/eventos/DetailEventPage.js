@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import DetailEventComponent from "./DetailEventComponent";
 import * as eventosActions from '../../redux/actions/eventosActions';
 import {bindActionCreators} from "redux";
+import toastr from 'toastr';
 
 class DetailEventPage extends Component {
     constructor(props) {
@@ -13,14 +14,20 @@ class DetailEventPage extends Component {
     }
 
     removeThisEvent = () => {
-        this.props.eventosActions.deleteEvent(this.props.event)
-            .then( r =>{
-                console.log('eliminado exitosamente');
-                this.props.history.push('/eventos')
-            })
-            .catch( e => {
-                console.log(e);
-            } );
+        const response = window.confirm('¿Seguro?');
+
+        if (response) {
+            this.props.eventosActions.deleteEvent(this.props.event)
+                .then(r => {
+                    console.log('eliminado exitosamente');
+                    this.props.history.push('/eventos');
+                    toastr.warning('Eliminado');
+                })
+                .catch(e => {
+                    console.log(e);
+                    toastr.error(e);
+                });
+        }
     };
 
     render() {
