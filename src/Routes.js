@@ -24,6 +24,8 @@ import DetailEventPage from "./components/eventos/DetailEventPage";
 
 //import Register from "./components/login/Register";
 
+//testing
+import {TestingCard} from "./organisms";
 
 export const Routes = () => (
     <Switch>
@@ -40,7 +42,8 @@ export const Routes = () => (
         <Route path="/users/:userId" component={ProfilePublic} />
         <Route exact path="/organizations" component={OrganizationsPage}/>
         <Route path="/organizations/:organizationId" component={OrganizationDetailPage}/>
-
+        <Route path="/test-card" component={TestingCard}/>
+        <Route render={()=><h1>404</h1>} />
     </Switch>
 );
 
