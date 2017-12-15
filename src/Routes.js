@@ -20,10 +20,13 @@ import OrganizationsPage from "./components/organizations/OrganizationsPage";
 
 
 import DetailEventPage from "./components/eventos/DetailEventPage";
+import {Avatar} from "./organisms/index";
 
 
 //import Register from "./components/login/Register";
 
+//testing
+import {TestingCard} from "./organisms";
 
 export const Routes = () => (
     <Switch>
@@ -41,6 +44,9 @@ export const Routes = () => (
         <Route path="/users/:userId" component={ProfilePublic} />
         <Route exact path="/organizations" component={OrganizationsPage}/>
         <Route path="/organizations/:organizationId" component={OrganizationDetailPage}/>
+        <Route path={'/avatar'} component={Avatar}/>
+        <Route path="/test-card" component={TestingCard}/>
+        <Route render={()=><h1>404</h1>} />
 
     </Switch>
 );
