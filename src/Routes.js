@@ -20,6 +20,7 @@ import OrganizationsPage from "./components/organizations/OrganizationsPage";
 
 
 import DetailEventPage from "./components/eventos/DetailEventPage";
+import {Avatar} from "./organisms/index";
 
 
 //import Register from "./components/login/Register";
@@ -40,6 +41,7 @@ export const Routes = () => (
         <Route path="/users/:userId" component={ProfilePublic} />
         <Route exact path="/organizations" component={OrganizationsPage}/>
         <Route path="/organizations/:organizationId" component={OrganizationDetailPage}/>
+            <Route path={'/avatar'} component={Avatar}/>
 
     </Switch>
 );
