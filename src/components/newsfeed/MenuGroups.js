@@ -11,6 +11,7 @@ import Calendar from 'material-ui/svg-icons/action/today';
 import './newsfeed.css';
 
 
+
 const MenuGroups = ({groups, addGroup, modal, handleClose, handleOpen, handleNewGroup}) => {
     return (
         <div className="lista-grupos">
@@ -41,6 +42,7 @@ const MenuGroups = ({groups, addGroup, modal, handleClose, handleOpen, handleNew
                 <Link className="newsfeed-link" to="/chat">
                     <ListItem primaryText="Conversaciones" leftIcon={<ContentSend />} rightIcon={<ActionInfo />}/>
                 </Link>
+
                 <ListItem primaryText="Grupos" leftIcon={<Work />} rightIcon={<ActionInfo />}/>
                 <ListItem primaryText="Amigos" leftIcon={<ContentDrafts />} rightIcon={<ActionInfo />}/>
             </List>

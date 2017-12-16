@@ -13,6 +13,7 @@ import 'react-notifications/lib/notifications.css';
 import {loadEventos, newEvent} from "./redux/actions/eventosActions";
 import {getAllPosts} from "./redux/actions/postsActions";
 import {getAllGroups} from "./redux/actions/groupActions";
+import 'font-awesome/css/font-awesome.css';
 
 import 'toastr/build/toastr.css';
 
