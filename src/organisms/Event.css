@@ -42,7 +42,7 @@ body {
     transform: translate(-50%, -50%);
 }
 /* Right side of the card */
-h1{
+.event_name{
     padding-top: 15px;
     font-size: 1.3rem;
     color:#4B4B4B;
@@ -82,7 +82,7 @@ h1{
     margin-top: 10px;
     border: 1px solid #C3C3C3;
 }
-p{
+.right p{
     text-align: justify;
     padding-top : 10px;
     font-size : 0.95rem;
@@ -90,14 +90,14 @@ p{
     color : #4B4B4B;
 }
     /* DATE of release*/
-h5 {
+.day {
     position: absolute;
     left: 30px;
     bottom: 40px;
     font-size: 6rem;
     color: #C3C3C3;
 }
-h6 {
+.mes {
     position: absolute;
     left: 30px;
     bottom: 20px;

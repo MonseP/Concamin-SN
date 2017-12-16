@@ -13,7 +13,7 @@ export const Event = ({photo, imagen, title, name, descript, day, month}) => {
                             <img className="left" src={imagen} alt=""/>
                         </div>
                         <div className="right">
-                            <h1>{title}</h1>
+                            <h1 className="event_name">{title}</h1>
                             <div className="author">
                                 <img  src={photo} alt=""/>
                                 <h2 className="data">{name}</h2>
@@ -22,8 +22,8 @@ export const Event = ({photo, imagen, title, name, descript, day, month}) => {
                                 <p style={{overflowY:"scroll", maxHeight:"210px"}}>{descript}</p>
                         </div>
                         <br/>
-                        <h5>{day}</h5>
-                        <h6>{month}</h6>
+                        <h5 className="dia">{day}</h5>
+                        <h6 className="mes">{month}</h6>
                         <ul>
                             <li><FontAwesome name="eye" size="2x"/></li>
                             <li><FontAwesome name="heart" size="2x"/></li>
