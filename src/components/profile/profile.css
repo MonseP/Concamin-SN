@@ -198,6 +198,14 @@
     font-weight: lighter;
     line-height: 20px;
     font-size: 80%;
+    position: relative;
+}
+
+.general-profile-info span{
+    position: absolute;
+    right: 20px;
+    top:20px;
+    cursor: pointer;
 }
 
 .paper{
