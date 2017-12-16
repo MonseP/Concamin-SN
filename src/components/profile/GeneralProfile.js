@@ -4,6 +4,9 @@ import {bindActionCreators} from 'redux';
 import {Paper} from 'material-ui';
 import FontAwesome from 'react-fontawesome';
 import {Link} from 'react-router-dom';
+//cv
+import {EducationDisplay} from "./education/EducationDisplay";
+import {ExperticeDisplay} from "./education/ExperticeDisplay";
 
 const bliss = "https://media-exp2.licdn.com/mpr/mpr/shrinknp_400_400/AAIAAQDGAAwAAQAAAAAAAAt1AAAAJDg0YWZkZDNiLTIwZTYtNGQyYy04ZWE5LWE0YmQwODdjMWZjNQ.jpg";
 
@@ -28,6 +31,8 @@ class GeneralProfile extends Component {
                         </Link>
                     </div>
                 </Paper>
+                <ExperticeDisplay/>
+                <EducationDisplay/>
 
             </div>
         );
