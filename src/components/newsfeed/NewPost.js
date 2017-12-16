@@ -7,6 +7,7 @@ import Photo from 'material-ui/svg-icons/image/photo-camera';
 import Video from 'material-ui/svg-icons/av/videocam';
 import File from 'material-ui/svg-icons/editor/attach-file';
 import './newsfeed.css';
+import ButtonC from "../../organisms/button/ButtonC";
 
 
 
@@ -62,12 +63,8 @@ const NewPost = ({handleText, text, image, uploadPhoto, addPost, loader}) => {
                     </div>
 
                 </CardText>
-                <RaisedButton
-                    fullWidth={true}
-                    onClick={addPost}
-                >
-                    Publicar
-                </RaisedButton>
+
+                <ButtonC text={"Publicar"} onClick={addPost} width={"98.5%"} icon={"eye"}/>
 
             </Card>
         </div>
