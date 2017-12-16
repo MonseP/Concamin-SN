@@ -11,6 +11,7 @@ import NewPost from "../newsfeed/NewPost";
 import PostCard from "../newsfeed/PostCard";
 import firebase from '../../firebase';
 import * as postActions from '../../redux/actions/postsActions';
+import {Feed} from "../../organisms/index";
 
 class OrganizationDetailPage extends Component {
     state={
@@ -91,23 +92,16 @@ class OrganizationDetailPage extends Component {
                         </Paper>
                     </GridTile>
                     <GridTile cols={2} className="organization-basics-container">
-                        <NewPost
+
+                        <Feed
                             handleText={this.handleText}
                             addPost={this.addPost}
                             uploadPhoto={this.uploadPhoto}
                             text={this.state.newPost.text}
                             image={this.state.newPost.image}
                             loader={this.state.loader}
+                            posts={this.props.posts}
                         />
-                        {this.props.posts.map((p,key)=>{
-                            return(
-                                <PostCard
-                                    key={key}
-                                    text={p.text}
-                                    image={p.image}
-                                    user={p.user}/>
-                            )
-                        })}
                     </GridTile>
                     <GridTile cols={1} className="organization-basics-container">
                         <Paper className="paper-datos">Datos Básicos</Paper>

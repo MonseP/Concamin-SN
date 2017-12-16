@@ -1,25 +1,21 @@
 import React from 'react';
 import NewPost from "../newsfeed/NewPost";
 import PostCard from "../newsfeed/PostCard";
+import {Feed} from "../../organisms/index";
 
-const GroupFeed = ({handleText, addPost, uploadPhoto, newPost, posts}) => {
+const GroupFeed = ({handleText, addPost, uploadPhoto, newPost, posts, loader}) => {
     return (
         <div>
-            <NewPost
+            <Feed
                 handleText={handleText}
                 addPost={addPost}
                 uploadPhoto={uploadPhoto}
                 text={newPost.text}
                 image={newPost.image}
+                posts={posts}
+                loader={loader}
             />
-            {posts.map((p, key)=>{
-                return(
-                    <PostCard
-                        text={p.text}
-                        image={p.image}
-                        user={p.user}/>
-                )
-            })}
+
 
         </div>
     )

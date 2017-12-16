@@ -1,8 +1,12 @@
-.newsfeed{
 
-    padding: 0px 1%;
+.newsfeed{
+    padding: 0px 10%;
 
 }
+.newsfeed-posts{
+    overflow-y: scroll;
+}
+/*idk*/
 .news-sections{
     position: relative;
 }
@@ -33,8 +37,10 @@
     overflow-y: scroll;
 }
 .lista-grupos{
-    position: relative;
-
+    position: sticky;
+}
+.recommendations{
+    position: sticky;
 }
 .button-add-group{
     position:absolute;

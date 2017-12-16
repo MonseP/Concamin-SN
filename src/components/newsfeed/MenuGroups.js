@@ -34,17 +34,17 @@ const MenuGroups = ({groups, addGroup, modal, handleClose, handleOpen, handleNew
             <Subheader>Explora</Subheader>
             <List>
                 <Link className="newsfeed-link" to="/eventos">
-                    <ListItem primaryText="Eventos" leftIcon={<Calendar/>} rightIcon={<ActionInfo />}/>
+                    <ListItem primaryText="Eventos" leftIcon={<Calendar/>}/>
                 </Link>
                 <Link className="newsfeed-link" to="/organizations">
-                    <ListItem primaryText="Organizaciones" leftIcon={<Org/>} rightIcon={<ActionInfo />}/>
+                    <ListItem primaryText="Organizaciones" leftIcon={<Org/>}/>
                 </Link>
                 <Link className="newsfeed-link" to="/chat">
-                    <ListItem primaryText="Conversaciones" leftIcon={<ContentSend />} rightIcon={<ActionInfo />}/>
+                    <ListItem primaryText="Conversaciones" leftIcon={<ContentSend />}/>
                 </Link>
 
-                <ListItem primaryText="Grupos" leftIcon={<Work />} rightIcon={<ActionInfo />}/>
-                <ListItem primaryText="Amigos" leftIcon={<ContentDrafts />} rightIcon={<ActionInfo />}/>
+                <ListItem primaryText="Grupos" leftIcon={<Work />}/>
+                <ListItem primaryText="Amigos" leftIcon={<ContentDrafts />}/>
             </List>
             <Divider/>
             <Subheader>Grupos</Subheader>

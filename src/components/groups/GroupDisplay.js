@@ -72,7 +72,8 @@ class GroupDisplay extends Component {
                             handleText={this.handleText}
                             addPost={this.addPost}
                             uploadPhoto={this.uploadPhoto}
-                            newPost={this.state.newPost}/>
+                            newPost={this.state.newPost}
+                            loader={this.state.loader}/>
                    </GridTile>
 
                    <GridTile cols={1} className="group-chat">

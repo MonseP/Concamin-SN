@@ -1,6 +1,7 @@
-.avatar-container{
+.my-avatar-container{
     width: 100%;
-    padding:2% 3%;
+    padding:1%;
+    margin:0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -14,7 +15,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width:15%;
+    margin-right:2%;
 }
 .avatar-image-container .avatar-image{
     height: 50px;

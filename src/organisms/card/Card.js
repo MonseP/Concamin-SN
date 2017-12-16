@@ -20,7 +20,7 @@ export const Card = ({
         <div className="bliss-card">
             <article>
                 <header>
-                    <p>{title}</p>
+                    {title}
                     <span>{date ? moment(date).fromNow():null}</span>
                 </header>
                 <body>

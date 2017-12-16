@@ -11,6 +11,7 @@ import * as groupActions from '../../redux/actions/groupActions';
 import {getAllUsers} from '../../redux/actions/usuariosActions';
 import {bindActionCreators} from "redux";
 import firebase from '../../firebase';
+import {Feed} from "../../organisms/index";
 
 class NewsfeedPage extends Component {
     state={
@@ -27,7 +28,8 @@ class NewsfeedPage extends Component {
 
     //check for user
     componentWillMount(){
-     const user = localStorage.getItem("user");
+     const user = localStorage.getItem("user");console.log(window.innerHeight)
+     this.setState({screen:window.innerHeight})
      if(!user) this.props.history.push("/login");
     }
 
@@ -82,8 +84,40 @@ class NewsfeedPage extends Component {
         this.setState({newGroupModal: false});
     };
     render() {
+
         return (
             <div className='newsfeed'>
+
+                <GridList cellHeight={this.state.screen} cols={4}>
+                    <GridTile cols={1}>
+                        <MenuGroups
+                            handleNewGroup={this.handleNewGroup}
+                            modal={this.state.newGroupModal}
+                            addGroup={this.addGroup}
+                            groups={this.props.groups}
+                            handleOpen={this.handleOpen}
+                            handleClose={this.handleClose}/>
+                    </GridTile>
+                    <GridTile cols={2} style={{overflowY:'scroll'}}>
+
+                        <Feed
+                            uploadPhoto={this.uploadPhoto}
+                            handleText={this.handleText}
+                            text={this.state.newPost.text}
+                            image={this.state.newPost.image}
+                            addPost={this.addPost}
+                            loader={this.state.loader}
+                            posts={this.props.posts}
+                        />
+                    </GridTile>
+                    <GridTile cols={1}>
+                        <Recommendations
+                            users={this.props.users}
+                            organizations={this.props.organizations}/>
+                    </GridTile>
+
+                </GridList>
+            {/*<div className='newsfeed'>
                <GridList cellHeight={'auto'} cols={4} className='news-sections'>
                    <div className='menu-left-section'>
                        <GridTile cols={1} >
@@ -105,7 +139,7 @@ class NewsfeedPage extends Component {
                             addPost={this.addPost}
                             loader={this.state.loader}/>
 
-                       {this.props.posts.map((post, key)=>{
+                       this.props.posts.map((post, key)=>{
                            return(
                                <PostCard
                                    key={key}
@@ -113,7 +147,8 @@ class NewsfeedPage extends Component {
                                    image={post.image?post.image:''}
                                    text={post.text}/>
                            )
-                       })}
+                       })
+                       <Feed posts={this.props.posts}/>
 
                    </GridTile>
                    <div className='menu-right-section'>
@@ -123,6 +158,8 @@ class NewsfeedPage extends Component {
                        </GridTile>
                    </div>
                </GridList>
+            </div>*/}
+
             </div>
         )
     }
@@ -133,6 +170,7 @@ function mapStateToProps(state){
     console.log(state);
     return{
         posts:state.posts,
+        fetched:state.posts!==undefined,
         groups:state.groups,
         users:state.users.list,
         organizations:state.organizations.list,
