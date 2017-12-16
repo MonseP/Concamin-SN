@@ -16,7 +16,7 @@ export const Event = ({photo, imagen, title, name, descript, day, month}) => {
                             <h1>{title}</h1>
                             <div className="author">
                                 <img  src={photo} alt=""/>
-                                <h2>{name}</h2>
+                                <h2 className="data">{name}</h2>
                             </div>
                             <div className="separator"></div>
                                 <p style={{overflowY:"scroll", maxHeight:"210px"}}>{descript}</p>
