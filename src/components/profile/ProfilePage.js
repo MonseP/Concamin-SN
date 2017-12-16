@@ -3,6 +3,10 @@
  */
 import React, {Component} from 'react';
 import ProfileContainer from "./ProfileContainer";
+import EducationContainer from './education/EducationContainer';
+import ExperticeContainer from './education/ExperticeContainer';
+import GeneralProfile from './GeneralProfile';
+import {Route, Switch} from 'react-router-dom';
 
 
 class ProfilePage extends Component{
@@ -11,9 +15,12 @@ class ProfilePage extends Component{
     }
     render(){
         return (
-            <div>
-                <ProfileContainer/>
-            </div>
+            <Switch>
+                <Route exact path={"/profile/"} component={GeneralProfile}/>
+                <Route path={"/profile/basic/edit"} component={ProfileContainer}/>
+                <Route path={"/profile/education"} component={EducationContainer}/>
+                <Route path={"/profile/expertice"} component={ExperticeContainer}/>
+            </Switch>
         );
     }
 
