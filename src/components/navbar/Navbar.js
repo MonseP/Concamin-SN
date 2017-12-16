@@ -45,7 +45,7 @@ class Navbar extends Component {
                         :
                         <ToolbarGroup>
                             <Link to="/" className="link-nav">
-                                <ButtonC label={"Descubre"} color={'#AE4050'} width={85}/>
+                                <ButtonC text={"Descubre"}/>
                             </Link>
                             <span className="separador-nav">|</span>
                             {fetched && <Avatar
