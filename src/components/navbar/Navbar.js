@@ -7,6 +7,7 @@ import Person from 'material-ui/svg-icons/social/person';
 import {cerrarSesion} from "../../redux/actions/usuarioActions";
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import ButtonC from "../../organisms/button/ButtonC";
 
 
 class Navbar extends Component {
@@ -44,7 +45,7 @@ class Navbar extends Component {
                         :
                         <ToolbarGroup>
                             <Link to="/" className="link-nav">
-                                <RaisedButton label="Descubre" primary={true} />
+                                <ButtonC label={"Descubre"} color={'#AE4050'} width={85}/>
                             </Link>
                             <span className="separador-nav">|</span>
                             {fetched && <Avatar
