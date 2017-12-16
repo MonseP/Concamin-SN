@@ -16,7 +16,7 @@ class GeneralProfile extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{maxWidth:800, position:"relative", margin:"0 auto"}}>
                 <Paper className="paper" zDepth={3}>
                     <div className="general-profile-cover">
                         <img src={bliss} alt="user"/>

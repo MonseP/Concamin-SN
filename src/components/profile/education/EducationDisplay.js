@@ -6,6 +6,7 @@ import {List, ListItem, Avatar, Subheader, IconMenu, MenuItem, IconButton} from 
 import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors';
 import Divider from 'material-ui/Divider';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import {Link} from 'react-router-dom';
 
 const institution = "https://images.emojiterra.com/mozilla/512px/1f393.png";
 
@@ -33,6 +34,7 @@ export const EducationDisplay = ({props}) => {
             <List>
                 <Subheader>Educación</Subheader>
                 <ListItem
+                    containerElement={<Link to={"/profile/education"}/>}
                     leftAvatar={<Avatar src={institution} />}
                     rightIconButton={rightIconMenu}
                     primaryText="Universidad Nacional Autónoma de México"

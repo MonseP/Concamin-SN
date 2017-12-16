@@ -6,6 +6,7 @@ import {List, ListItem, Avatar, Subheader, IconMenu, MenuItem, IconButton} from 
 import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors';
 import Divider from 'material-ui/Divider';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import {Link} from 'react-router-dom';
 
 const institution = "http://www.pvhc.net/img201/xylshbjpezjrwafrnnim.png";
 
@@ -31,8 +32,9 @@ export const ExperticeDisplay = ({props}) => {
     return (
         <div>
             <List>
-                <Subheader>Educación</Subheader>
+                <Subheader>Experiencia</Subheader>
                 <ListItem
+                    containerElement={<Link to={"/profile/expertice"}/>}
                     leftAvatar={<Avatar src={institution} />}
                     rightIconButton={rightIconMenu}
                     primaryText="Student Resercher"
