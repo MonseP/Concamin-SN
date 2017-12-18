@@ -12,7 +12,13 @@ import * as eventsActions from '../../redux/actions/eventosActions';
 import moment from 'moment';
 import toastr from 'toastr';
 
+
 const today = new Date();
+let aux = new Date();
+aux.setMonth(aux.getMonth() - 1);
+let todayMs = today.getTime();
+let oneMonthBeforeMs = aux.getTime();
+
 
 class EventosContainer extends Component {
     constructor(props) {
@@ -32,6 +38,10 @@ class EventosContainer extends Component {
                 src: '',
                 file: ''
             },
+            rangeFilter: {
+                start: oneMonthBeforeMs,
+                end: todayMs
+            }
         };
     }
 
@@ -138,6 +148,11 @@ class EventosContainer extends Component {
         });
     };
 
+    ///////////////////// Filter Event ///////////////////////////////////////////////
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
     render() {
         const actions = [
             <FlatButton
@@ -152,8 +167,10 @@ class EventosContainer extends Component {
                 onClick={this.saveNewEvent}
             />,
         ];
-        const {fetched, eventos, usuario, logged, history} = this.props;
-        const {newEvent, imagePreview} = this.state;
+        const {fetched, eventos = [], usuario, logged, history} = this.props;
+        const {newEvent, imagePreview, rangeFilter} = this.state;
+        const {start, end} = rangeFilter;
+        const filteredEvents = eventos.filter( (event,key) => event.date > start && event.date < end );
         if(fetched){
             console.log(eventos);
         }
@@ -167,7 +184,7 @@ class EventosContainer extends Component {
                                 <FiltrarEventos/>
                             </GridTile>
                             <GridTile cols={2} className="right-side">
-                                <EventsList history={history} events={eventos}/>
+                                <EventsList history={history} events={filteredEvents}/>
                             </GridTile>
                         </GridList>
                         <Dialog
