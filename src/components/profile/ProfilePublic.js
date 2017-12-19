@@ -78,7 +78,7 @@ const ProfilePublicDisplay = ({loading, onChange, fetched, posts, followers, fol
                         {linkedIn}
                     </p>
                     <br/>
-                    <a style={{textDecoration:"none", color:"green"}}href={"/chat/"+id}>
+                    <a style={{textDecoration:"none", color:"green"}}href={"/chat/"}>
                         <FontAwesome
                             name="comments-o"
                         />/
