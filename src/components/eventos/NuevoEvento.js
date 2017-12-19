@@ -17,11 +17,11 @@ function onClick() {
     elInput.click();
 }
 
-const NuevoEvento = ({newEvent,onChange,onChangeDate, onChangeTime, onChangePrivate, uploadPhoto, imagePreview}) => {
-    const {name, place, date, time, isPrivate, image} = newEvent;
+const NuevoEvento = ({newEvent,onChange,onChangeDate, onChangeTime, onChangePrivate, uploadPhoto, imagePreview, onSubmit}) => {
+    const {name, place, date, time, isPrivate, image, description} = newEvent;
     const {src} = imagePreview;
     return (
-        <div className="parent-new-event">
+        <form id="nuevoevento" onSubmit={onSubmit} className="parent-new-event">
             <div className="root-nuevo-evento">
                 <img
                     alt="Subir nueva imagen"
@@ -29,8 +29,9 @@ const NuevoEvento = ({newEvent,onChange,onChangeDate, onChangeTime, onChangePriv
                     onClick={onClick}
                     className="upload-image"
                 />
-                <input ref={input => elInput = input } type="file" hidden onChange={uploadPhoto}/>
+                <input required name='image' ref={input => elInput = input } type="file" hidden onChange={uploadPhoto}/>
                 <TextField
+                    required
                     name="name"
                     value={name}
                     onChange={onChange}
@@ -39,6 +40,7 @@ const NuevoEvento = ({newEvent,onChange,onChangeDate, onChangeTime, onChangePriv
                     hintText="TLCAN protecters"
                 />
                 <TextField
+                    required
                     name="place"
                     value={place}
                     onChange={onChange}
@@ -46,7 +48,20 @@ const NuevoEvento = ({newEvent,onChange,onChangeDate, onChangeTime, onChangePriv
                     floatingLabelText="Ubicación"
                     hintText="Guadalajara Jalisco"
                 />
+                <TextField
+                    required
+                    name="description"
+                    value={description}
+                    onChange={onChange}
+                    className="textfield-event"
+                    floatingLabelText="Descripción"
+                    hintText="Esto es un evento ..."
+                    multiLine={true}
+                    rowsMax={6}
+                    style={{width:'85%'}}
+                />
                 <DatePicker
+                    required
                     name="date"
                     value={date}
                     onChange={onChangeDate}
@@ -55,6 +70,7 @@ const NuevoEvento = ({newEvent,onChange,onChangeDate, onChangeTime, onChangePriv
                     autoOk={true}
                 />
                 <TimePicker
+                    required
                     name="time"
                     value={time}
                     onChange={onChangeTime}
@@ -71,7 +87,7 @@ const NuevoEvento = ({newEvent,onChange,onChangeDate, onChangeTime, onChangePriv
                     onToggle={onChangePrivate}
                 />
             </div>
-        </div>
+        </form>
     );
 };
 

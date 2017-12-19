@@ -30,7 +30,7 @@ class OrganizationDetailPage extends Component {
         let field = e.target.name;
         newPost[field] = e.target.value;
         this.setState({newPost});
-        console.log(newPost)
+
     };
     addPost=()=>{
         let newPost = this.state.newPost;
@@ -45,7 +45,7 @@ class OrganizationDetailPage extends Component {
         let file = e.target.files[0];
         let uploadTask = firebase.storage().ref().child('postGroupfiles/'+file.name).put(e.target.files[0]);
         uploadTask.then(r=>{
-            console.log(r);
+
             let newPost = this.state.newPost;
             newPost['image']=r.downloadURL;
             this.setState({newPost, loader:false})
@@ -53,7 +53,7 @@ class OrganizationDetailPage extends Component {
         uploadTask.on('state_changed', snapshot=>{
             this.setState({loader:true});
             let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
+
         });
 
     };
@@ -67,8 +67,8 @@ class OrganizationDetailPage extends Component {
                     <GridTile cols={1}>
                         <div className="organization-basics">
 
-                            <div className="">
-                                <Avatar icon={<Work/>} size={150} className=""/>
+                            <div className="organization-image">
+                                <img src="http://concamin.mx/wp-content/uploads/2015/08/294x216xgenerico-concamin.jpg.pagespeed.ic.6jxjQAxWT9.jpg" alt=""/>
                             </div>
                             <h3>{org.name}</h3>
                             <Subheader>Miembros</Subheader>
@@ -130,7 +130,7 @@ class OrganizationDetailPage extends Component {
                             {this.props.organizations.map((o, key)=>{
                                 return(
                                     <MiAvatar
-                                        image={'https://pbs.twimg.com/profile_images/719575066736889856/eL9HcziB.jpg'}
+                                        image={'https://scontent.fmex5-1.fna.fbcdn.net/v/t34.0-12/25564661_10214514167705256_939305674_n.jpg?oh=f8d20db6dac90cd953243a138997af0f&oe=5A3C3B07'}
                                         link={`/organizations/${o.id}`}
                                         name={o.name}
                                     />
@@ -206,7 +206,7 @@ function mapStateToProps(state, ownProps) {
     let orgId = ownProps.match.params.organizationId;
     let organization = state.organizations.list.filter(o=>{return o.id===orgId});
     organization = organization[0];
-    console.log(organization);
+
     let posts = state.posts.filter(p=>{
         return p.organization!==undefined && p.organization===orgId
     });

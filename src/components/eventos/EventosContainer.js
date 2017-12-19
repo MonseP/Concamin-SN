@@ -35,7 +35,8 @@ class EventosContainer extends Component {
                 place:      '',
                 time:       today,
                 date:       today,
-                isPrivate: false
+                isPrivate: false,
+                description: ''
             },
             imagePreview: {
                 src: '',
@@ -127,25 +128,37 @@ class EventosContainer extends Component {
 
     };
     saveNewEvent = ( e) => {
-        const {newEvent, imagePreview} = this.state;
-        this.props.eventsActions.uploadPhoto(newEvent.name, imagePreview.file)
-            .then( r => {
-                console.log('Image upload successfully');
-                newEvent.image = r.downloadURL;
-                newEvent.date = this.formatDateAndTime();
-                newEvent.time = null;
-                this.setState({newEvent});
-                this.props.eventsActions.saveEvent(newEvent)
-                    .then( r => {
-                        toastr.success('Guardado')
-                    })
-                    .catch( e => {
-                        toastr.error(e)
-                    });
-                this.handleClose();
-            }).catch( e => {
+        e.preventDefault();
+        const {newEvent, imagePreview : {file}} = this.state;
+        if (file !== '') {
+            this.props.eventsActions.uploadPhoto(newEvent.name, file)
+                .then(r => {
+                    console.log('Image upload successfully');
+                    newEvent.image = r.downloadURL;
+                    newEvent.date = this.formatDateAndTime();
+                    newEvent.time = null;
+                    this.setState({newEvent});
+                    this.props.eventsActions.saveEvent(newEvent)
+                        .then(r => {
+                            toastr.success('Guardado')
+                        })
+                        .catch(e => {
+                            toastr.error(e)
+                        });
+                    this.handleClose();
+                }).catch(e => {
                 console.log(e.message);
-        });
+            });
+        }else{
+            this.props.eventsActions.saveEvent(newEvent)
+                .then(r => {
+                    toastr.success('Guardado')
+                })
+                .catch(e => {
+                    toastr.error(e)
+                });
+            this.handleClose();
+        }
     };
 
     ///////////////////// Filter Event ///////////////////////////////////////////////
@@ -219,10 +232,11 @@ class EventosContainer extends Component {
                 onClick={this.handleClose}
             />,
             <FlatButton
+                type="submit"
                 label="Agregar"
+                form="nuevoevento"
                 primary={true}
                 keyboardFocused={true}
-                onClick={this.saveNewEvent}
             />,
         ];
         const {fetched, eventos = [], usuario, logged, history} = this.props;
@@ -269,6 +283,7 @@ class EventosContainer extends Component {
                                 imagePreview={imagePreview}
                                 uploadPhoto={this.uploadPhoto}
                                 newEvent={newEvent}
+                                onSubmit={this.saveNewEvent}
                             />
                         </Dialog>
                         {

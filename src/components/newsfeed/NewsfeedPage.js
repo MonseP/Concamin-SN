@@ -12,6 +12,7 @@ import {getAllUsers} from '../../redux/actions/usuariosActions';
 import {bindActionCreators} from "redux";
 import firebase from '../../firebase';
 import {Feed} from "../../organisms/index";
+import {MainLoader} from "../loader/MainLoader";
 
 class NewsfeedPage extends Component {
     state={
@@ -84,8 +85,10 @@ class NewsfeedPage extends Component {
         this.setState({newGroupModal: false});
     };
     render() {
+        if(this.props.posts.length===0) return <MainLoader/>
 
         return (
+
             <div className='newsfeed'>
 
                 <GridList cellHeight={this.state.screen} cols={5}>
@@ -168,9 +171,11 @@ class NewsfeedPage extends Component {
 
 
 function mapStateToProps(state){
+    let posts = state.posts.filter(p=>{
+        return p.group === undefined && p.organization === undefined && p.event === undefined
+    })
     return{
-        posts:state.posts,
-        fetched:state.posts!==undefined,
+        posts:posts,
         groups:state.groups,
         users:state.users.list,
         organizations:state.organizations.list,

@@ -36,7 +36,10 @@ export const Routes = () => (
         <Route path='/signUp' component={SignUpPage}/>
         <Route path='/register' component={LoginPage}/>
         <Route exact path="/new" component={NewPostPage}/>
-        <Route path='/chat' component={ChatPage}/>
+        <Route exact path='/chat' component={ChatPage}/>
+        <Route path='/chat/:chatId' component={ChatPage}/>
+        <Route path='/new/chat/:userId' component={ChatPage}/>
+
             <Route path="/event" component={EventContainer}/>
         <Route path='/groups/:groupId'component={GroupDisplay}/>
         <Route path='/eventos/:id' component={DetailEventPage}/>
