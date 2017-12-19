@@ -24,12 +24,12 @@ export const Card = ({
                     {title}
                     <span>{date ? moment(date).fromNow():null}</span>
                 </header>
-                <body>
+                <section>
 
                         {body}
 
                     {image && <img src={image} alt="principal pic"/>}
-                </body>
+                </section>
             </article>
             {footerName && <footer style={{backgroundColor:footerColor?footerColor:"white"}}>
 
@@ -47,9 +47,9 @@ export const Card = ({
 };
 
 Card.propTypes = {
-    title: PropTypes.string,
-    date:PropTypes.string,
-    body:PropTypes.string,
+   // title: PropTypes.string,
+    //date:PropTypes.number,
+    //body:PropTypes.string,
     image:PropTypes.string,
     footerColor:PropTypes.string,
     footerNames:PropTypes.array

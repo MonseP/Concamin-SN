@@ -7,7 +7,7 @@ const ButtonC = ({onClick, text, backgroundColor, width, icon}) => {
     return(
         <button className="button fade"
                 style={{verticalAlign:'middle',
-                        backgroundColor:backgroundColor?backgroundColor:"#00AE68",
+                        backgroundColor:backgroundColor?backgroundColor:"rgba(0,0,0,.4)",
                         width:width?width:110
                 }}
                 onClick={onClick} >

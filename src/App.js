@@ -7,7 +7,7 @@ import './App.css'
 class App extends Component {
   render() {
     return (
-      <div style={{backgroundColor:"lightgrey", minHeight:"100vh"}}>
+      <div style={{backgroundColor:"#eceff1", minHeight:"100vh"}}>
           <Nav/>
           <div className="margin-for-nav">
               <Routes/>

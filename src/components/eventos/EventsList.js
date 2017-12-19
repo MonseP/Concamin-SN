@@ -1,5 +1,6 @@
 import React from 'react';
-import EventCard from "./EventCard";
+import {Event} from "../../organisms/Event";
+import EventCard from './EventCard';
 import {GridList, GridTile} from 'material-ui';
 import moment from 'moment';
 import 'moment/locale/es';
@@ -10,8 +11,8 @@ const EventsList = ({events, history}) => {
         let fecha = moment(event.date, 'x').format('DD MMMM YYYY');
         let hora = moment(event.date, 'x').format('hh:mm a');
         return (
-            <GridTile key={key} cols={1}>
-                <EventCard
+            <GridTile key={key} cols={2}>
+                <Event
                     id={event.id}
                     titulo={event.name}
                     usuario={event.owner}
