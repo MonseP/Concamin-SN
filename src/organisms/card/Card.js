@@ -24,9 +24,9 @@ export const Card = ({
                     <span>{date ? moment(date).fromNow():null}</span>
                 </header>
                 <body>
-                    <p>
+
                         {body}
-                    </p>
+
                     {image && <img src={image} alt="principal pic"/>}
                 </body>
             </article>

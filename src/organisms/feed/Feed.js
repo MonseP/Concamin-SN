@@ -16,9 +16,10 @@ export const Feed = ({posts, uploadPhoto, handleText, text, image, addPost, load
             {posts.map((p, key)=>{
                 return(
                     <div>
-
                         <Card
-                            title={<Avatar/>}
+                            title={<Avatar
+                                image={p.user_photo}
+                                name={p.username}/>}
                             image={p.image}
                             body={p.text}/>
                     </div>

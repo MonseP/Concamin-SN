@@ -14,7 +14,7 @@ export const Avatar = ({image, name, title, link, component}) => {
             <div className={'avatar-info-container'}>
                 <Link to={link?link:'#'} className={'avatar-link'}>
                     <p className={'name'}>{name?name:'Main Text'}</p>
-                    <p className={'title'}>{title?title:'Secondary Text'}</p>
+                    <p className={'title'}>{title?title:''}</p>
                 </Link>
             </div>
             <div className={'extra-component'}>
