@@ -11,44 +11,44 @@ import ReactDOM from 'react-dom';
 const GroupChat = ({}) => {
     return (
 
-        <Paper className="group-chat-paper">
+        <Paper style={{borderRadius:'2%'}} className="group-chat-paper">
             <div className="chat-box" >
 
                 <div className="chat left-chat">
                     <Avatar icon={<Emoji size={10}/>}/>
                     <div className="chat-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut blanditiis consectetur cumque deserunt dolorem ea enim ex id incidunt modi officia officiis optio perferendis quae repellat rerum, veniam.
+                        Ok, let's talk about topics concerning to TLCAN trade
                     </div>
                 </div>
                 <div className="chat left-chat">
                     <Avatar icon={<Emoji size={10}/>}/>
                     <div className="chat-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut blanditiis consectetur cumque deserunt dolorem ea enim ex id incidunt modi officia officiis optio perferendis quae repellat rerum, veniam.
+                        I think the most important think is that we have to be unified as country
                     </div>
                 </div>
                 <div className="chat left-chat">
                     <Avatar icon={<Emoji size={10}/>}/>
                     <div className="chat-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut blanditiis consectetur cumque deserunt dolorem ea enim ex id incidunt modi officia officiis optio perferendis quae repellat rerum, veniam.
+                        But ...
                     </div>
                 </div>
 
                 <div className="chat right-chat">
-                    <Avatar icon={<Emoji size={20}/>}/>
-                    <div className="chat-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut blanditiis consectetur cumque deserunt dolorem ea enim ex id incidunt modi officia officiis optio perferendis quae repellat rerum, veniam.
+                    {/*<Avatar icon={<Emoji size={20}/>}/>*/}
+                    <div className="chat-text owner-chat">
+                        I have been read a lot this and in summary ...
                     </div>
                 </div>
-                <div className="chat left-chat">
+                <div className="chat left-chat" >
                     <Avatar icon={<Emoji size={10}/>}/>
                     <div className="chat-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut blanditiis consectetur cumque deserunt dolorem ea enim ex id incidunt modi officia officiis optio perferendis quae repellat rerum, veniam.
+                        That's right
                     </div>
                 </div>
-                <div className="chat left-chat">
+                <div className="chat left-chat" >
                     <Avatar icon={<Emoji size={10}/>}/>
                     <div className="chat-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut blanditiis consectetur cumque deserunt dolorem ea enim ex id incidunt modi officia officiis optio perferendis quae repellat rerum, veniam.
+                        Totally agree
                     </div>
                 </div>
 

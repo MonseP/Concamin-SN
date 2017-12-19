@@ -3,11 +3,12 @@ import './group_page.css';
 import {GridList, GridTile, Paper} from 'material-ui';
 import GroupBasics from "./GroupBasics";
 import GroupFeed from "./GroupFeed";
-import GroupChat from "./GroupChat";
+// import GroupChat from "./GroupChat";
 import {connect} from "react-redux";
 import firebase from '../../firebase';
 import * as postsActions from '../../redux/actions/postsActions';
 import {bindActionCreators} from "redux";
+import GroupChat from "./GroupChat";
 
 
 
@@ -81,7 +82,7 @@ class GroupDisplay extends Component {
                    </GridTile>
 
                    <GridTile cols={1}>
-                       <GroupChat />
+                       <GroupChat/>
                    </GridTile>
                </GridList>
             </div>
