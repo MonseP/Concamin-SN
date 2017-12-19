@@ -85,7 +85,6 @@ class NewsfeedPage extends Component {
         this.setState({newGroupModal: false});
     };
     render() {
-        console.log(this.props)
         if(this.props.posts.length===0) return <MainLoader/>
 
         return (

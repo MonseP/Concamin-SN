@@ -30,7 +30,7 @@ class OrganizationDetailPage extends Component {
         let field = e.target.name;
         newPost[field] = e.target.value;
         this.setState({newPost});
-        console.log(newPost)
+
     };
     addPost=()=>{
         let newPost = this.state.newPost;
@@ -45,7 +45,7 @@ class OrganizationDetailPage extends Component {
         let file = e.target.files[0];
         let uploadTask = firebase.storage().ref().child('postGroupfiles/'+file.name).put(e.target.files[0]);
         uploadTask.then(r=>{
-            console.log(r);
+
             let newPost = this.state.newPost;
             newPost['image']=r.downloadURL;
             this.setState({newPost, loader:false})
@@ -53,7 +53,7 @@ class OrganizationDetailPage extends Component {
         uploadTask.on('state_changed', snapshot=>{
             this.setState({loader:true});
             let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
+
         });
 
     };
@@ -206,7 +206,7 @@ function mapStateToProps(state, ownProps) {
     let orgId = ownProps.match.params.organizationId;
     let organization = state.organizations.list.filter(o=>{return o.id===orgId});
     organization = organization[0];
-    console.log(organization);
+
     let posts = state.posts.filter(p=>{
         return p.organization!==undefined && p.organization===orgId
     });
