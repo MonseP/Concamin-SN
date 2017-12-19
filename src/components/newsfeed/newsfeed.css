@@ -1,6 +1,16 @@
-
+.elfeed{
+    height: 100vh;
+    overflow-y: scroll;
+    padding-bottom: 10%;
+}
+.elfeed::-webkit-scrollbar{
+    width: 0;
+    display: none;
+    visibility: hidden;
+}
 .newsfeed{
     padding: 0px 10%;
+    height: 90vh;
 
 }
 .newsfeed-posts{

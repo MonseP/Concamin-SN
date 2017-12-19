@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import './post_card.css';
-import {Avatar} from "../../organisms/index";
+import {MiAvatar} from "../../organisms/index";
 
 const PostCard = ({image, text, user}) => {
     return (
@@ -12,7 +12,7 @@ const PostCard = ({image, text, user}) => {
                     subtitle="Fecha del post"
                     avatar="https://static.pexels.com/photos/355956/pexels-photo-355956.jpeg"
                 />
-                <Avatar
+                <MiAvatar
                     link={'/avatar'}
                     component={<button>lol</button>}
                     name={'Oswaldinho'}

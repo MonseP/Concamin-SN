@@ -34,6 +34,7 @@ export const EducationDisplay = ({props}) => {
             <List>
                 <Subheader>Educación</Subheader>
                 <ListItem
+                    style={{backgroundColor:"white"}}
                     containerElement={<Link to={"/profile/education"}/>}
                     leftAvatar={<Avatar src={institution} />}
                     rightIconButton={rightIconMenu}
@@ -48,6 +49,7 @@ export const EducationDisplay = ({props}) => {
                 />
                 <Divider inset={true} />
                 <ListItem
+                    style={{backgroundColor:"white"}}
                     leftAvatar={<Avatar src={institution}  />}
                     rightIconButton={rightIconMenu}
                     primaryText="The University of Texas Austin"
@@ -61,6 +63,7 @@ export const EducationDisplay = ({props}) => {
                 />
                 <Divider inset={true} />
                 <ListItem
+                    style={{backgroundColor:"white"}}
                     leftAvatar={<Avatar src={institution}  />}
                     rightIconButton={rightIconMenu}
                     primaryText="Institu Politecnico Nacional"
@@ -74,6 +77,7 @@ export const EducationDisplay = ({props}) => {
                 />
                 <Divider inset={true} />
                 <ListItem
+                    style={{backgroundColor:"white"}}
                     leftAvatar={<Avatar src={institution}  />}
                     rightIconButton={rightIconMenu}
                     primaryText="Universidad Autónoma del Estado de Hidalgo"
@@ -87,6 +91,7 @@ export const EducationDisplay = ({props}) => {
                 />
                 <Divider inset={true} />
                 <ListItem
+                    style={{backgroundColor:"white"}}
                     leftAvatar={<Avatar src={institution}  />}
                     rightIconButton={rightIconMenu}
                     primaryText="Instituto Tecnológico Atónomo de México"

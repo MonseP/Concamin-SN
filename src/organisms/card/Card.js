@@ -14,19 +14,20 @@ export const Card = ({
                          body,
                          image,
                          footerColor,
-                         footerName
+                         footerName,
+                         style
 }) => {
     return (
-        <div className="bliss-card">
+        <div className="bliss-card" style={style || null}>
             <article>
                 <header>
                     {title}
                     <span>{date ? moment(date).fromNow():null}</span>
                 </header>
                 <body>
-                    <p>
+
                         {body}
-                    </p>
+
                     {image && <img src={image} alt="principal pic"/>}
                 </body>
             </article>

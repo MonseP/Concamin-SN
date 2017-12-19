@@ -19,4 +19,11 @@
     text-align: center;
     padding: 1% 5%;
     margin-top: 60px;
+    transition: .5s;
+}
+
+@media(max-width: 800px){
+    .login-box{
+        width: 60%;
+    }
 }

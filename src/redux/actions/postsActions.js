@@ -19,11 +19,15 @@ export function savePost(post){
         if(post.id) key = post.id;
         else key = db.push().key;
 
-        let uid = getState().usuario.id;
+        let user = getState().usuario;
         post['id'] = key;
-        post['user'] = uid;
+        post['user'] = user.id;
+        if(user.photoURL && user.displayName) {
+            post['user_photo'] = user.photoURL;
+            post['username'] = user.displayName;
+        }
         updates[`dev/posts/${key}`] = post;
-        updates[`dev/users/${uid}/posts/${post.id}`] = true;
+        updates[`dev/users/${user.id}/posts/${post.id}`] = true;
         if(post.group) updates[`dev/groups/${post.group}/posts/${post.id}`] = true;
         if(post.event) updates[`dev/events/${post.event}/posts/${post.id}`] = true;
         if(post.organization) updates[`dev/organizations/${post.organization}/posts/${post.id}`] = true;

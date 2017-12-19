@@ -28,8 +28,8 @@ class NewsfeedPage extends Component {
 
     //check for user
     componentWillMount(){
-     const user = localStorage.getItem("user");console.log(window.innerHeight)
-     this.setState({screen:window.innerHeight})
+     const user = localStorage.getItem("user");
+     this.setState({screen:window.innerHeight-60})
      if(!user) this.props.history.push("/login");
     }
 
@@ -39,7 +39,7 @@ class NewsfeedPage extends Component {
       let field = e.target.name;
       newPost[field] = e.target.value;
       this.setState({newPost});
-      console.log(newPost)
+
     };
     addPost=()=>{
         this.props.postActions.savePost(this.state.newPost);
@@ -52,7 +52,7 @@ class NewsfeedPage extends Component {
     let file = e.target.files[0];
         let uploadTask = firebase.storage().ref().child('postfiles/'+file.name).put(e.target.files[0]);
         uploadTask.then(r=>{
-            console.log(r);
+
             let newPost = this.state.newPost;
             newPost['image']=r.downloadURL;
             this.setState({newPost, loader:false})
@@ -60,7 +60,7 @@ class NewsfeedPage extends Component {
         uploadTask.on('state_changed', snapshot=>{
             this.setState({loader:true});
             let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
+
         });
 
     };
@@ -74,7 +74,7 @@ class NewsfeedPage extends Component {
         let field = e.target.name;
         newGroup[field] = e.target.value;
         this.setState({newGroup});
-        console.log(newGroup)
+
     };
     handleOpen = () => {
         this.setState({newGroupModal: true});
@@ -88,7 +88,7 @@ class NewsfeedPage extends Component {
         return (
             <div className='newsfeed'>
 
-                <GridList cellHeight={this.state.screen} cols={4}>
+                <GridList cellHeight={this.state.screen} cols={5}>
                     <GridTile cols={1}>
                         <MenuGroups
                             handleNewGroup={this.handleNewGroup}
@@ -98,17 +98,18 @@ class NewsfeedPage extends Component {
                             handleOpen={this.handleOpen}
                             handleClose={this.handleClose}/>
                     </GridTile>
-                    <GridTile cols={2} style={{overflowY:'scroll'}}>
-
-                        <Feed
-                            uploadPhoto={this.uploadPhoto}
-                            handleText={this.handleText}
-                            text={this.state.newPost.text}
-                            image={this.state.newPost.image}
-                            addPost={this.addPost}
-                            loader={this.state.loader}
-                            posts={this.props.posts}
-                        />
+                    <GridTile cols={3}>
+                        <div className={'elfeed'}>
+                            <Feed
+                                uploadPhoto={this.uploadPhoto}
+                                handleText={this.handleText}
+                                text={this.state.newPost.text}
+                                image={this.state.newPost.image}
+                                addPost={this.addPost}
+                                loader={this.state.loader}
+                                posts={this.props.posts}
+                            />
+                        </div>
                     </GridTile>
                     <GridTile cols={1}>
                         <Recommendations
@@ -167,7 +168,6 @@ class NewsfeedPage extends Component {
 
 
 function mapStateToProps(state){
-    console.log(state);
     return{
         posts:state.posts,
         fetched:state.posts!==undefined,
