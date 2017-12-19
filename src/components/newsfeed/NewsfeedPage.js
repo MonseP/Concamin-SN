@@ -88,7 +88,7 @@ class NewsfeedPage extends Component {
         return (
             <div className='newsfeed'>
 
-                <GridList cellHeight={this.state.screen} cols={4}>
+                <GridList cellHeight={this.state.screen} cols={5}>
                     <GridTile cols={1}>
                         <MenuGroups
                             handleNewGroup={this.handleNewGroup}
@@ -98,17 +98,18 @@ class NewsfeedPage extends Component {
                             handleOpen={this.handleOpen}
                             handleClose={this.handleClose}/>
                     </GridTile>
-                    <GridTile cols={2} style={{overflowY:'scroll'}}>
-
-                        <Feed
-                            uploadPhoto={this.uploadPhoto}
-                            handleText={this.handleText}
-                            text={this.state.newPost.text}
-                            image={this.state.newPost.image}
-                            addPost={this.addPost}
-                            loader={this.state.loader}
-                            posts={this.props.posts}
-                        />
+                    <GridTile cols={3}>
+                        <div className={'elfeed'}>
+                            <Feed
+                                uploadPhoto={this.uploadPhoto}
+                                handleText={this.handleText}
+                                text={this.state.newPost.text}
+                                image={this.state.newPost.image}
+                                addPost={this.addPost}
+                                loader={this.state.loader}
+                                posts={this.props.posts}
+                            />
+                        </div>
                     </GridTile>
                     <GridTile cols={1}>
                         <Recommendations

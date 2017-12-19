@@ -26,17 +26,29 @@
 
 
 /*details*/
+.elfeed{
+    height: 100vh;
+    overflow-y: scroll;
+}
+.elfeed::-webkit-scrollbar{
+    width: 0;
+    display: none;
+    visibility: hidden;
+}
 .organization-detail{
     padding: 0 10%;
 }
-.organization-basics-container{
-    padding: 2%;
-}
+
 .organization-basics{
-    padding: 2% 5%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2%;
     position: relative;
 }
 .paper-datos{
+    margin-top: 10px;
     padding: 2% 5%;
-    margin-bottom: 2%;
+
 }

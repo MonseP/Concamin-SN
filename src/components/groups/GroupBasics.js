@@ -10,11 +10,9 @@ const GroupBasics = ({group, fetched}) => {
     return (
         <div>
             {fetched?
-                <div className="basics-container">
+
                     <Paper className="basics-paper">
-                        <FloatingActionButton className="members-add-button">
-                            <ContentAdd />
-                        </FloatingActionButton>
+
                         <div className="avatar-container">
                             <Avatar icon={<Work/>} size={150} className="basics-avatar"/>
                         </div>
@@ -40,8 +38,7 @@ const GroupBasics = ({group, fetched}) => {
                                 primaryText="JoseLuis"
                                 leftAvatar={<Avatar icon={<Person/>}/>}/>
                         </List>
-                    </Paper>
-                </div>:
+                    </Paper> :
                 <p>loading..</p>}
         </div>
     )

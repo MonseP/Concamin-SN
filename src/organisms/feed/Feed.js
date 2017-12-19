@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Card} from "../index";
+import {MiAvatar, Card} from "../index";
 import NewPost from "../../components/newsfeed/NewPost";
 
 export const Feed = ({posts, uploadPhoto, handleText, text, image, addPost, loader}) => {
@@ -17,7 +17,8 @@ export const Feed = ({posts, uploadPhoto, handleText, text, image, addPost, load
                 return(
                     <div>
                         <Card
-                            title={<Avatar
+                            title={<MiAvatar
+                                link={`users/${p.user}`}
                                 image={p.user_photo}
                                 name={p.username}/>}
                             image={p.image}

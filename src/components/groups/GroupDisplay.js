@@ -19,6 +19,10 @@ class GroupDisplay extends Component {
         loader:false
     };
 
+    componentWillMount(){
+        this.setState({screen:window.innerHeight-60})
+    }
+
     //newPost Functions
     handleText=(e)=>{
         let newPost = this.state.newPost;
@@ -56,27 +60,27 @@ class GroupDisplay extends Component {
     render() {
         return (
             <div className="group-page">
-               <GridList cols={4} cellHeight="auto" className="group-gridlist">
+               <GridList cols={4} cellHeight={this.state.screen} >
 
-                  <GridTile cols={1} className="basics-section">
-
+                  <GridTile cols={1} >
                           <GroupBasics
                               fetched={this.props.fetched}
                               group={this.props.group}/>
-
                   </GridTile>
 
-                   <GridTile cols={2} className="group-feed">
-                       <GroupFeed
-                           posts={this.props.posts}
-                            handleText={this.handleText}
-                            addPost={this.addPost}
-                            uploadPhoto={this.uploadPhoto}
-                            newPost={this.state.newPost}
-                            loader={this.state.loader}/>
+                   <GridTile cols={2}>
+                      <div className={'elfeed'}>
+                          <GroupFeed
+                              posts={this.props.posts}
+                              handleText={this.handleText}
+                              addPost={this.addPost}
+                              uploadPhoto={this.uploadPhoto}
+                              newPost={this.state.newPost}
+                              loader={this.state.loader}/>
+                      </div>
                    </GridTile>
 
-                   <GridTile cols={1} className="group-chat">
+                   <GridTile cols={1}>
                        <GroupChat />
                    </GridTile>
                </GridList>
