@@ -90,11 +90,9 @@
 
 .cover-photo{
     background-size: cover;
-    background-color: lightgray;
-    background-position: center ;
+    background: lightgray center;
     width:100%;
     height: 250px;
-    position: relative;
 }
 
 .cover-photo button{
