@@ -14,10 +14,11 @@ export const Card = ({
                          body,
                          image,
                          footerColor,
-                         footerName
+                         footerName,
+                         style
 }) => {
     return (
-        <div className="bliss-card">
+        <div className="bliss-card" style={style || null}>
             <article>
                 <header>
                     {title}
