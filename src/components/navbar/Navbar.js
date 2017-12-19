@@ -76,7 +76,7 @@ class Navbar extends Component {
 }
 
 function mapStateToProps(state){
-    console.log(state);
+    //console.log(state);
     return{
         usuario: state.usuario,
         fetched: Object.keys(state.usuario).length > 0

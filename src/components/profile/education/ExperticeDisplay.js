@@ -34,6 +34,7 @@ export const ExperticeDisplay = ({props}) => {
             <List>
                 <Subheader>Experiencia</Subheader>
                 <ListItem
+                    style={{backgroundColor:"white"}}
                     containerElement={<Link to={"/profile/expertice"}/>}
                     leftAvatar={<Avatar src={institution} />}
                     rightIconButton={rightIconMenu}
@@ -48,6 +49,7 @@ export const ExperticeDisplay = ({props}) => {
                 />
                 <Divider inset={true} />
                 <ListItem
+                    style={{backgroundColor:"white"}}
                     leftAvatar={<Avatar src={institution}  />}
                     rightIconButton={rightIconMenu}
                     primaryText="Marketing Director"
@@ -61,6 +63,7 @@ export const ExperticeDisplay = ({props}) => {
                 />
                 <Divider inset={true} />
                 <ListItem
+                    style={{backgroundColor:"white"}}
                     leftAvatar={<Avatar src={institution}  />}
                     rightIconButton={rightIconMenu}
                     primaryText="MX Comissioner"
@@ -74,6 +77,7 @@ export const ExperticeDisplay = ({props}) => {
                 />
                 <Divider inset={true} />
                 <ListItem
+                    style={{backgroundColor:"white"}}
                     leftAvatar={<Avatar src={institution}  />}
                     rightIconButton={rightIconMenu}
                     primaryText="Despachador"
@@ -87,6 +91,7 @@ export const ExperticeDisplay = ({props}) => {
                 />
                 <Divider inset={true} />
                 <ListItem
+                    style={{backgroundColor:"white"}}
                     leftAvatar={<Avatar src={institution}  />}
                     rightIconButton={rightIconMenu}
                     primaryText="Asistente Técnico"

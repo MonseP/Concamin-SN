@@ -6,6 +6,7 @@ import postsReducer from "./postsReducer";
 import {groupReducers} from "./groupReducers";
 import {usersReducer} from "./usersReducers";
 import {organizationsReducer} from "./organizationsReducer";
+import {chatsReducer} from "./chatsReducer";
 
 
 const rootReducer = combineReducers({
@@ -15,8 +16,8 @@ const rootReducer = combineReducers({
     posts:postsReducer,
     groups:groupReducers,
     users:usersReducer,
-    organizations: organizationsReducer
-
+    organizations: organizationsReducer,
+    chats:chatsReducer
 });
 
 export default rootReducer;
