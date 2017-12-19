@@ -15,10 +15,13 @@ import toastr from 'toastr';
 
 const today = new Date();
 let aux = new Date();
-aux.setMonth(aux.getMonth() - 1);
+aux.setMonth(aux.getMonth() + 1);
 let todayMs = today.getTime();
-let oneMonthBeforeMs = aux.getTime();
+let oneMonthAfterMs = aux.getTime();
 
+export const TODAY = 'TODAY';
+export const TOMORROW = 'TOMORROW';
+export const THIS_WEEK = 'THIS_WEEK';
 
 class EventosContainer extends Component {
     constructor(props) {
@@ -39,8 +42,8 @@ class EventosContainer extends Component {
                 file: ''
             },
             rangeFilter: {
-                start: oneMonthBeforeMs,
-                end: todayMs
+                start: todayMs,
+                end: oneMonthAfterMs
             }
         };
     }
@@ -72,10 +75,7 @@ class EventosContainer extends Component {
         this.setState({newEvent})
     };
 
-
-
     ///////////////////////////////////////////////////
-
     handleOpen = () => {
         const {usuario} = this.props;
         const {newEvent} = this.state;
@@ -150,7 +150,65 @@ class EventosContainer extends Component {
 
     ///////////////////// Filter Event ///////////////////////////////////////////////
 
+    filterEvents = ( filter ) => {
+        let rangeFilter = {...this.state.rangeFilter};
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = today.getMonth();
+        let day = today.getDate();
+        let startAux;
+        let endAux;
+        switch (filter){
+            case TODAY:
+                startAux = new Date(
+                    year,
+                    month,
+                    day,
+                    0, 0, 0, 0
+                );
+                endAux = new Date(
+                    year,
+                    month,
+                    day,
+                    23, 59, 59, 59
+                );
+                break;
+            case TOMORROW:
+                today.setDate( today.getDate() + 1);
+                year = today.getFullYear();
+                month = today.getMonth();
+                day = today.getDate();
+                startAux = new Date(
+                    year,
+                    month,
+                    day,
+                    0, 0, 0, 0
+                );
+                endAux = new Date(
+                    year,
+                    month,
+                    day,
+                    23, 59, 59, 59
+                );
+                break;
+            case THIS_WEEK:
+                today.setDate( today.getDate() + 7);
+                year = today.getFullYear();
+                month = today.getMonth();
+                day = today.getDate();
+                startAux = new Date();
+                endAux = new Date(
+                    year,
+                    month,
+                    day,
+                    23, 59, 59, 59
+                );
 
+        }
+        rangeFilter.start = startAux;
+        rangeFilter.end = endAux;
+        this.setState({rangeFilter});
+    };
 
     //////////////////////////////////////////////////////////////////////////////////
     render() {
@@ -168,8 +226,7 @@ class EventosContainer extends Component {
             />,
         ];
         const {fetched, eventos = [], usuario, logged, history} = this.props;
-        const {newEvent, imagePreview, rangeFilter} = this.state;
-        const {start, end} = rangeFilter;
+        const {newEvent, imagePreview, rangeFilter: {start, end}} = this.state;
         const filteredEvents = eventos.filter( (event,key) => event.date > start && event.date < end );
         if(fetched){
             console.log(eventos);
@@ -181,9 +238,18 @@ class EventosContainer extends Component {
                     <div className="root-eventos">
                         <GridList cellHeight={'auto'} cols={3}>
                             <GridTile cols={1} className="left-side">
-                                <FiltrarEventos/>
+                                <FiltrarEventos
+                                    filterEvents={this.filterEvents}
+                                />
                             </GridTile>
                             <GridTile cols={2} className="right-side">
+                                <h3>
+                                    Rango de fechas:
+                                    { " " + moment(start).format('DD MMM YYYY HH:mm') + " "}
+                                    a
+                                    { " " + moment(end).format('DD MMM YYYY HH:mm')   + " " }
+                                </h3>
+                                <br/>
                                 <EventsList history={history} events={filteredEvents}/>
                             </GridTile>
                         </GridList>

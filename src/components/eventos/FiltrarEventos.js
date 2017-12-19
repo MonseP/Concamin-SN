@@ -8,18 +8,33 @@ import ActionInfo from 'material-ui/svg-icons/action/info';
 import Tomorrow from 'material-ui/svg-icons/image/wb-sunny';
 import DateRange from 'material-ui/svg-icons/action/date-range';
 import Week from 'material-ui/svg-icons/content/weekend';
+import {THIS_WEEK, TODAY, TOMORROW} from './EventosContainer';
 
-
-const FiltrarEventos = (props) => {
+const FiltrarEventos = ({filterEvents}) => {
     return (
         <div>
             <Paper zdepth={3} >
                 <Subheader>Buscar eventos</Subheader>
                 <List>
-                    <ListItem primaryText="Hoy" leftIcon={<DateIcon />} /*rightIcon={<ActionInfo />}*//>
-                    <ListItem primaryText="Mañana" leftIcon={<Tomorrow />} />
-                    <ListItem primaryText="Esta semana" leftIcon={<Week />} />
-                    <ListItem primaryText="Rango de fecha" leftIcon={<DateRange />} />
+                    <ListItem
+                        onClick={() => filterEvents(TODAY) }
+                        primaryText="Hoy"
+                        leftIcon={<DateIcon />} /*rightIcon={<ActionInfo />}*/
+                    />
+                    <ListItem
+                        onClick={() => filterEvents(TOMORROW) }
+                        primaryText="Mañana"
+                        leftIcon={<Tomorrow />}
+                    />
+                    <ListItem
+                        onClick={() => filterEvents(THIS_WEEK) }
+                        primaryText="Esta semana"
+                        leftIcon={<Week />}
+                    />
+                    <ListItem
+                        primaryText="Rango de fecha"
+                        leftIcon={<DateRange />}
+                    />
 
                 </List>
                 <Divider inset={true}/>
