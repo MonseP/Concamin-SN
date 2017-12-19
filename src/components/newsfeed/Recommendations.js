@@ -32,7 +32,8 @@ const Recommendations = ({users, organizations}) => {
                 {organizations.map((o, key)=>{
                     return(
                         <MiAvatar
-                            image={'https://pbs.twimg.com/profile_images/719575066736889856/eL9HcziB.jpg'}
+                            key={key}
+                            image={'https://scontent.fmex5-1.fna.fbcdn.net/v/t34.0-12/25564661_10214514167705256_939305674_n.jpg?oh=f8d20db6dac90cd953243a138997af0f&oe=5A3C3B07'}
                             link={`/organizations/${o.id}`}
                             name={o.name}
                             />

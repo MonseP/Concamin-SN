@@ -36,6 +36,14 @@
     display: none;
     visibility: hidden;
 }
+.organization-image{
+    height: 200px;
+    width: 100%;
+}
+.organization-image img{
+    height: 100%;
+    width: 100%;
+}
 .organization-detail{
     padding: 0 8%;
 }

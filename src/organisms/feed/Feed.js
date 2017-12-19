@@ -15,14 +15,15 @@ export const Feed = ({posts, uploadPhoto, handleText, text, image, addPost, load
 
             {posts.map((p, key)=>{
                 return(
-                    <div>
+                    <div key={key}>
                         <Card
                             title={<MiAvatar
                                 link={`users/${p.user}`}
                                 image={p.user_photo}
                                 name={p.username}/>}
                             image={p.image}
-                            body={p.text}/>
+                            body={p.text}
+                            date={p.date}/>
                     </div>
 
                 )

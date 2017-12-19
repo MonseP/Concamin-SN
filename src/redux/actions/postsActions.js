@@ -22,6 +22,7 @@ export function savePost(post){
         let user = getState().usuario;
         post['id'] = key;
         post['user'] = user.id;
+        post['date'] = Date.now();
         if(user.photoURL && user.displayName) {
             post['user_photo'] = user.photoURL;
             post['username'] = user.displayName;

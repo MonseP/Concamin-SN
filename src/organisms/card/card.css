@@ -22,8 +22,12 @@
     justify-content: space-between;
     margin-bottom: 10px;
 }
+.bliss-card header span{
+    color: gray;
+    font-size: .7rem;
+}
 
-.bliss-card body{
+.bliss-card section{
 
     display: flex;
     flex-direction: column;
@@ -31,7 +35,7 @@
     color:dimgrey;
 }
 
-.bliss-card body img{
+.bliss-card section img{
     margin: 0;
     width: 100%;
     height: auto;
