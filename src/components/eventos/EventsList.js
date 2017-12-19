@@ -15,12 +15,15 @@ const EventsList = ({events, history}) => {
                 <Event
                     id={event.id}
                     titulo={event.name}
-                    usuario={event.owner}
+                    usuario={event.profile.displayName}
+                    photo={event.profile.photoURL}
                     fecha={fecha}
+                    descript={event.description}
                     hora={hora}
                     lugar={event.place}
                     photoUrl={event.image}
                     history={history}
+
                 />
             </GridTile>
         );

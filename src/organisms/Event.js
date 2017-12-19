@@ -4,18 +4,18 @@ import FontAwesome from 'react-fontawesome';
 import './Event.css'
 
 
-export const Event = ({id, photoURL, image ,hora,  titulo, usuario, descript, lugar, fecha, history}) => {
+export const Event = ({id, photoUrl, photo ,hora,  titulo, usuario, descript, lugar, fecha, history}) => {
     return(
             <div>
                 <div className="fondo">
                     <div className="card">
                         <div className="thumbnail">
-                            <img className="left" onClick={()=>history.push(`/eventos/${id}`)} src={"https://scontent.fmex5-1.fna.fbcdn.net/v/t1.0-9/386706_367094366719291_161591402_n.jpg?oh=869396ccd4a5c5f254f8bee84b076fb8&oe=5ABEED4E"} alt=""/>
+                            <img className="left" onClick={()=>history.push(`/eventos/${id}`)} src={photoUrl} alt=""/>
                         </div>
                         <div className="right">
                             <h1 className="event_name">{titulo}</h1>
                             <div className="author">
-                                <img  src={photoURL} alt=""/>
+                                <img  src={photo} alt=""/>
                                 <h2 className="data">{usuario}</h2>
                             </div>
                             <div className="separator"></div>
