@@ -29,6 +29,7 @@
 .elfeed{
     height: 100vh;
     overflow-y: scroll;
+    padding-bottom: 10%;
 }
 .elfeed::-webkit-scrollbar{
     width: 0;
@@ -36,7 +37,7 @@
     visibility: hidden;
 }
 .organization-detail{
-    padding: 0 10%;
+    padding: 0 8%;
 }
 
 .organization-basics{
