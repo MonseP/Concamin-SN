@@ -8,7 +8,8 @@ import {cerrarSesion} from "../../redux/actions/usuarioActions";
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import ButtonC from "../../organisms/button/ButtonC";
-
+import logo from '../../assets/logo.png';
+import nombre from '../../assets/nombre.png';
 
 class Navbar extends Component {
 
@@ -24,11 +25,12 @@ class Navbar extends Component {
         return (
             <div className="navbar">
                 <Toolbar
-                    style={{backgroundColor:"#777"}}
+                    style={{backgroundColor:"#0097A7"}}
                 >
                    <ToolbarGroup>
                        <Link to="/" className="link-nav">
-                           <ToolbarTitle text="Concamin" />
+                           <img style={{height:"40px"}} src={logo} alt=""/>
+                           <img style={{width:"100px", marginBottom:"12px"}} src={nombre} alt=""/>
                        </Link>
                    </ToolbarGroup>
                     {user ?

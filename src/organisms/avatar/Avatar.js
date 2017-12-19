@@ -3,7 +3,7 @@ import './avatar.css';
 import avatar from  './user.png'
 import {Link} from 'react-router-dom';
 
-export const Avatar = ({image, name, title, link, component}) => {
+export const MiAvatar = ({image, name, title, link, component}) => {
     return (
         <div className={'my-avatar-container'}>
             <div className={'avatar-image-container'}>
@@ -14,7 +14,7 @@ export const Avatar = ({image, name, title, link, component}) => {
             <div className={'avatar-info-container'}>
                 <Link to={link?link:'#'} className={'avatar-link'}>
                     <p className={'name'}>{name?name:'Main Text'}</p>
-                    <p className={'title'}>{title?title:'Secondary Text'}</p>
+                    <p className={'title'}>{title?title:''}</p>
                 </Link>
             </div>
             <div className={'extra-component'}>

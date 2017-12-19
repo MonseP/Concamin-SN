@@ -57,9 +57,12 @@ export const saveEvent = (event) => (dispatch, getState) => {
     else key = db.push().key;
 
     let uid = getState().usuario.id;
+    let user = getState().usuario;
     event['id'] = key;
+    event['profile'] = { displayName: user.displayName, photoURL: user.photoURL };
     updates[`dev/events/${key}`] = event;
     updates[`dev/users/${uid}/eventsCreated/${event.id}`] = true;
+    console.log(event);
     return db.update(updates)
         .then(snap=>{
             return Promise.resolve(snap)

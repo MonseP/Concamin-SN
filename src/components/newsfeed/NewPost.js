@@ -79,6 +79,7 @@ const NewPost = ({handleText, text, image, uploadPhoto, addPost, loader}) => {
                     </div>
                     <img src={image} alt="" />
                     <TextField
+                        underlineFocusStyle={{borderColor:'gray'}}
                         value={text}
                         name='text'
                         onChange={handleText}
