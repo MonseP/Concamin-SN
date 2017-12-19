@@ -233,7 +233,7 @@ class EventosContainer extends Component {
         }
         console.log(newEvent);
         return (
-            <div>
+            <div style={{backgroundColor:"#eceff1"}}>
                 { !fetched ? <CircularProgress className="loading-progress" size={80} thickness={7}/> :
                     <div className="root-eventos">
                         <GridList cellHeight={'auto'} cols={3}>
