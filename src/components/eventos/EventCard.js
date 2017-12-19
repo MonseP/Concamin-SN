@@ -17,17 +17,7 @@ const ProductCard = ({id, titulo, usuario, hora, lugar, fecha, photoUrl, history
                     <p>Fecha {fecha}</p>
                     <p>Hora: {hora}</p>
                     <p>Lugar {lugar}</p>
-                    {/*<FlatButton style={{position:'absolute'}} className="detail-button" label='Detalle' onClick={()=>history.push(`/eventos/${id}`)}/>*/}
 
-                    {/*<div className="add-item-in-card">*/}
-                        {/*<TextField*/}
-                            {/*style={{width:'30%'}}*/}
-                            {/*hintText="1"*/}
-                            {/*type="number"/>*/}
-                        {/*<IconButton>*/}
-                            {/*<ContentAdd/>*/}
-                        {/*</IconButton>*/}
-                    {/*</div>*/}
 
 
                 </CardText>
