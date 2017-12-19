@@ -22,7 +22,7 @@ store.dispatch(newEvent());
 store.dispatch(getAllGroups());
 
 setTimeout( r => {
-    console.log(store.getState())
+    //console.log(store.getState())
 },2000);
 injectTapEventPlugin();
 

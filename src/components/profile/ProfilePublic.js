@@ -3,6 +3,8 @@ import {ProfileDisplay} from "./ProfileDisplay";
 import {CircularProgress, RaisedButton} from 'material-ui';
 import toastr from 'toastr';
 import {MainLoader} from '../loader/MainLoader';
+import {ExperticeDisplay} from "./education/ExperticeDisplay";
+import {EducationDisplay} from "./education/EducationDisplay";
 //redux
 import {connect} from 'react-redux';
 import {getUser} from "../../redux/actions/usuariosActions";
@@ -16,7 +18,7 @@ const Dportada = "https://wallpaperclicker.com/storage/wallpaper/hd-wallpaper-be
 
 const ProfilePublicDisplay = ({loading, onChange, fetched, posts, followers, following, photoURL, title, displayName, fullName, email, age, sex, facebook, twitter, github, linkedIn, bio, portada}) => {
     if(!portada) portada = Dportada;
-    return(<div>
+    return(<div style={{ backgroundColor:"lightgrey"}}>
 
         <div className="profile-portada-publica" style={{backgroundImage:`url('${portada}')`}}>
             <figure>
@@ -29,6 +31,12 @@ const ProfilePublicDisplay = ({loading, onChange, fetched, posts, followers, fol
                 <span>Post{posts ? Object.keys(posts).length>1 ? "s":null:"s"} <br/> {posts ? Object.keys(posts).length:0} </span>
             </div>
         </div>
+
+        <section style={{maxWidth:"600px", position:"relative", margin:"0 auto", marginTop:20}}>
+            <ExperticeDisplay/>
+            <EducationDisplay/>
+        </section>
+
 
     </div>);
 };
@@ -57,7 +65,7 @@ class ProfilePublic extends Component{
                     {...profile}/>
                 <RaisedButton
                     disabled={isSelf}
-                    style={{position:"fixed", top:370, right:20, zIndex:2}}
+                    style={{position:"absolute", top:370, right:20, zIndex:2}}
                     onClick={this.follow}
                      primary={!following ? true:false}
                     secondary={following ? true : false}

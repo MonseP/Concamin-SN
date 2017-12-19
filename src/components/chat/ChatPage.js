@@ -6,24 +6,23 @@ import Person from 'material-ui/svg-icons/social/person';
 import Dots from 'material-ui/svg-icons/navigation/more-vert';
 import Face from 'material-ui/svg-icons/image/tag-faces';
 import Mic from 'material-ui/svg-icons/hardware/keyboard-voice';
+//redux
+import {connect} from 'react-redux';
+import {getUserChats} from "../../redux/actions/chatsActions";
 
-
+const oswi = "https://scontent.fmex5-1.fna.fbcdn.net/v/t31.0-8/18891870_1543998225611670_8032322982945740932_o.jpg?oh=b39d97a57807da61fbccf20c9301a70d&oe=5A78D305";
 
 
 class ChatPage extends Component{
+	componentWillMount(){
+		this.props.getUserChats();
+	}
 	render(){
+		//if(!this.props.fetched) return <h2>Cargando...</h2>
 		return(
 			<div className="chat-page">
-				<GridList  cols={3}  cellHeight={'auto'}>
-					<GridTile cols={1} className="contacts-list">
-
 					<div className="div-lista">
-						<ListItem
-							disabled
-							primaryText="Usuario" rightIcon={<Dots />}
-							leftAvatar={<Avatar icon={<Person/>} />}/>
-
-						<Subheader>Contactos</Subheader>
+						<Subheader >Contactos</Subheader>
 						<List>
 
 							<ListItem
@@ -111,65 +110,76 @@ class ChatPage extends Component{
 
 						</List>
 					</div>
-						
-					</GridTile>
-					<GridTile cols={2} >
-						<div className="chat-box">
-							<Paper zDepth={2}>
+
+					<div className="chat-box-bliss">
+						<Paper zDepth={4}>
 							<ListItem
 			                	secondaryText="última vez hoy 10:15"
-			                    primaryText="Oswaldo" rightIcon={<Dots />}
+			                    primaryText="Oswaldo"
+								rightIcon={<Dots />}
 			                    leftAvatar={<Avatar
 			                        src="https://scontent.fmex5-1.fna.fbcdn.net/v/t31.0-8/18891870_1543998225611670_8032322982945740932_o.jpg?oh=b39d97a57807da61fbccf20c9301a70d&oe=5A78D305" />}/>
-			                
-						   
+
 						    
-						  
-						    
-						    
-					    	<div className="caja-texto">
-					    		<div className="text text-left">
-					    			lalalalala
+					    	<div className="chat-mensajes">
+					    		<div className="chat-mensaje izquierda">
+                                    <Avatar
+                                        src={oswi} />
+					    			<span> ¿Hola como estas? </span>
 					    		</div>
-					    		<div className="text text-right">
-					    			lolololoolololo
-					    		</div>
-					    		<div className="text text-left">
-					    			lalalalala
-					    		</div>
-					    		<div className="text text-right">
-					    			lolololoolololo
-					    		</div>
-					    		<div className="text text-left">
-					    			lalalalala
-					    		</div>
-					    		<div className="text text-right">
-					    			lolololoolololo
-					    		</div>
+                                <div className="chat-mensaje derecha">
+                                    <Avatar
+                                        src={oswi} />
+                                    <span> ¡Muy bien! ¿y tu? </span>
+                                </div>
+                                <div className="chat-mensaje izquierda">
+                                    <Avatar
+                                        src={oswi} />
+                                    <span> Trabajando duro </span>
+                                </div>
+                                <div className="chat-mensaje derecha">
+                                    <Avatar
+                                        src={oswi} />
+                                    <span> Genial! sigue así </span>
+                                </div>
+                                <div className="chat-mensaje izquierda">
+                                    <Avatar
+                                        src={oswi} />
+                                    <span> Claro!, que tengas un buen día =D </span>
+                                </div>
 
 					    	</div>
-					    	<div className="caja-mensaje">
-					    		<div>
-					    			<Face/>
-					    		</div>
-					    		<div className="el-input">
-					    			<TextField
-					    			multiLine={true}
-					    			fullWidth={true}/>
-					    		</div>
-					    		<div>
-					    			<Mic/>
-					    		</div>
-					    	</div>
-						    
-						    
+
+
+                            <div className="caja-mensaje">
+                                <div>
+                                    <Face/>
+                                </div>
+                                <div className="el-input">
+                                    <TextField
+                                        multiLine={true}
+                                        fullWidth={true}/>
+                                </div>
+                                <div>
+                                    <Mic/>
+                                </div>
+                            </div>
+
 						  </Paper>
-						</div>
-					</GridTile>
-				</GridList>
+
+					</div>
+
 			</div>
 		)
 	}
 }
 
-export default ChatPage;
+function mapStateToProps(state, ownProps){
+	return{
+		chats:state.chats.list,
+		currentChat:state.chats.current,
+		fetched: state.chats.list.length > 0
+	}
+}
+
+export default ChatPage = connect(mapStateToProps,{getUserChats})(ChatPage);
