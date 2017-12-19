@@ -22,8 +22,10 @@ export function savePost(post){
         let user = getState().usuario;
         post['id'] = key;
         post['user'] = user.id;
-        post['user_photo'] = user.photoURL;
-        post['username'] = user.displayName;
+        if(user.photoURL && user.displayName) {
+            post['user_photo'] = user.photoURL;
+            post['username'] = user.displayName;
+        }
         updates[`dev/posts/${key}`] = post;
         updates[`dev/users/${user.id}/posts/${post.id}`] = true;
         if(post.group) updates[`dev/groups/${post.group}/posts/${post.id}`] = true;

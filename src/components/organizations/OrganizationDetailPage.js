@@ -65,7 +65,7 @@ class OrganizationDetailPage extends Component {
             <div className="organization-detail">
                 <GridList cellHeight={this.state.screen} cols={4}>
                     <GridTile cols={1}>
-                        <Paper className="organization-basics">
+                        <div className="organization-basics">
 
                             <div className="">
                                 <Avatar icon={<Work/>} size={150} className=""/>
@@ -92,7 +92,7 @@ class OrganizationDetailPage extends Component {
                                     primaryText="JoseLuis"
                                     leftAvatar={<Avatar icon={<Person/>}/>}/>
                             </List>
-                        </Paper>
+                        </div>
                     </GridTile>
                     <GridTile cols={2}>
                         <div className={'elfeed'}>
